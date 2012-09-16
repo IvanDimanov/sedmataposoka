@@ -11,4 +11,7 @@ class Page {
 // Test from Tedy
 
   }
+
+	function test_tedy(){}
+
 }
