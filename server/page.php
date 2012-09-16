@@ -13,5 +13,7 @@ class Page {
   }
 
 	function test_tedy(){}
-
+  
+  function ivan_test() {}
+  
 }
