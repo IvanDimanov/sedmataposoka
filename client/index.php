@@ -10,5 +10,7 @@
     
     <h1>That's our first PHP index page</h1>
     
+    <h2>New header</h2>
+    
   </body>
 </html>
