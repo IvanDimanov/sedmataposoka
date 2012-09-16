@@ -7,5 +7,11 @@ class Page {
     // Some template settings
     
     return 'index.php';
+
+// Test from Tedy
+
   }
+
+	function test_tedy(){}
+
 }
