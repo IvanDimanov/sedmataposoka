@@ -12,7 +12,9 @@ class Page {
 
   }
 
-	function test_tedy(){}
+	function test_tedy(){
+    // test from Ivan
+  }
   
   function ivan_test() {}
   
