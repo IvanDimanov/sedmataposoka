@@ -1,0 +1,7 @@
+# This .htaccess file removes the index.php before each URI
+# and enables accessing our user_guide, js, css and img folders
+RewriteEngine on
+RewriteCond $1 !^(index\.php|user_guide|js|css|img)
+
+# TODO: The string "/sedmataposoka" may cause migration problems
+RewriteRule ^(.*)$ /sedmataposoka/index.php/$1 [L]
