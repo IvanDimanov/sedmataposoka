@@ -1,0 +1,1 @@
+/* This file contains common JS functionalities for All project HTML files */

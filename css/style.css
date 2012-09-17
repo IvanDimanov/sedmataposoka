@@ -1,0 +1,6 @@
+/* This file contains CSS rules common for All project HTML files */
+html, body {
+  border : 0px;
+  margin : 0px;
+  padding: 0px;
+}
