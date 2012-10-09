@@ -9,9 +9,11 @@
   
   var n1 = 1;
   
-  function sum() {
-    n1++;
+  function sum(n2) { 
+	n2++
+	return n2;
   }
   
-  log(n1);
+  log(sum(n1))
+  
 })()
