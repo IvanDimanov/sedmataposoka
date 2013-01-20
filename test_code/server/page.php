@@ -13,8 +13,8 @@ class Page {
   }
 
 	function test_tedy(){
-    // test from Ivan
-  }
+echo "test";
+}
   
   function ivan_test() {}
   
