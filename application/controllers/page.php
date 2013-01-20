@@ -9,7 +9,12 @@ class Page extends CI_Controller {
     $data['header_info'] = 'Test header info';
     $data['test_var']    = 'Test variable from controller/page.php';
     
-    $this->load->view('page.php', $data);
+    // $this->load->view('page.php', $data);
+    
+    $this->load->model('toughtModel');
+    
+    echo $this->toughtModel->getTought();
+    
   }
 }
 
