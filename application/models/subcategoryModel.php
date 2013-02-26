@@ -14,13 +14,17 @@ class subcategoryModel extends CI_Model {
 
     //put your code here
     //return all subcat if catId is not set
-    function getSubcategoriesForCategory($catId = null) {
-        $this->db->select(' subcategory.id,subcategory.catId, subcategory.name, subcategory.descr');
+    function getSubcategoriesForCategory($catId = null,$language) {
+        $this->db->select(' subcategory.id,subcategory.catId, 
+            subcategoryname.'.$language.' as name, 
+            subcategorydescr.'.$language.' as descr');
         $this->db->from('subcategory');
+        $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
+        $this->db->join('subcategorydescr', 'subcategorydescr.id = subcategory.descrId');
         if (isset($catId)) {
             $this->db->where('subcategory.catId = "' . $catId . ' "');
         }
-        $this->db->order_by('subcategory.name', 'asc');
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
