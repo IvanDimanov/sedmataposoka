@@ -11,6 +11,4 @@ RewriteRule ^index\.php/?$ / [L,R=301,NC]
 RewriteCond $1 !^(index\.php|user_guide|js|css|img)
 
 # TODO: The string "/sedmataposoka" may cause migration problems
-RewriteRule ^(.*)$ /sedmataposoka/sedmataposoka/index.php/$1 [L]
-
-#RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteRule ^(.*)$ /sedmataposoka/index.php/$1 [L]
