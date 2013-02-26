@@ -11,9 +11,23 @@
  * @author Tedy
  */
 class event extends CI_Controller{
+        public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('toughtModel');
+                $this->load->model('partnerModel');
+                $this->load->model('adsModel');
+                $this->load->model('categoryModel');
+                $this->load->model('subcategoryModel');
+                $this->load->model('eventModel');
+	}
+
     //put your code here
+    //TODO if no cat id display events for all subcats ????? Limit to 10 
     function search($catId, $date)
     {
+        //TODO set language
+        $language = 'en';
         $this->load->model('eventModel');
         switch ($date) {
             case 'tomorrow':
@@ -32,9 +46,43 @@ class event extends CI_Controller{
                 $date = null;
                 break;
         }
-        $data['events'] = $this->eventModel->getAllEvents($date, $catId);
+        $data['events'] = $this->eventModel->getAllEvents($date, $catId,$language);
         
         $this->load->view('eventView',$data);
+    }
+    
+    function index() {
+        
+        
+        
+        //TODO get language
+        $language = 'bg';
+        
+        $this->load->view('templates/header');
+        //get banner for today type=1, limi = 1
+        $data['banner'] = $this->adsModel->getAds( null,1,1,$language);
+        $this->load->view('templates/banner',$data);
+        //get adds for today type = 2, limit = 2
+        $data['ads'] = $this->adsModel->getAds( null,2,2,$language);
+        $this->load->view('templates/ads',$data);
+        $data['partners'] = $this->partnerModel->getPartners($language);
+        $this->load->view('templates/partners',$data);
+        $data['tought'] = $this->toughtModel->getTought(null,1,$language);
+        $this->load->view('templates/tought',$data);
+        $data['categories'] = $this->categoryModel->
+                getAllCategoriesName($language);
+        $data['subcategories'] = $this->subcategoryModel->
+                getSubcategoriesForCategory($catId = null,$language);
+        $this->load->view('templates/catalog',$data);
+        
+         
+        
+        //TODO default values for catID, date
+        //$this->search($catId=1, $date);
+        
+        
+        
+        $this->load->view('templates/footer');
     }
 }
 

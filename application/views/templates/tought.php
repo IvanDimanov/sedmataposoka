@@ -6,3 +6,9 @@
  */
 ?>
 <p>Tought of the day</p>
+
+<?php
+
+echo '"' . $tought[0]['text'] . '" ' . $tought[0]['author'];
+
+?>
