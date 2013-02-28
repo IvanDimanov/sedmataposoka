@@ -24,7 +24,7 @@ class event extends CI_Controller{
 
     //put your code here
     //TODO if no cat id display events for all subcats ????? Limit to 10 
-    function search($catId, $date)
+    function search($catId, $date,$language)
     {
         //TODO set language
         $language = 'en';
@@ -59,30 +59,31 @@ class event extends CI_Controller{
         $language = 'bg';
         
         $this->load->view('templates/header');
-        //get banner for today type=1, limi = 1
-        $data['banner'] = $this->adsModel->getAds( null,1,1,$language);
-        $this->load->view('templates/banner',$data);
+        //get banner for today type=1, limi = 7
+        $data['banners'] = $this->adsModel->getAds( null,1,7,$language);
         //get adds for today type = 2, limit = 2
         $data['ads'] = $this->adsModel->getAds( null,2,2,$language);
-        $this->load->view('templates/ads',$data);
+        echo 'ADS </br>';
         $data['partners'] = $this->partnerModel->getPartners($language);
-        $this->load->view('templates/partners',$data);
         $data['tought'] = $this->toughtModel->getTought(null,1,$language);
-        $this->load->view('templates/tought',$data);
         $data['categories'] = $this->categoryModel->
                 getAllCategoriesName($language);
         $data['subcategories'] = $this->subcategoryModel->
                 getSubcategoriesForCategory($catId = null,$language);
-        $this->load->view('templates/catalog',$data);
+        
+        $this->load->view('templates/templateLayout',$data);
         
          
         
         //TODO default values for catID, date
-        //$this->search($catId=1, $date);
+        //$this->search($catId=1, $date,$language);
         
         
         
         $this->load->view('templates/footer');
+        
+       //$this->load->helper('printLayout',$this, 'templateLayout', 'mainLayout', $data);
+        // $this->load->helper('printLayout');
     }
 }
 
