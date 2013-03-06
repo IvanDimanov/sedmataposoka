@@ -28,6 +28,16 @@ class adsModel extends CI_Model {
     function getAds($day = null,$type,$limit = null,$language = "bg")
     {
         $day = isset($day)?$day:Date('Y:m:d');
+        
+        //limit should be between 0 and 7
+        if( !isset($limit) )
+        {
+            $limit = 7;
+        }  
+        if($limit == 0 || $limit > 7)
+        {
+             $limit = 7;
+        }
        
         $this->db->select('ads.imagePath, ads.link, adstitle.'.$language.' as title');
         $this->db->join('adstitle',' adstitle.id = ads.titleId ');
@@ -40,12 +50,11 @@ class adsModel extends CI_Model {
         $query = $this->db->get('ads');
         
         //if no record for date within start and end date period 
-        //return latest ads/banner
-        if($query->num_rows() <= 0)
+        //return latest banner
+        if($query->num_rows() <= 0 and $type == 1)
         {
             $query = $this->getLast($type,$language);
         }
-        
         return $query->result_array();
         
     }
