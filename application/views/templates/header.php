@@ -1,14 +1,19 @@
-<?php
+﻿<?php
   // A template file used for loading all HTML page header elements
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
-  <head>
-    
+
+<head>
+    <title>Седмата посока</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!--[if lt IE 9]><script type="text/javascript" src="js/html5shiv.js"></script><![endif]-->
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-  </head>
-  <body>
+           
+</head>
+
+<body>
     
     
