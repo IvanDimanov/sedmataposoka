@@ -1,6 +1,6 @@
 /* This file contains common JS functionalities for All project HTML files */
 
-(function () {
+/*(function () {
   
   // Shorter debug function
   function log(msg) {
@@ -16,4 +16,12 @@
   
   log(sum(n1))
   
-})()
+})()*/
+
+$(document).ready(function() { 
+	$('.bannerHolderImg').cycle({
+		fx:      'scrollRight', 
+		speed:    300, 
+		timeout:  2000 
+	});
+});
