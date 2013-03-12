@@ -322,22 +322,6 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -447,10 +431,10 @@ textarea {
 		.wrapMain .wrapMainMiddle{width:490px; float:left; padding: 10px; background: #fff}
 			.wrapMain .wrapMainMiddle .bannerHolder{position: relative; margin: 0px 0px 20px 0px;}
 				.wrapMain .wrapMainMiddle .bannerHolder .bannerHolderImg {position:relative; height:164px; width: 488px; }
-					.wrapMain .wrapMainMiddle .bannerHolder .bannerHolderImg img{width:488px; height: 164px; position:absolute}
-				.wrapMain .wrapMainMiddle .bannerHolder .bannerArrowLeft{position: absolute; top: 64px; left: 0px; width:29px; height: 31px; background: url(../img/sprite.png) no-repeat -124px -2px;}
-				.wrapMain .wrapMainMiddle .bannerHolder .bannerArrowRight{position: absolute; top: 64px; right: 2px; width:29px; height: 31px; background: url(../img/sprite.png) no-repeat -155px -2px;}
-				.wrapMain .wrapMainMiddle .bannerHolder .bannerNav{position: absolute; bottom: 0px; left: 0px; width:468px; height: 23px; padding: 0px 10px; line-height: 23px; background: url(../img/bannerBgrd.png) repeat;}
+					.wrapMain .wrapMainMiddle .bannerHolder .bannerHolderImg img{width:488px; height: 164px;}
+				.wrapMain .wrapMainMiddle .bannerHolder .bannerArrowLeft{position: absolute; top: 64px; left: 0px; z-index:100; width:29px; height: 31px; background: url(../img/sprite.png) no-repeat -124px -2px;}
+				.wrapMain .wrapMainMiddle .bannerHolder .bannerArrowRight{position: absolute; top: 64px; right: 2px; z-index:100; width:29px; height: 31px; background: url(../img/sprite.png) no-repeat -155px -2px;}
+				.wrapMain .wrapMainMiddle .bannerHolder .bannerNav{position: absolute; bottom: 0px; left: 0px; z-index:100; width:468px; height: 23px; padding: 0px 10px; line-height: 23px; background: url(../img/bannerBgrd.png) repeat;}
 					.wrapMain .wrapMainMiddle .bannerHolder .bannerNav .title{float:left; display: inline-block; line-height:23px; color:#fff}
 					.wrapMain .wrapMainMiddle .bannerHolder .bannerNav a:first-child{margin: 5px 0px 0px 0px;}
 					.wrapMain .wrapMainMiddle .bannerHolder .bannerNav a{float: right; height: 12px; width: 12px; margin: 5px 5px 0px 0px; background: url(../img/sprite.png) no-repeat -186px -2px;}
@@ -547,6 +531,7 @@ textarea {
 }
 
 /** END Home pages and separated content **/
+
 .form .inputHolder{padding: 0px 0px 10px 0px;}
 .form label{display: block; padding: 0px 0px 3px 0px; font-size: 16px; font-weight: bold;}
 .form .inputMain{height: 30px; width: 268px; line-height: 30px; padding: 0px 10px; border: 1px solid #696969;}
