@@ -18,10 +18,15 @@
   
 })()*/
 
-$(document).ready(function() { 
-	$('.bannerHolderImg').cycle({
-		fx:      'scrollRight', 
-		speed:    300, 
-		timeout:  2000 
-	});
-});
+    $(function() {
+      $('#slides').slidesjs({
+        width: 488,
+        height: 164,
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+    });
