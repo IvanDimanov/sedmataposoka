@@ -56,27 +56,17 @@
 		</div>
 		<div class ="wrapMainMiddle">
 			<div class="bannerHolder">
-				<div class="bannerHolderImg">					
+				<div id="slides">					
 					<?/*php
 					foreach ($banners as $banner) {
-						echo '<img src="' . $banner['imagePath'] . '" alt="' . $banner['title'] . '" height="42" width="42">';
-						//TODO redirection to partner link
-						
+					echo '<img src="' . $banner['imagePath'] . '" alt="' . $banner['title'] . '" height="42" width="42">';
+					//TODO redirection to partner link
+					echo '<h2 class="title">' . $banner['title'] . '</h2>';
+					echo '<a href="' . $banner['link'] . '">Banner Link</a>';
 					}
 					*/?>
 					<img src="img/banner/1a.jpg" alt="123" />
 					<img src="img/banner/test.jpg" alt="123" />
-				</div>
-				<a class="bannerArrowLeft" href="#" ></a>
-				<a class="bannerArrowRight" href="#" ></a>
-				<div class="bannerNav clear">
-					<?php
-						foreach ($banners as $banner) {
-						echo '<h2 class="title">' . $banner['title'] . '</h2>';
-						echo '<a href="' . $banner['link'] . '">Banner Link</a>';
-						}
-					?>
-					<a class="active" href="" ></a>
 				</div>
 			</div>
 			<div class="articleHolder">
