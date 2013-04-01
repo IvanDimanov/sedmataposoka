@@ -38,8 +38,11 @@
 |
 */
 
-$route['default_controller'] = 'event';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
+$route['subcategory/(:num)']='subcategory/index/$1';
+$route['category/(:num)']='category/index/$1';
+$route['event/(:num)']='event/index/$1';
 
 
 /* End of file routes.php */
