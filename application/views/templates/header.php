@@ -3,7 +3,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-<head>123
+<head>
     <title>Седмата посока</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
