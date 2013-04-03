@@ -6,35 +6,29 @@
  */
 
 /**
- * Description of category
+ * Description of home
  *
  * @author Tedy
  */
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class category extends CI_Controller {
+class home extends CI_Controller{
     //put your code here
-    public function __construct()
-	{
-		parent::__construct();
+    function __construct()
+    {
+        parent::__construct();
 		$this->load->model('toughtModel');
                 $this->load->model('partnerModel');
                 $this->load->model('adsModel');
                 $this->load->model('categoryModel');
                 $this->load->model('subcategoryModel');
-                $this->load->model('categoryModel');
-	}
-        
-    function index($catId )
+                $this->load->model('eventModel');
+    }
+    
+    function index()
     {
-        //todo set language
-        $language = 'en';
+        //TODO get language
+        $language = 'bg';
         
-        $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($catId, $language);        
-        
-        
-        
-        $this->load->helper('printLayout_helper');
-        
+       // $this->load->view('templates/header');
         //get banner for today type=1, limi = 7
         $data['banners'] = $this->adsModel->getAds( null,1,7,$language);
         //get adds for today type = 2, limit = 2
@@ -45,16 +39,13 @@ class category extends CI_Controller {
                 getAllCategoriesName($language);
         $data['subcategories'] = $this->subcategoryModel->
                 getSubcategoriesForCategory($catId = null,$language);
+        $data['events'] = $this->eventModel->getAllEvents(0,null,$language);
         
-        //call helper function which loads header, footer,
-        // template and mainlayout views
-        printLayout($this, "templates/templateLayout","categoryView",$data);
         
+        
+        $this->load->helper('printLayout_helper');
+        printLayout($this, "templates/templateLayout","homeView",$data);
     }
-    
-    
-    
-    
 }
 
 ?>

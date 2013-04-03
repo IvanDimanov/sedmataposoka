@@ -4,14 +4,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-/**
- * Description of category
- *
- * @author Tedy
- */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class category extends CI_Controller {
+class subcategory extends CI_Controller {
     //put your code here
     public function __construct()
 	{
@@ -22,18 +16,16 @@ class category extends CI_Controller {
                 $this->load->model('categoryModel');
                 $this->load->model('subcategoryModel');
                 $this->load->model('categoryModel');
+                $this->load->model('eventModel');
 	}
         
-    function index($catId )
+    function index($subcatId = 1)
     {
         //todo set language
         $language = 'en';
         
-        $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($catId, $language);        
+        $data['subcategoryInfo'] = $this->subcategoryModel->getSubcategriesInfo($subcatId, $language);        
         
-        
-        
-        $this->load->helper('printLayout_helper');
         
         //get banner for today type=1, limi = 7
         $data['banners'] = $this->adsModel->getAds( null,1,7,$language);
@@ -45,16 +37,17 @@ class category extends CI_Controller {
                 getAllCategoriesName($language);
         $data['subcategories'] = $this->subcategoryModel->
                 getSubcategoriesForCategory($catId = null,$language);
-        
+        //get all events for current subcategory for 1 month
+        $data['events'] = $this->eventModel->getAllEventsForSubcategory(30 ,$subcatId,$language);
+               
         //call helper function which loads header, footer,
         // template and mainlayout views
-        printLayout($this, "templates/templateLayout","categoryView",$data);
-        
+        $this->load->helper('printLayout_helper');
+        printLayout($this, "templates/templateLayout","subcategoryView",$data);
     }
-    
-    
     
     
 }
 
 ?>
+

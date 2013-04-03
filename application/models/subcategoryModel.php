@@ -28,6 +28,22 @@ class subcategoryModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    function getSubcategriesInfo($subcatId, $language)
+    {
+        $this->db->select(' subcategory.id,subcategory.catId, 
+            subcategoryname.'.$language.' as name, 
+            subcategorydescr.'.$language.' as descr');
+        $this->db->from('subcategory');
+        $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
+        $this->db->join('subcategorydescr', 'subcategorydescr.id = subcategory.descrId');
+        $this->db->where('subcategory.id = "' . $subcatId . ' "');
+                $this->db->order_by('name', 'asc');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        
+        return $result[0];
+    }
 
     /*   function getAllSubcategories()
       {
