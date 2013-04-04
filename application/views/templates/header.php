@@ -12,60 +12,57 @@
   </head>
   <body>
 
-    <p>Thought of the day</p>
+<div class="wrapAll">
+	<header class="wrapHeader">
+		<div class="clear">
+			<a class="logo" href="" ><img src="img/logo_sedmata_posoka.png" alt="logo" /></a>	
+			<div class="mindHolder">
+				<?php
+				echo '<p>"' . $tought[0]['text'] . '"<span class="author"> ' . $tought[0]['author'].'</span></p>';
+				?>
+			</div>
+			<div class="bubbles"></div>
+			<div class="rightPart">
+				<section class="language clear">	
+					<a href="#" class="en"></a>
+					<a href="#" class="bg"></a>
+				</section>
+				<section class="search">
+					<input class="searchTxt" type="search" />
+					<input class="searchBttn" type="submit" value="" />
+				</section>
+				<section class="socials clear">
+					<a class="email" href=""></a>
+					<a class="fb" href=""></a>
+				</section>
+			</div>
+		</div>
+	</header>
+	<section class="wrapMain">
+		<div class="clear">
+		<div class ="wrapMainLeft">
+			<h2>Каталог</h2>
+			<nav class ="navMain">
+				<?php
+				$this->load->helper('url');
 
-<?php
-echo '"' . $tought[0]['text'] . '" ' . $tought[0]['author'];
-?>
+				foreach ($categories as $category) {
+					// echo '<h1>' . $category['name'] . '</h1>';
+					echo '<a href="' . base_url() . 'category/index/' . $category['id'] . '">' .
+					$category['name'] . ' </a>';
+					$menu_elements = '';
 
-<br/><p1>ADDS list</p1>
+					for ($i = 0; $i < sizeof($subcategories); $i++) {
+						if ($subcategories[$i]['catId'] === $category['id']) {
+							$menu_elements .= '<p>' . $subcategories[$i]['name'] . '</p>';
+						}
+					}
 
-<?php
-//Display ads only for current day
-foreach ($ads as $add) {
-    echo '<h1>' . $add['title'] . '</h1>';
-    echo '<img src="' . $add['imagePath'] . '" alt="' . $add['title'] . '" height="42" width="42">';
-    //TODO redirection to partner link
-    echo '<a href="' . $add['link'] . '">Ads link</a>';
-}
-?>
-
-<h1> Banner </h1>
-<?php
-foreach ($banners as $banner) {
-    echo '<h1>' . $banner['title'] . '</h1>';
-    echo '<img src="' . $banner['imagePath'] . '" alt="' . $banner['title'] . '" height="42" width="42">';
-    //TODO redirection to partner link
-    echo '<a href="' . $banner['link'] . '">Banner Link</a>';
-}
-?>
-
-
-<h1>Catalog</h1>
-<?php
-$this->load->helper('url');
-
-foreach ($categories as $category) {
-    // echo '<h1>' . $category['name'] . '</h1>';
-    echo '<a href="' . base_url() . 'category/' . $category['id'] . '">' .
-    $category['name'] . ' </a></br>';
-    for ($i = 0; $i < sizeof($subcategories); $i++) {
-        if ($subcategories[$i]['catId'] === $category['id']) {
-            echo '<h2>' . $subcategories[$i]['name'] . '</h2>';
-            echo '<a href="' . base_url() . 'subcategory/' . $subcategories[$i]['id'] . '">' .
-    $subcategories[$i]['name'] . ' </a></br>';
-        }
-    }
-}
-?>
-
-<p>Partners list</p>
-
-<?php
-foreach ($partners as $partner) {
-    echo '<h1>' . $partner['name'] . '</h1>';
-    echo '<img src="' . $partner['logoSrc'] . '" alt="logoImg" height="42" width="42">';
-    //TODO redirection to partner link
-    echo '<a href="' . $partner['link'] . '">View our partner</a>';
-}
-?>
+					if (strlen($menu_elements)) {
+						echo '<div class="navMainSubcategory">'.$menu_elements.'</div>';
+					}
+				}
+				?>
+			</nav>
+		</div>
+		<div class ="wrapMainMiddle">
