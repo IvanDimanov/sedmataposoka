@@ -1,9 +1,9 @@
-<div class="subCategoryMainHolder clear">
+п»ї<div class="subCategoryMainHolder">
 	<div class="subCategoryHolder">
 		<h1 class="title"><?php echo $subcategoryInfo['name']; ?></h1>
 		<p><?php echo $subcategoryInfo['descr']; ?></p>
 	</div>
-	<h2>Събития</h2>
+	<h2>РЎСЉР±РёС‚РёСЏ</h2>
 	<div class="subCategoryEventHolder">
 		<?php
 			foreach($events as $event)
@@ -16,7 +16,8 @@
 			}
 
 		?>
-		
+	</div>	
+</div>	
 		
 
 
