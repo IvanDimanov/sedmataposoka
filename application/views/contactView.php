@@ -1,4 +1,4 @@
-<?php
+п»ї<?php
 
 /*
  * To change this template, choose Tools | Templates
@@ -6,27 +6,27 @@
  */
 ?>
 <form class="form formContacts" action="">
-	<h1>Контакти</h1>
-	<p>Ако имате въпроси, моля свържете се с нас:</p>
+	<h1>РљРѕРЅС‚Р°РєС‚Рё</h1>
+	<p>РђРєРѕ РёРјР°С‚Рµ РІСЉРїСЂРѕСЃРё, РјРѕР»СЏ СЃРІСЉСЂР¶РµС‚Рµ СЃРµ СЃ РЅР°СЃ:</p>
 	<div class="inputHolder">
-		<label for="name">Име</label>
+		<label for="name">РРјРµ</label>
 		<input class="inputMain" type="text" id="name" />
-		<p class="errorTxt">Моля въведете име!</p>
+		<p class="errorTxt">РњРѕР»СЏ РІСЉРІРµРґРµС‚Рµ РёРјРµ!</p>
 	</div>
 	<div class="inputHolder">
-		<label for="lname">Фамилия</label>
+		<label for="lname">Р¤Р°РјРёР»РёСЏ</label>
 		<input class="inputMain" type="text" id="lname" />
-		<p class="errorTxt">Моля въведете фамилия!</p>
+		<p class="errorTxt">РњРѕР»СЏ РІСЉРІРµРґРµС‚Рµ С„Р°РјРёР»РёСЏ!</p>
 	</div>
 	<div class="inputHolder">
-		<label for="email">Емайл</label>
+		<label for="email">Р•РјР°Р№Р»</label>
 		<input class="inputMain" type="email" id="email" />
-		<p class="errorTxt">Моля въведете валиден емайл адрес!</p>
+		<p class="errorTxt">РњРѕР»СЏ РІСЉРІРµРґРµС‚Рµ РІР°Р»РёРґРµРЅ РµРјР°Р№Р» Р°РґСЂРµСЃ!</p>
 	</div>
 	<div class="inputHolder">
-		<label for="message">Съобщение</label>
+		<label for="message">РЎСЉРѕР±С‰РµРЅРёРµ</label>
 		<textarea id="message"></textarea>
-		<p class="errorTxt">Моля въведете съобщение!</p>
+		<p class="errorTxt">РњРѕР»СЏ РІСЉРІРµРґРµС‚Рµ СЃСЉРѕР±С‰РµРЅРёРµ!</p>
 	</div>
 	<input class="bttn" type="submit" id="contactSubmit" />
 </form>
