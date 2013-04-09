@@ -1,0 +1,87 @@
+function setDigits(n, digits)
+Moustly seen in: JavaScript/PHP
+-----------------------------
+Formar the income number 'n' to contain a total
+number of digits by adding '0' infront of the number.
+
+@param n      - the number that may need some digits
+@param digits - the number of total digits that the number 'n' need to have
+@examples
+  setDigits(127, 5)   => "00127"
+  setDigits(127, 2)   => "127"
+  setDigits(127, 'a') => "127"
+  setDigits(127, -1)  => "127"
+  setDigits(127)      => "127"
+  setDigits('a', 3)   => ""
+
+
+
+function clampString(str, limit)
+Moustly seen in: JavaScript/PHP
+--------------------------------
+Reduce the income string to a limit of chars.
+
+@examples
+  clampString('abcdefg',  1)  => "."
+  clampString('abcdefg',  4)  => "a..."
+  clampString('abcdefg',  7)  => "abcdefg"
+  clampString('abcdefg', 20)  => "abcdefg"
+  clampString('abcdefg', -1)  => "abcdefg"
+  clampString('abcdefg', 'a') => "abcdefg"
+
+
+
+class Event
+Moustly seen in: PHP
+--------------------
+The Event class is used in the Event-Driven Architecture.
+http://en.wikipedia.org/wiki/Event-driven_architecture
+http://en.wikipedia.org/wiki/Event-driven_programming
+
+jQuery already have this kind of implementation which is
+strongly used in the front-end development.
+http://api.jquery.com/category/events/
+
+Our main goal is to focus on custom events such as
+'userLoggedIn', 'accountChanged', 'paymentDone', etc.
+which could trigger multiple not connected actions.
+
+To achive this we'll need a static associative array
+which will hold all name-to-callbacks pairs.
+@code static private $callbacks = array();
+@example
+  $callbacks = Array (
+    'userLoggedIn' => Array (
+      '0' => function () {...},
+      '1' => function () {...},
+      '2' => function () {...}
+    )
+  );
+
+
+When Event::on is called the class adds the callback function
+into the stack of all already paired functions for the respective $eventName key.
+Event::on must return an id of the added callback function, for example, when we
+add a second function for the event 'userLoggedIn', Event::on will return 1 and when we
+add a third  function for the event 'userLoggedIn', Event::on will return 2 and etc.
+
+@code static public function on($eventName, $callback)
+@example
+  Event::on('userLoggedIn', function($userId) {
+    // use the $userId for any kind of notification or logs
+  });
+
+
+Event::off will remove a particular one or all callback functions for the given $eventName.
+@code static public function off($eventName, $callbackId = -1)
+@example
+  Event::off('userLoggedIn');     =>  Removes all saved callbacks for the event 'userLoggedIn'.
+  Event::off('userLoggedIn', 2);  =>  Removes the 3rd   callback  for the event 'userLoggedIn'.
+
+
+The function Event::trigger will execute all saved callbacks for the given $eventName.
+@param $callbackArg - this argument must be sent as an income parameter to all executed callbacks
+@code static public function trigger($eventName, $callbackArg = null)
+@example
+  Event::trigger('userLoggedIn')    => Execute all callbacks with null as an income parameter
+  Event::trigger('userLoggedIn', 1) => Execute all callbacks in a form like this callback1(1), callback2(1), etc.

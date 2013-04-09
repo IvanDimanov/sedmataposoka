@@ -72,21 +72,10 @@ class event extends CI_Controller{
         $data['events']= $this->eventModel->getEvent($eventId,$language);
         $data['event'] = $data['events'][0];
         $this->load->helper('printLayout_helper');
-        printLayout($this, "templates/templateLayout","eventView",$data);
-        
-       // $this->load->view('templates/templateLayout',$data);
-        
-         
-        
-        //TODO default values for catID, date
-        //$this->search($catId=1, $date,$language);
+        printLayout($this, "templates/header","eventView",$data);
         
         
-        
-        //$this->load->view('templates/footer');
-        
-       //$this->load->helper('printLayout',$this, 'templateLayout', 'mainLayout', $data);
-        // $this->load->helper('printLayout');
+       
     }
 }
 
