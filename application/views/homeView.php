@@ -1,17 +1,5 @@
-		<? /*div class="bannerHolder">
-				<div id="slides">					
-					<?php
-					foreach ($banners as $banner) {
-					echo '<img src="' . $banner['imagePath'] . '" alt="' . $banner['title'] . '" height="42" width="42">';
-					//TODO redirection to partner link
-					echo '<h2 class="title">' . $banner['title'] . '</h2>';
-					echo '<a href="' . $banner['link'] . '">Banner Link</a>';
-					}
-					?>
-					<img src="img/banner/1a.jpg" alt="123" />
-					<img src="img/banner/test.jpg" alt="123" />
-				</div>
-			</div*/?>
+
+		
 			
 	<div class="bannerHolder">
 		<div id="slides">	
@@ -47,9 +35,9 @@
 					{
 
 						echo "<div class='subCategoryEvent'><h3><a href='".base_url()."event/".$event['eventId']."'>
-						".$event['title']."</a></h3>";
+						".$event['event_title']."</a></h3>";
 						echo "<p class='date'>date1</p>";
-						echo "<p>".$event['descr']."</p></div>";
+						echo "<p>".$event['event_descr']."</p></div>";
 					}
 					?>
 				</div>	
