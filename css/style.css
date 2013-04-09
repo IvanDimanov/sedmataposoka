@@ -339,7 +339,8 @@ textarea {
 
 /* event */
 .EventMainHolder .info{}		
-.EventMainHolder .info p{padding:0}		
+.EventMainHolder .info p{padding:0}	
+	
 /* maybe serach 
 .subCategoryMainHolder .subCategoryHolder{padding: 10px 0px; border-top: 1px solid #696969;}
 	.subCategoryMainHolder .subCategoryHolder:first-child{border-top: none;}
@@ -370,12 +371,12 @@ textarea {
 
 /* banner */
 .bannerHolder{position: relative;overflow:hidden; width:488px; margin: 0px 0px 20px 0px;}
-	.bannerHolder #slides {display: none}
+	.bannerHolder #slides {display: block}
 	.bannerHolder .slidesjs-previous{position: absolute; top: 64px; left: 0px; z-index:100; width:29px; height: 31px; background: url(../img/sprite.png) no-repeat -124px -2px;}
 	.bannerHolder .slidesjs-next{position: absolute; top: 64px; right: 2px; z-index:100; width:29px; height: 31px; background: url(../img/sprite.png) no-repeat -155px -2px;}
 	.bannerHolder .slidesjs-play{display:none}
 	.bannerHolder .slidesjs-stop{display:none}
-	.bannerHolder .slidesjs-pagination{position: absolute; bottom: 0px; left: 0px; z-index:100; width:468px; height: 23px; padding: 0px 10px; margin:0px; line-height: 23px; background: url(../img/bannerBgrd.png) repeat;}
+	.bannerHolder .slidesjs-pagination{position: absolute; bottom: 0px; left: 0px; z-index:100; width:468px; height: 23px; padding: 0px 10px; margin:0px; line-height: 23px; background: url(../img/bannerBgrd.png) repeat;list-style:none}
 	/* to do.wrapMain .wrapMainMiddle .bannerHolder .bannerNav .title{float:left; display: inline-block; line-height:23px; color:#fff}*/
 		.bannerHolder .slidesjs-pagination li:first-child{margin: 2px 0px 0px 0px;}
 		.bannerHolder .slidesjs-pagination li{float: left;margin: 2px 5px 0px 0px;}
