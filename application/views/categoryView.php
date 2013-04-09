@@ -1,3 +1,8 @@
+
+
+
+
+
 			<div class="categoryMainHolder clear">
 				<div class="categoryHolder">
 					<div class="clear">
@@ -19,6 +24,7 @@
 					</div>
 				</div>
 			</div>
+
 
 
 <?php
