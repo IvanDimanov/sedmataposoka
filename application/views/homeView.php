@@ -1,4 +1,4 @@
-		<? /*div class="bannerHolder">
+﻿		<? /*div class="bannerHolder">
 				<div id="slides">					
 					<?php
 					foreach ($banners as $banner) {
@@ -16,8 +16,10 @@
 	<div class="bannerHolder">
 		<div id="slides">	
 			<?php
+			var_dump($banners);
 				foreach ($banners as $banner) {
 				echo '<a href="' . $banner['link'] . '"><img src="' . $banner['imagePath'] . '" alt="' . $banner['title'] . '" /></a>';
+				//echo '<a href="' . $banner['link'] . '"><img src="' . $banner['imagePath'] . '" alt="' . $banner['title'] . '" /></a>';
 				//TODO redirection to partner link
 				//echo '<h2 class="title">' . $banner['title'] . '</h2>';
 			}
@@ -29,13 +31,13 @@
 			<?php
 			$this->load->helper('url');
 			echo "<a href='".base_url()."search/dateSearch/0'>
-				Dnes</a>";
+				Днес</a>";
 			echo "<a href='".base_url()."event/search/dateSearch/7'>
-				Week</a>";
+				Седмица</a>";
 			echo "<a href='".base_url()."event/search/dateSearch/14'>
-				Week</a>";
+				2 Седмици</a>";
 			echo "<a href='".base_url()."event/search/dateSearch/30'>
-				Week</a>";
+				Месец</a>";
 			?>
 		</div>
 		<article class="articleText">
