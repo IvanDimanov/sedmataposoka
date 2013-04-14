@@ -26,6 +26,7 @@ class Load_Data extends CI_Controller {
 
     function populateHeaderData($language) {
         //get original CodeIgniter object
+        $language = strtolower($language);
         $CI = &get_instance();
 
         $CI->load->model('toughtModel');

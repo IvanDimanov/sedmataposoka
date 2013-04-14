@@ -20,15 +20,16 @@ class search extends CI_Controller {
     function index()
     {}
     
-    function dateSearch($EndDate)
+    function dateSearch($language,$EndDate)
     {
-        $language='en';
+        $language=  strtolower($language);
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
         
         
         $data['events']=$this->eventModel->getAllEvents($EndDate,null,$language);
+        $data['language']=$language;
         $this->load->helper('printLayout_helper');
         printLayout($this,'templates/header','homeView',$data);
         

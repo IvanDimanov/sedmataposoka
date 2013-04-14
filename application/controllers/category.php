@@ -19,15 +19,16 @@ class category extends CI_Controller {
                 $this->load->model('categoryModel');
 	}
         
-    function index($catId )
+    function index($language,$catId )
     {
         //todo set language
-        $language = 'en';
+        $language = strtolower($language);
                 
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
-        $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($catId, $language);        
+        $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($catId, $language);   
+        $data['language']=$language;
              
        
         //call helper function which loads header, footer,

@@ -19,11 +19,10 @@ class subcategory extends CI_Controller {
                 $this->load->model('eventModel');
 	}
         
-    function index($subcatId = 1)
+    function index($language,$subcatId = 1)
     {
         //todo set language
-        $language = 'en';
-        
+        $language = strtolower($language);
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
@@ -31,6 +30,7 @@ class subcategory extends CI_Controller {
         $data['subcategoryInfo'] = $this->subcategoryModel->getSubcategriesInfo($subcatId, $language); 
         //get all events for current subcategory for 1 month
         $data['events'] = $this->eventModel->getAllEventsForSubcategory(30 ,$subcatId,$language);
+        $data['language'] = $language;
                
         //call helper function which loads header, footer,
         // template and mainlayout views
