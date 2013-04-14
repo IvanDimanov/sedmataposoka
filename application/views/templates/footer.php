@@ -1,5 +1,6 @@
 ﻿<?php
 // A template file used for loading all HTML page footer elements
+$this->load->helper('url');
 ?>
 </div>
 <div class ="wrapMainRight">
@@ -11,7 +12,7 @@
             //TODO redirection to partner link
             echo '<a href="' . $add['link'] . '">';
             echo '<p>' . $add['title'] . '</p>';
-            echo '<img src="' . $add['imagePath'] . '" alt="' . $add['title'] . '" height="42" width="42">';
+            echo '<img src="'.  base_url().'img/' . $add['imagePath'] . '" alt="' . $add['title'] . '" height="42" width="42">';
             echo '</a>';
             echo '</div>';
         }
