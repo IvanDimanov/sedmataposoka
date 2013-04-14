@@ -38,11 +38,14 @@
 |
 */
 
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'home/index/bg';
+$route['(EN|en|BG|bg)'] = 'home/index/$1';
 $route['404_override'] = '';
-$route['subcategory/(:num)']='subcategory/index/$1';
-$route['category/(:num)']='category/index/$1';
-$route['event/(:num)']='event/index/$1';
+$route['(EN|en|BG|bg)/subcategory/(:num)']='subcategory/index/$1/$2';
+$route['(EN|en|BG|bg)/category/(:num)']='category/index/$1/$2';
+$route['(EN|en|BG|bg)/event/(:num)']='event/index/$1/$2';
+$route['(EN|en|BG|bg)/search/dateSearch/(:num)']='search/dateSearch/$1/$2';
+$route['(EN|en|BG|bg)/search/dateSearch/(:any)']='search/dateSearch/$1/$2';
 
 
 /* End of file routes.php */

@@ -24,7 +24,7 @@ class event extends CI_Controller{
 
     //put your code here
     //TODO if no cat id display events for all subcats ????? Limit to 10 
-    function search($catId,$subcatId, $date,$language)
+    /*function search($catId,$subcatId, $date,$language)
     {
         //TODO set language
         $language = 'en';
@@ -50,13 +50,13 @@ class event extends CI_Controller{
         
         $this->load->view('eventView',$data);
     }
-    
-    function index($eventId) {
+    */
+    function index($language,$eventId) {
         
         
         
         //TODO get language
-        $language = 'bg';
+        $language = strtolower($language);
         
        // $this->load->view('templates/header');
         //get banner for today type=1, limi = 7
@@ -71,6 +71,7 @@ class event extends CI_Controller{
                 getSubcategoriesForCategory($catId = null,$language);
         $data['events']= $this->eventModel->getEvent($eventId,$language);
         $data['event'] = $data['events'][0];
+        $data['language']=$language;
         $this->load->helper('printLayout_helper');
         printLayout($this, "templates/header","eventView",$data);
         

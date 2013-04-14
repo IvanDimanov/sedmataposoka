@@ -22,10 +22,10 @@ class contacts extends CI_Controller {
                 $this->load->model('eventModel');
 	}
     
-    function index()
+    function index($language)
     {
         //TODO get language
-        $language = 'bg';
+        $language = strtolower($language);
         //get adds for today type = 2, limit = 2
         $data['ads'] = $this->adsModel->getAds( null,2,2,$language);
         $data['partners'] = $this->partnerModel->getPartners($language);
@@ -34,6 +34,7 @@ class contacts extends CI_Controller {
                 getAllCategoriesName($language);
         $data['subcategories'] = $this->subcategoryModel->
                 getSubcategoriesForCategory($catId = null,$language);
+        $data['language']=$language;
         $this->load->helper('printLayout_helper');
         
         printLayout($this, "templates/header","contactView",$data);;

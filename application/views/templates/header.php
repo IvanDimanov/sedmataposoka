@@ -22,7 +22,7 @@ $this->load->helper('url');
         <div class="wrapAll">
             <header class="wrapHeader">
                 <div class="clear">
-                    <a class="logo" href="" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
+                    <a class="logo" href="<?php echo base_url();?>" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
                     <div class="mindHolder">
                         <?php
                         echo '<p>"' . $tought[0]['text'] . '"<span class="author"> ' . $tought[0]['author'] . '</span></p>';
@@ -31,8 +31,8 @@ $this->load->helper('url');
                     <div class="bubbles"></div>
                     <div class="rightPart">
                         <section class="language clear">	
-                            <a href="#" class="en"></a>
-                            <a href="#" class="bg"></a>
+                            <a href="<?php echo base_url()."en";?>" class="en"></a>
+                            <a href="<?php echo base_url()."bg";?>" class="bg"></a>
                         </section>
                         <section class="search">
                             <input class="searchTxt" type="search" />
@@ -55,12 +55,12 @@ $this->load->helper('url');
 
                             foreach ($categories as $category) {
                                 // echo '<h1>' . $category['name'] . '</h1>';
-                                echo '<a href="' . base_url() . 'category/' . $category['id'] . '">' .
+                                echo '<a href="' . base_url() .$language.'/'. 'category/' . $category['id'] . '">' .
                                 $category['name'] . ' </a>';
                                 $menu_elements = '';
                                 for ($i = 0; $i < sizeof($subcategories); $i++) {
                                     if ($subcategories[$i]['catId'] === $category['id']) {
-                                        $menu_elements .= '<p>' . '<a href="' . base_url() . 'subcategory/' . $subcategories[$i]['id'] . '" >'
+                                        $menu_elements .= '<p>' . '<a href="' . base_url().$language.'/' . 'subcategory/' . $subcategories[$i]['id'] . '" >'
                                                 . $subcategories[$i]['name'] . '</a>' . '</p>';
                                     }
                                 }
