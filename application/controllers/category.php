@@ -16,11 +16,6 @@ class category extends CI_Controller {
     public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('toughtModel');
-                $this->load->model('partnerModel');
-                $this->load->model('adsModel');
-                $this->load->model('categoryModel');
-                $this->load->model('subcategoryModel');
                 $this->load->model('categoryModel');
 	}
         
@@ -28,27 +23,17 @@ class category extends CI_Controller {
     {
         //todo set language
         $language = 'en';
-        
+                
+        //load library to get data neded for header
+        $this->load->library('load_data');
+        $data = $this->load_data->populateHeaderData($language);
         $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($catId, $language);        
-        
-        
-        
-        $this->load->helper('printLayout_helper');
-        
-        //get banner for today type=1, limi = 7
-        $data['banners'] = $this->adsModel->getAds( null,1,7,$language);
-        //get adds for today type = 2, limit = 2
-        $data['ads'] = $this->adsModel->getAds( null,2,2,$language);
-        $data['partners'] = $this->partnerModel->getPartners($language);
-        $data['tought'] = $this->toughtModel->getTought(null,1,$language);
-        $data['categories'] = $this->categoryModel->
-                getAllCategoriesName($language);
-        $data['subcategories'] = $this->subcategoryModel->
-                getSubcategoriesForCategory($catId = null,$language);
-        
+             
+       
         //call helper function which loads header, footer,
         // template and mainlayout views
-        printLayout($this, "templates/templateLayout","categoryView",$data);
+        $this->load->helper('printLayout_helper');
+        printLayout($this,null,"categoryView",$data);
         
     }
     
