@@ -48,6 +48,7 @@ class eventModel extends CI_Model {
     function getAllEvents($timeframe, $catId = null, $language) {
        $today = Date('Y:m:d');
         $timeframeEnd = Date('Y:m:d', mktime(0, 0, 0, date("m"), date("d") + $timeframe, date("Y")));
+        echo $timeframeEnd.'</br>';
         $this->db->select('event.id as eventId, eventtitle.' . $language . ' as event_title, 
             eventdescr.' . $language . ' as event_descr,
             categoryname.' . $language . ' as category_name, 
@@ -63,8 +64,8 @@ class eventModel extends CI_Model {
 
        
             //case start and end date are in timerange
-        $this->db->where("((`startDate` <=  '" . $today . "' 
-                AND  `endDate` >=  '" . $timeframeEnd . "')");
+        $this->db->where("((`startDate` >=  '" . $today . "' 
+                AND  `endDate` <=  '" . $timeframeEnd . "')");
         //case: start date is before timeframe, end date is after timeframe
         $this->db->or_where("(`startDate` <=  '" . $today . "' 
                 AND  `endDate` >=  '" . $timeframeEnd . "')");

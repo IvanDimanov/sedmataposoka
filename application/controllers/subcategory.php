@@ -24,19 +24,11 @@ class subcategory extends CI_Controller {
         //todo set language
         $language = 'en';
         
-        $data['subcategoryInfo'] = $this->subcategoryModel->getSubcategriesInfo($subcatId, $language);        
+        //load library to get data neded for header
+        $this->load->library('load_data');
+        $data = $this->load_data->populateHeaderData($language);
         
-        
-        //get banner for today type=1, limi = 7
-        $data['banners'] = $this->adsModel->getAds( null,1,7,$language);
-        //get adds for today type = 2, limit = 2
-        $data['ads'] = $this->adsModel->getAds( null,2,2,$language);
-        $data['partners'] = $this->partnerModel->getPartners($language);
-        $data['tought'] = $this->toughtModel->getTought(null,1,$language);
-        $data['categories'] = $this->categoryModel->
-                getAllCategoriesName($language);
-        $data['subcategories'] = $this->subcategoryModel->
-                getSubcategoriesForCategory($catId = null,$language);
+        $data['subcategoryInfo'] = $this->subcategoryModel->getSubcategriesInfo($subcatId, $language); 
         //get all events for current subcategory for 1 month
         $data['events'] = $this->eventModel->getAllEventsForSubcategory(30 ,$subcatId,$language);
                
