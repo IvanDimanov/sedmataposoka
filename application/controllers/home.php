@@ -18,16 +18,17 @@ class home extends CI_Controller{
                 $this->load->model('eventModel');
     }
     
-    function index()
+    function index($language)
     {
         //TODO get language
-        $language = 'bg';
+        $language = strtolower($language);
         
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
                 
         $data['events'] = $this->eventModel->getAllEvents(0,null,$language);
+        $data['language']=$language;
                   
         $this->load->helper('printLayout_helper');
         printLayout($this,null,"homeView",$data);

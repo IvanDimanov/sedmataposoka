@@ -36,8 +36,8 @@ $this->load->helper('url');
     <nav class ="navBottom">
         <?php
         $this->load->helper('url');
-        echo "<a href='" . base_url() . "home'>Събития</a>";
-        echo "<a href='" . base_url() . "contacts'>Контакти</a>";
+        echo "<a href='" . base_url().$language.'/' . "home'>Събития</a>";
+        echo "<a href='" . base_url().$language.'/' . "contacts'>Контакти</a>";
         ?>
     </nav>
     <span class="footerRight">&copy;Copyright</span>

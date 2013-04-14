@@ -18,7 +18,7 @@ $this->load->helper('url');
 						<?php
 							for ($i = 0; $i < sizeof($subcategories); $i++) {
 								if ($subcategories[$i]['catId'] === $categoryInfo['id']) {
-								echo '<a href="' . base_url() . 'subcategory/' . $subcategories[$i]['id'] . '">' .
+								echo '<a href="' . base_url().$language.'/' . 'subcategory/' . $subcategories[$i]['id'] . '">' .
 								$subcategories[$i]['name'] . ' </a>';
 								}
 							}

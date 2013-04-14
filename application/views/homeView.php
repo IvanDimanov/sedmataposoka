@@ -16,13 +16,13 @@
     <div class="articleNav">
         <?php
         $this->load->helper('url');
-        echo "<a href='" . base_url() . "search/dateSearch/0'>
+        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/0'>
 				Dnes</a>";
-        echo "<a href='" . base_url() . "search/dateSearch/7'>
+        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/7'>
 				Week</a>";
-        echo "<a href='" . base_url() . "search/dateSearch/14'>
+        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/14'>
 				Week</a>";
-        echo "<a href='" . base_url() . "search/dateSearch/30'>
+        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/30'>
 				Week</a>";
         ?>
     </div>
@@ -33,7 +33,7 @@
                 <?php
                 foreach ($events as $event) {
 
-                    echo "<div class='subCategoryEvent'><h3><a href='" . base_url() . "event/" . $event['eventId'] . "'>
+                    echo "<div class='subCategoryEvent'><h3><a href='" . base_url().$language.'/' . "event/" . $event['eventId'] . "'>
 						" . $event['event_title'] . "</a></h3>";
                     echo '<p class="date">начало: </span>.'.$event["startDate"].'</p>';
                     echo '<p><span class="bold">край: </span>.'.$event["endDate"].'</p>';
