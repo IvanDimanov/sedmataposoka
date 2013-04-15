@@ -9,11 +9,6 @@ if (!function_exists('test_method')) {
         //v header-a se zarejda catalog ads baner tought of day 
         $pointer->load->view('templates/header', $data);
         
-        //remove if isset always display header+ main+ footer
-        
-        //if (isset($templateLayout)) {
-          //  $pointer->load->view($templateLayout, $data);
-        //}
         $pointer->load->view($mainLayout, $data);
         $pointer->load->view('templates/footer', $data);
     }

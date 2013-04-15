@@ -1,13 +1,15 @@
 
 
-
+<?php
+$this->load->helper('url');
+?>
 
 
 			<div class="categoryMainHolder clear">
 				<div class="categoryHolder">
 					<div class="clear">
 						<?php 
-							echo '<img src="' . $categoryInfo['pictureSrc'] . '" alt="logoImg" height="42" width="42">';
+							echo '<img src="'.base_url().'img/' . $categoryInfo['pictureSrc'] . '" alt="logoImg" height="42" width="42">';
 						?>
 						<h1 class="title"><?php echo $categoryInfo['name']; ?></h1>
 						<p><?php echo $categoryInfo['descr']; ?></p>
@@ -16,7 +18,7 @@
 						<?php
 							for ($i = 0; $i < sizeof($subcategories); $i++) {
 								if ($subcategories[$i]['catId'] === $categoryInfo['id']) {
-								echo '<a href="' . base_url() . 'subcategory/' . $subcategories[$i]['id'] . '">' .
+								echo '<a href="' . base_url().$language.'/' . 'subcategory/' . $subcategories[$i]['id'] . '">' .
 								$subcategories[$i]['name'] . ' </a>';
 								}
 							}
@@ -42,4 +44,3 @@ echo "<a href='".base_url()."event/search/".$categoryInfo['id']."/month'>
  * 
  */
 ?>
-<?php include('templates/footer.php'); ?>

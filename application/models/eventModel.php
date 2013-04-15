@@ -24,7 +24,7 @@ class eventModel extends CI_Model {
         $this->db->join('eventtitle', 'eventtitle.id = event.titleId');
         $this->db->join('eventdescr', 'eventdescr.id = event.descrId');
         $this->db->where('(subcatId = "' . $subcatId . '")');
-
+        
        //case start and end date are in timerange
         $this->db->where("((`startDate` <=  '" . $today . "' 
                 AND  `endDate` >=  '" . $timeframeEnd . "')");
@@ -63,8 +63,8 @@ class eventModel extends CI_Model {
 
        
             //case start and end date are in timerange
-        $this->db->where("((`startDate` <=  '" . $today . "' 
-                AND  `endDate` >=  '" . $timeframeEnd . "')");
+        $this->db->where("((`startDate` >=  '" . $today . "' 
+                AND  `endDate` <=  '" . $timeframeEnd . "')");
         //case: start date is before timeframe, end date is after timeframe
         $this->db->or_where("(`startDate` <=  '" . $today . "' 
                 AND  `endDate` >=  '" . $timeframeEnd . "')");
