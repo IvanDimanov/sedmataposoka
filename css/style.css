@@ -138,11 +138,15 @@ body {
 	font-size: 12px; 
 	font-family: sans-serif; 
 	line-height: 16px;
-	background: #a4a4a3;
+	
+	background: url(../img/pattern.png) repeat;
+	/*
+	background-color: #a4a4a3;
 	background: -webkit-gradient(linear, left top, left bottom, from(#a4a4a3), to(#010101));
 	background: -moz-linear-gradient(top, #a4a4a3, #010101);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a4a4a3, endColorstr=#010101);
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#a4a4a3, endColorstr=#010101)";
+	*/
 }
 
 p{font-size: 12px; font-family: sans-serif; line-height: 16px; padding: 0px 0px 16px 0px;}
@@ -231,6 +235,7 @@ textarea {
 			.wrapHeader .rightPart .language .bg{float: right; display: inline-block; width:24px; height: 24px; margin: 0px 10px 0px 0px; background: url(../img/sprite.png) -2px -2px no-repeat;}
 			.wrapHeader .rightPart .language .en{float: right; display: inline-block; width:24px; height: 24px; background: url(../img/sprite.png) -26px -2px no-repeat;}
 		.wrapHeader .rightPart .search{width:180px; height: 30px; margin: 0px 0px 0px 0px; border:4px solid #838382; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
+		.wrapHeader .rightPart .search.err{border:4px solid #ff0000}
 			.wrapHeader .rightPart .search .searchTxt{float:left; width:130px; padding: 0px 10px; height: 30px; line-height: 30px; border: none;}
 			.wrapHeader .rightPart .search .searchBttn{float:left; width:27px; height: 25px; margin: 5px 0px 0px 0px; background: url(../img/sprite.png) -96px -2px no-repeat; border: none;}
 			.wrapHeader .rightPart .socials{display: table-cell; vertical-align: bottom; height: 50px; width: 186px;}
@@ -240,7 +245,7 @@ textarea {
 	.footer .navBottom{float: left; display: inline-block; width: 80%}
 	.footer .footerRight{float: right; display: inline-block; width: 20%; color: #fff;font-family: 'Arial';font-size: 16px;text-decoration: none; text-align: right;}
 
-.navMain ul{list-style:none; padding:0;marin:0}
+.navMain ul{list-style:none; padding:0;margin:0}
 	.navMain .level1Link{
 		display:block;
 		height:30px;
@@ -295,6 +300,7 @@ textarea {
 .form .inputMain{height: 30px; width: 268px; line-height: 30px; padding: 0px 10px; border: 1px solid #696969;}
 .form  textarea{height: 100px; width:468px; padding: 10px; border: 1px solid #696969;}
 .form.err label{color: #ff0000;}
+.form .formResponse{display:none}
 
 .bttn{
 	height: 30px;
