@@ -34,10 +34,12 @@ $this->load->helper('url');
                             <a href="<?php echo base_url()."en";?>" class="en"></a>
                             <a href="<?php echo base_url()."bg";?>" class="bg"></a>
                         </section>
-                        <section class="search">
-                            <input class="searchTxt" type="search" />
-                            <input class="searchBttn" type="submit" value="" />
-                        </section>
+						<section id="searchHolder" class="search">
+							<form id="formSearch" action="<?php echo $language; ?>/search/wordSearch" method="post" onsubmit="return searchValidation();">
+								<input class="searchTxt" id="searchTxt" name="searchTxt" type="search" />
+								<input class="searchBttn" id="searchBttn" type="submit" value="" />
+							</form>
+						</section>
                         <section class="socials clear">
                             <a class="email" href=""></a>
                             <a class="fb" href=""></a>
