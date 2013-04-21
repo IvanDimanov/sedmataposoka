@@ -110,6 +110,28 @@ class eventModel extends CI_Model {
         );
         $this->db->insert('event', $data);
     }
+    
+    function getEventByWord($word)
+    {
+        $this->db->select('event.id as eventId, eventtitle.' . $language . ' as event_title, 
+            eventdescr.' . $language . ' as event_descr,
+            categoryname.' . $language . ' as category_name, 
+            subcategoryname.' . $language . ' as subcategory_name,
+            startDate, endDate    ');
+        $this->db->from('event');
+        $this->db->join('subcategory', 'event.subcatId = subcategory.id');
+        $this->db->join('category', 'subcategory.catId = category.id');
+        $this->db->join('eventtitle', 'eventtitle.id = event.titleId');
+        $this->db->join('eventdescr', 'eventdescr.id = event.descrId');
+        $this->db->join('categoryname', 'categoryname.id = category.nameId');
+        $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
+        $this->db->like('event_title', $word);
+        $query = $this->db->get();
+        
+        return $query->result_array(); 
+        
+        
+    }
 
 }
 

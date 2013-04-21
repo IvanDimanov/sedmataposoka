@@ -22,7 +22,7 @@ $this->load->helper('url');
         <div class="wrapAll">
             <header class="wrapHeader">
                 <div class="clear">
-                    <a class="logo" href="<?php echo base_url();?>" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
+                    <a class="logo" href="<?php echo base_url().$language;?>" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
                     <div class="mindHolder">
                         <?php
                         echo '<p>"' . $tought[0]['text'] . '"<span class="author"> ' . $tought[0]['author'] . '</span></p>';
