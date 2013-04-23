@@ -50,26 +50,28 @@ $this->load->helper('url');
                     <div class ="wrapMainLeft">
                         <h2>Каталог</h2>
                         <nav class ="navMain">
+							<ul class="level1">
                             <?php
                             $this->load->helper('url');
-
                             foreach ($categories as $category) {
                                 // echo '<h1>' . $category['name'] . '</h1>';
-                                echo '<a href="' . base_url() .$language.'/'. 'category/' . $category['id'] . '">' .
+                                echo '<li><a class="level1Link" href="' . base_url() .$language.'/'. 'category/' . $category['id'] . '">' .
                                 $category['name'] . ' </a>';
                                 $menu_elements = '';
                                 for ($i = 0; $i < sizeof($subcategories); $i++) {
                                     if ($subcategories[$i]['catId'] === $category['id']) {
-                                        $menu_elements .= '<p>' . '<a href="' . base_url().$language.'/' . 'subcategory/' . $subcategories[$i]['id'] . '" >'
-                                                . $subcategories[$i]['name'] . '</a>' . '</p>';
+                                        $menu_elements .= '<li>' . '<a href="' . base_url().$language.'/' . 'subcategory/' . $subcategories[$i]['id'] . '" >'
+                                                . $subcategories[$i]['name'] . '</a>' . '</li>';
                                     }
                                 }
 
                                 if (strlen($menu_elements)) {
-                                    echo '<div class="navMainSubcategory">' . $menu_elements . '</div>';
+                                    echo '<ul class="level2">' . $menu_elements . '</ul>';
                                 }
+								echo '</li>';
                             }
                             ?>
+							</ul>
                         </nav>
                     </div>
                     <div class ="wrapMainMiddle">

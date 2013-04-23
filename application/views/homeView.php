@@ -1,6 +1,5 @@
 
 
-
 <div class="bannerHolder">
     <div id="slides">	
         <?php
@@ -17,13 +16,13 @@
         <?php
         $this->load->helper('url');
         echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/0'>
-				Dnes</a>";
+				Днес</a>";
         echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/7'>
-				Week</a>";
+				Седмица</a>";
         echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/14'>
-				Week</a>";
+				2 Седмици</a>";
         echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/30'>
-				Week</a>";
+				Месец</a>";
         ?>
     </div>
     <article class="articleText">
