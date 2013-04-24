@@ -7,9 +7,9 @@ audio:not([controls]) {display: none;height: 0;}
 
 [hidden] {display: none;}
 
-html {font-family: sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+html {font-family: sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;height:100%;max-height:100%;}
 
-body {margin: 0;}
+body {margin: 0;	height:100%;max-height:100%;}
 
 a:focus {
     outline: thin dotted;
@@ -139,7 +139,7 @@ body {
 	font-family: sans-serif; 
 	line-height: 16px;
 	
-	background: url(../img/pattern.png) repeat;
+	background: #7b7e7f url(../img/body_bgrd.png) center repeat-y;
 	/*
 	background-color: #a4a4a3;
 	background: -webkit-gradient(linear, left top, left bottom, from(#a4a4a3), to(#010101));
@@ -216,7 +216,8 @@ textarea {
 .bold{font-weight: bold}
 
 /** Home pages and separated content **/
-.wrapAll{width: 850px; margin: 0px auto;}
+.wrapAllMain{position:relative;min-height: 100%;height: 100%}
+.wrapAll{width: 850px; margin: 0px auto 50px auto;}
 	.wrapMain{padding: 20px 0px;}
 		.wrapMain .wrapMainLeft{width:200px; padding: 0px 7px 0px 0px; float:left;}
 			.wrapMain .wrapMainLeft h2{color:#000}
@@ -224,10 +225,10 @@ textarea {
 
 		.wrapMain .wrapMainRight{width:126px; float:right;}
 
-.wrapHeader{background: #fff; padding: 13px 18px; position: relative}
+.wrapHeader{background: #fff;border:1px solid #494b4c; padding: 13px 18px; position: relative}
 	.wrapHeader .logo{float:left; margin: 0px 40px 0px 0px;}
-	.wrapHeader .mindHolder{float:left; height: 51px; overflow: hidden; width:380px; margin: 42px 0px 0px 0px; padding: 10px 10px 0px 10px; background: #fff; border: 2px solid #368fca; -moz-box-shadow: inset 2px 2px 6px 1px #cfcfcf; -webkit-box-shadow: inset 2px 2px 6px 1px #cfcfcf; box-shadow: inset 2px 2px 6px 1px #cfcfcf}
-		.wrapHeader .mindHolder p{padding:0px;}
+	.wrapHeader .mindHolder{float:left; height: 51px; overflow: hidden; width:380px; margin: 42px 0px 0px 0px; padding: 0; background: #fff; border: 2px solid #368fca; -moz-box-shadow: inset 2px 2px 6px 1px #cfcfcf; -webkit-box-shadow: inset 2px 2px 6px 1px #cfcfcf; box-shadow: inset 2px 2px 6px 1px #cfcfcf}
+		.wrapHeader .mindHolder p{display:table-cell; padding:0; height:51px; vertical-align:middle; text-align:center}
 		.wrapHeader .mindHolder .author{display: inline-block; padding: 0px 0px 0px 5px; font-weight: bold;}
 	.wrapHeader .bubbles{width:360px; height: 37px; position: absolute; bottom: 0px; right:100px; background: url(../img/sprite.png) 0px -34px no-repeat;}
 	.wrapHeader .rightPart{float:right; width:186px;}
@@ -241,9 +242,10 @@ textarea {
 			.wrapHeader .rightPart .socials{display: table-cell; vertical-align: bottom; height: 50px; width: 186px;}
 				.wrapHeader .rightPart .socials .fb{float:right; display: inline-block; width:20px; height: 20px; margin: 0px 5px 0px 0px; background: url(../img/sprite.png) -74px -2px no-repeat;}
 				.wrapHeader .rightPart .socials .email{float:right; display: inline-block; width:20px; height: 20px; background: url(../img/sprite.png) -52px -2px no-repeat;}
-.footer{height:40px; line-height: 40px; padding: 0px 18px; background: #404040; color: #fff;}
-	.footer .navBottom{float: left; display: inline-block; width: 80%}
-	.footer .footerRight{float: right; display: inline-block; width: 20%; color: #fff;font-family: 'Arial';font-size: 16px;text-decoration: none; text-align: right;}
+.footer{width:100%;position:absolute; bottom:0;background: #7b7e7f url(../img/body_bgrd.png) center repeat-y;border-top:1px solid #494b4c;text-align:center}
+.footer .content{display:inline-block; width:850px;height:40px; line-height: 40px; padding: 0px 18px; color: #fff;}
+	.footer .navBottom{float:left;display: inline-block; width: 80%;text-align:left}
+	.footer .footerRight{float:left;display: inline-block; width: 20%; color: #fff;font-family: 'Arial';font-size: 16px;text-decoration: none; text-align: right;}
 
 .navMain ul{list-style:none; padding:0;margin:0}
 	.navMain .level1Link{
@@ -295,11 +297,17 @@ textarea {
 }
 
 /** forms **/
+
 .form .inputHolder{padding: 0px 0px 10px 0px;}
 .form label{display: block; padding: 0px 0px 3px 0px; font-size: 16px; font-weight: bold;}
 .form .inputMain{height: 30px; width: 268px; line-height: 30px; padding: 0px 10px; border: 1px solid #696969;}
 .form  textarea{height: 100px; width:468px; padding: 10px; border: 1px solid #696969;}
-.form.err label{color: #ff0000;}
+.form .inputHolder .errorTxt{display:none; padding: 0 0 5px; color: #ff0000;}
+.form .inputHolder.err label{color: #ff0000;}
+.form .inputHolder.err input{border: 1px solid #ff0000}
+.form .inputHolder.err textarea{border: 1px solid #ff0000}
+.form .inputHolder.err textarea{border: 1px solid #ff0000}
+.form .inputHolder.err .errorTxt{display:block}
 .form .formResponse{display:none}
 
 .bttn{

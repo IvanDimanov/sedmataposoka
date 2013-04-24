@@ -104,8 +104,7 @@ $(document).ready(function () {
 		$('.pagging .prev').data('page', page_to_display_start-1 - eventsPerPage);
 
 	});
-});
-
+	
 	// validate contact form
 
 	$('#contactSubmit').click(function(){
@@ -153,7 +152,8 @@ $(document).ready(function () {
 	function IsEmail(email) {
 		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;		
 		return regex.test(email);
-	}
+	}	
+});
 
 // banner function
 $(function() {

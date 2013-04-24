@@ -33,15 +33,18 @@ $this->load->helper('url');
 </div>
 </div>
 </section>
+</div>
 <footer class="footer">
-    <nav class ="navBottom">
-        <?php
-        $this->load->helper('url');
-        echo "<a href='" . base_url().$language . "'>Събития</a>";
-        echo "<a href='" . base_url().$language.'/' . "contacts'>Контакти</a>";
-        ?>
-    </nav>
-    <span class="footerRight">&copy;Copyright</span>
+    <div class ="content">
+		<nav class ="navBottom">
+			<?php
+			$this->load->helper('url');
+			echo "<a href='" . base_url().$language . "'>Събития</a>";
+			echo "<a href='" . base_url().$language.'/' . "contacts'>Контакти</a>";
+			?>
+		</nav>
+		<span class="footerRight">&copy;Copyright</span>
+	</div>
 </footer>
 </div>
 </body>
