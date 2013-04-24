@@ -106,47 +106,54 @@ $(document).ready(function () {
 	});
 });
 
-$('#contactSubmit').click(function(){
-	$('.formContacts .inputHolder').removeClass("err");
-   var name = $('#name').val();
-   var lname = $('#lname').val();
-   var email = $('#email').val();
-   var message = $('#message').val();
-   if(name== ''){
-	  $('#name').parent(".inputHolder").addClass("err");
-	  return false;
-	}
-   if(lname== ''){
-	  $('#lname').parent(".inputHolder").addClass("err");
-	  return false;
-	}			
-	if(email== ''){
-	   $('#email').parent(".inputHolder").addClass("err");
-	   return false;
-	}
-	if(IsEmail(email)==false){
+	// validate contact form
+
+	$('#contactSubmit').click(function(){
+		$('.formContacts .inputHolder').removeClass("err");
+		var name = $('#name').val();
+		var lname = $('#lname').val();
+		var email = $('#email').val();
+		var message = $('#message').val();
+		if(name== ''){
+		$('#name').parent(".inputHolder").addClass("err");
+		return false;
+		}
+		if(lname== ''){
+		$('#lname').parent(".inputHolder").addClass("err");
+		return false;
+		}			
+		if(email== ''){
 		$('#email').parent(".inputHolder").addClass("err");
 		return false;
-	}
+		}
+		if(IsEmail(email)==false){
+		$('#email').parent(".inputHolder").addClass("err");
+		return false;
+		}
 
-	if(message== ''){
+		if(message== ''){
 		$('#message').parent(".inputHolder").addClass("err");
 		return false;
-	}
-	//ajax call php page Tedi da kaje kude otiva
-	$.post("send.php", $("#contactform").serialize(),  function(response) {
-	$('#contactform').fadeOut('slow',function(){
-		$('#success').html(response);
-		$('#success').fadeIn('slow');
-	   });
-	 });
-	 return false;
-  });
+		}
 
-function IsEmail(email) {
-var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;		
-return regex.test(email);
-}
+		//ajax call php page
+		$.post("contacts.php", {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},  function(response) {
+		if (response==true)
+		{
+		$('.formResponse').html('Успешно изпращане на формата.').show();
+		}
+		else
+		{
+		$('.formResponse').html('Възникна проблем, моля опитайте пак.').show();
+		}
+		});
+		return false;
+	});
+
+	function IsEmail(email) {
+		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;		
+		return regex.test(email);
+	}
 
 // banner function
 $(function() {
@@ -161,3 +168,16 @@ $(function() {
 	}
   });
 });
+
+// search validation and submit
+function searchValidation() {	
+	$('#searchHolder').removeClass("err");
+	var searchReg = /^[a-zA-Z0-9- ]{2,50}$/;
+	var searchVal = $("#searchTxt").val();
+	if (!searchReg.test(searchVal))
+	{
+	$('#searchHolder').addClass("err");
+	return false;
+	}
+	else{return true;}
+}
