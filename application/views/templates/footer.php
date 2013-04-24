@@ -25,8 +25,9 @@ $this->load->helper('url');
             echo '<h4>' . $partner['name'] . '</h4>';
             //echo '<img src="' . $partner['logoSrc'] . '" alt="logoImg" height="42" width="42">';
             //TODO redirection to partner link
-            echo '<a href="' . $partner['link'] . '">View our partner</a>';
+           // echo '<a href="' . $partner['link'] . '">View our partner</a>';
         }
+        echo '<a href="' . base_url().$language.'/partners' . '">View our partner</a>';
         ?>
     </div>
 </div>
@@ -36,7 +37,7 @@ $this->load->helper('url');
     <nav class ="navBottom">
         <?php
         $this->load->helper('url');
-        echo "<a href='" . base_url().$language.'/' . "home'>Събития</a>";
+        echo "<a href='" . base_url().$language . "'>Събития</a>";
         echo "<a href='" . base_url().$language.'/' . "contacts'>Контакти</a>";
         ?>
     </nav>

@@ -46,7 +46,8 @@ $route['(EN|en|BG|bg)/category/(:num)']='category/index/$1/$2';
 $route['(EN|en|BG|bg)/event/(:num)']='event/index/$1/$2';
 $route['(EN|en|BG|bg)/search/dateSearch/(:num)']='search/dateSearch/$1/$2';
 $route['(EN|en|BG|bg)/search/dateSearch/(:any)']='search/dateSearch/$1/$2';
-
-
+$route['(EN|en|BG|bg)/search/wordSearch']='search/dateSearch/$1';
+$route['(EN|en|BG|bg)/contacts'] = 'contacts/index/$1';
+$route['(EN|en|BG|bg)/partners'] = 'partners/index/$1';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
