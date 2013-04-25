@@ -19,6 +19,7 @@ $this->load->helper('url');
     <body>
 
 
+        <div class="wrapAllMain">
         <div class="wrapAll">
             <header class="wrapHeader">
                 <div class="clear">
