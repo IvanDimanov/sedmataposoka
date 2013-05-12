@@ -35,35 +35,57 @@ class search extends CI_Controller {
         printLayout($this, 'templates/header', 'homeView', $data);
     }
 
-    function wordSearch($language, $word) {
-        $searchTxt = $this->input->post['searchTxt'];
+    function wordSearch($language) {
+        $language = strtolower($language);
+       // $searchTxt = $this->input->post['searchTxt'];
+        $searchTxt= 'Party';
         $searchTxt = preg_replace('!\s+!', ' ', $searchTxt);
         $words = explode(' ', $searchTxt);
         $weightedEvents = array();
         $eventsInfo = array();
         foreach ($words as $word) {
             $word = mysql_real_escape_string($word);
-            $events = $this->eventModel->getEventByWord($word);
+            $events = $this->eventModel->getEventTitleByWord($language,$word);
             foreach ($events as $event) {
-                if (in_array($event['eventId'], $weightedEvents)) {
-                    $weightEvents['eventId']++;
+                if (array_key_exists($event['eventId'], $weightedEvents)) {
+                    $weightedEvents[$event['eventId']]+=2;
                 } else {
-                    $weightEvents['eventId'] = 1;
+                    $weightedEvents[$event['eventId']] = 2;
                 }
             }
-            asort($eventsWeight);
-            $language = strtolower($language);
-            for($i=0;$i<=sizeof($eventsWeight);$i++)
-            {
-               $arrayInfo = $this->eventModel->getEvent($weightEvents['eventId'],$language);
-            }
-
             
+            
+             $eventsDescr = $this->eventModel->getEventDescrByWord($language,$word);
+            echo '</br></br>';
+            foreach ($eventsDescr as $eventDescr) {
+                if (array_key_exists($eventDescr['eventId'], $weightedEvents)) {
+                    $weightedEvents[$eventDescr['eventId']]+=1;
+                    echo 'in array';
+                } else {
+                    $weightedEvents[$eventDescr['eventId']] = 1;
+                }
+            }
+        }
+            
+            arsort($weightedEvents);
+            
+            $eventId = array_keys($weightedEvents);
+            $arrayInfo = array();
+            for($i=0;$i<sizeof($weightedEvents);$i++)
+            {
+                $temp = $this->eventModel->getEvent($eventId[$i],$language);
+                //array_push($arrayInfo, $temp);
+                $arrayInfo[$i]=$temp[0];
+            }
+            
+
+            echo'</br></br></br>';
             //load library to get data neded for header
             $this->load->library('load_data');
             $data = $this->load_data->populateHeaderData($language);
 
             $data['events'] = $arrayInfo;
+            
             $data['language'] = $language;
             
                  
@@ -76,7 +98,7 @@ class search extends CI_Controller {
         //mysqlescape
         //napravo kum bazata
         //v event descr title  
-    }
+    
 
 }
 

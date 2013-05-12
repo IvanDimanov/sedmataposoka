@@ -85,6 +85,7 @@ class eventModel extends CI_Model {
 
         $query = $this->db->get();
 
+        var_dump($query->result_array());
         return $query->result_array();
     }
 
@@ -111,7 +112,7 @@ class eventModel extends CI_Model {
         $this->db->insert('event', $data);
     }
     
-    function getEventByWord($word)
+    function getEventByWord($language,$word)
     {
         $this->db->select('event.id as eventId, eventtitle.' . $language . ' as event_title, 
             eventdescr.' . $language . ' as event_descr,
@@ -125,13 +126,40 @@ class eventModel extends CI_Model {
         $this->db->join('eventdescr', 'eventdescr.id = event.descrId');
         $this->db->join('categoryname', 'categoryname.id = category.nameId');
         $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
-        $this->db->like('event_title', $word);
+        $this->db->like('eventtitle.'. $language, $word);
         $query = $this->db->get();
         
         return $query->result_array(); 
         
         
     }
+    
+    function getEventTitleByWord($language,$word)
+    {
+        $this->db->select('event.id as eventId, eventtitle.' . $language . ' as event_title');
+        $this->db->from('event');
+        $this->db->join('eventtitle', 'eventtitle.id = event.titleId');
+        $this->db->like('eventtitle.'. $language, $word);
+        $query = $this->db->get();
+        
+        return $query->result_array(); 
+        
+        
+    }
+    
+    function getEventDescrByWord($language,$word)
+    {
+        
+        $this->db->select('event.id as eventId, eventdescr.' . $language . ' as event_descr');
+        $this->db->from('event');
+        $this->db->join('eventdescr', 'eventdescr.id = event.descrId');
+        $this->db->like('eventdescr.'. $language, $word);
+        $query = $this->db->get();
+        
+        return $query->result_array(); 
+        
+    }
+
 
 }
 
