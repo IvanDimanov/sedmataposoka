@@ -14,6 +14,14 @@ $this->load->helper('url');
         <script type="text/javascript" src="<?php echo base_url();?>js/html5shiv.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.slides.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.css"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.min.css"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+		<!--link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+		
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script-->
+
         <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
     </head>
     <body>
@@ -76,5 +84,8 @@ $this->load->helper('url');
                             ?>
 							</ul>
                         </nav>
+						<div class="datePickerHolder">
+							<div id="datepicker"></div>
+						</div>
                     </div>
                     <div class ="wrapMainMiddle">

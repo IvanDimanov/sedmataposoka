@@ -27,7 +27,7 @@
     </div>
     <article class="articleText">
         <div class="subCategoryMainHolder">
-            <h1><?php echo $data['viewedEventsTitle'];?></h1>
+            <h1><?php echo $viewedEventsTitle;?></h1>
             <div class="subCategoryEventHolder">
                 <?php
                 foreach ($events as $event) {

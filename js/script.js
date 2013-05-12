@@ -1,4 +1,33 @@
-$(document).ready(function () {
+$(document).ready(function () {	
+	
+	//datepicker
+	
+	var date = new Date();
+	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+	$("#datepicker").datepicker({
+	minDate: new Date(y, m, d),
+	dateFormat: 'dd-mm-yy',
+	onSelect: function(dateText, inst) {
+	//$("input[name='dateInput']").val(dateText);	
+	var dateNumber=dateText.substring(0,2);;
+	var today=$(".ui-state-highlight").html();
+	var sendNumber=(dateNumber-today);
+	$.post("todo.php", {'date': sendNumber},  function(response) {
+	if (response==true)
+	{
+	alert(1);
+	}
+	else
+	{
+	alert(2);
+	}
+	});	
+	
+	}
+	});
+
+	/* paging */
+
 	var i=0, n=0, eventsPerPage=1, dotPagesLimit=10, hideChildren=eventsPerPage-1;
 	// hide children after hideChildren var
 	$('.subCategoryEventHolder .subCategoryEvent:gt('+hideChildren+')').hide();		
@@ -153,6 +182,7 @@ $(document).ready(function () {
 		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;		
 		return regex.test(email);
 	}	
+	
 });
 
 // banner function

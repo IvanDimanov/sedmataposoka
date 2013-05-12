@@ -139,7 +139,7 @@ body {
 	font-family: sans-serif; 
 	line-height: 16px;
 	
-	background: #7b7e7f url(../img/body_bgrd.png) center repeat-y;
+	background: #7b7e7f url(../img/pattern.png) repeat;
 	/*
 	background-color: #a4a4a3;
 	background: -webkit-gradient(linear, left top, left bottom, from(#a4a4a3), to(#010101));
@@ -221,11 +221,11 @@ textarea {
 	.wrapMain{padding: 20px 0px;}
 		.wrapMain .wrapMainLeft{width:200px; padding: 0px 7px 0px 0px; float:left;}
 			.wrapMain .wrapMainLeft h2{color:#000}
-		.wrapMain .wrapMainMiddle{width:490px; float:left; padding: 10px; background: #fff}
+		.wrapMain .wrapMainMiddle{width:490px; float:left; padding: 10px; background: #fff; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
 
 		.wrapMain .wrapMainRight{width:126px; float:right;}
 
-.wrapHeader{background: #fff;border:1px solid #494b4c; padding: 13px 18px; position: relative}
+.wrapHeader{background: #fff; padding: 13px 18px; position: relative;-moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
 	.wrapHeader .logo{float:left; margin: 0px 40px 0px 0px;}
 	.wrapHeader .mindHolder{float:left; height: 51px; overflow: hidden; width:380px; margin: 42px 0px 0px 0px; padding: 0; background: #fff; border: 2px solid #368fca; -moz-box-shadow: inset 2px 2px 6px 1px #cfcfcf; -webkit-box-shadow: inset 2px 2px 6px 1px #cfcfcf; box-shadow: inset 2px 2px 6px 1px #cfcfcf}
 		.wrapHeader .mindHolder p{display:table-cell; padding:0; height:51px; vertical-align:middle; text-align:center}
@@ -422,8 +422,14 @@ textarea {
 		}
 	.articleHolder .articleText{padding: 10px 10px 0px 10px}
 
+/* datepicker */
 
+.datePickerHolder{padding:30px 0 0}	
 
+/* partners */
+
+.partnersHolder a{display:block; padding:0 0 10px; text-decoration:none}
+	.partnersHolder a:hover{text-decoration:underline}
 
 
 
