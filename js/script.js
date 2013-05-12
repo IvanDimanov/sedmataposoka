@@ -6,11 +6,13 @@ $(document).ready(function () {
 	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
 	$("#datepicker").datepicker({
 	minDate: new Date(y, m, d),
-	dateFormat: 'mm-dd-yy',
+	dateFormat: 'dd-mm-yy',
 	onSelect: function(dateText, inst) {
 	//$("input[name='dateInput']").val(dateText);	
-	
-	$.post("todo.php", {'date': dateText},  function(response) {
+	var dateNumber=dateText.substring(0,2);;
+	var today=$(".ui-state-highlight").html();
+	var sendNumber=(dateNumber-today);
+	$.post("todo.php", {'date': sendNumber},  function(response) {
 	if (response==true)
 	{
 	alert(1);
