@@ -1,7 +1,11 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+foreach($partners as $partner)
+{
+    echo $partner['name']. ' ';
+    echo 'link :' .$partner['link'];
+    echo '<img src="'.$partner['logoSrc'].'"/>';
+    
+    
+}
 ?>
