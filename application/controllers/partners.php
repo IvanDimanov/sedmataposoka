@@ -14,6 +14,7 @@ class partners extends CI_Controller {
       public function __construct()
 	{
 		parent::__construct();
+                $this->load->model('partnerModel');
 		
 	}
     
@@ -26,6 +27,7 @@ class partners extends CI_Controller {
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
         $data['language'] = $language;
+        $data['partners'] = $this->partnerModel->getPartners($language);
         
         $this->load->helper('printLayout_helper');
         
