@@ -84,8 +84,6 @@ class eventModel extends CI_Model {
         $this->db->order_by('category_name,subcategory_name');
 
         $query = $this->db->get();
-
-        var_dump($query->result_array());
         return $query->result_array();
     }
 

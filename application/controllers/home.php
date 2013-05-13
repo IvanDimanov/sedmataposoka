@@ -29,6 +29,8 @@ class home extends CI_Controller{
                 
         $data['events'] = $this->eventModel->getAllEvents(0,null,$language);
         $data['language']=$language;
+        //to do select from db according selected lenaguage
+        $data['viewedEventsTitle'] = 'Results for today';
                   
         $this->load->helper('printLayout_helper');
         printLayout($this,null,"homeView",$data);
