@@ -57,8 +57,10 @@ class search extends CI_Controller {
 
     function wordSearch($language) {
         $language = strtolower($language);
-        // $searchTxt = $this->input->post['searchTxt'];
-        $searchTxt = 'Party';
+        //$language = 'en';
+        $searchTxt = $this->input->post('searchTxt');
+        //var_dump($searchTxt);
+        //$searchTxt = 'Party';
         $searchTxt = preg_replace('!\s+!', ' ', $searchTxt);
         $words = explode(' ', $searchTxt);
         $weightedEvents = array();
@@ -66,6 +68,8 @@ class search extends CI_Controller {
         foreach ($words as $word) {
             $word = mysql_real_escape_string($word);
             $events = $this->eventModel->getEventTitleByWord($language, $word);
+            //var_dump($events);
+            echo $word;
             foreach ($events as $event) {
                 if (array_key_exists($event['eventId'], $weightedEvents)) {
                     $weightedEvents[$event['eventId']]+=2;
@@ -76,6 +80,8 @@ class search extends CI_Controller {
 
 
             $eventsDescr = $this->eventModel->getEventDescrByWord($language, $word);
+            //echo'<br/> eventDescr';
+            //var_dump($eventsDescr);
             echo '</br></br>';
             foreach ($eventsDescr as $eventDescr) {
                 if (array_key_exists($eventDescr['eventId'], $weightedEvents)) {
