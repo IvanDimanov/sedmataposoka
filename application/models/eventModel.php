@@ -137,7 +137,7 @@ class eventModel extends CI_Model {
         $this->db->select('event.id as eventId, eventtitle.' . $language . ' as event_title');
         $this->db->from('event');
         $this->db->join('eventtitle', 'eventtitle.id = event.titleId');
-        $this->db->like('eventtitle.'. $language, $word);
+        $this->db->like('eventtitle.'. $language.' COLLATE UTF8_GENERAL_CI ', $word);
         $query = $this->db->get();
         
         return $query->result_array(); 
@@ -151,7 +151,7 @@ class eventModel extends CI_Model {
         $this->db->select('event.id as eventId, eventdescr.' . $language . ' as event_descr');
         $this->db->from('event');
         $this->db->join('eventdescr', 'eventdescr.id = event.descrId');
-        $this->db->like('eventdescr.'. $language, $word);
+        $this->db->like('eventdescr.'. $language.' COLLATE UTF8_GENERAL_CI ', $word);
         $query = $this->db->get();
         
         return $query->result_array(); 
