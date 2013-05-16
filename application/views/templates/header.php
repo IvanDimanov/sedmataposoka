@@ -13,11 +13,12 @@ $this->load->helper('url');
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/html5shiv.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.slides.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.css"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.min.css"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
 		<!--link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 		
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script-->
@@ -31,7 +32,7 @@ $this->load->helper('url');
         <div class="wrapAll">
             <header class="wrapHeader">
                 <div class="clear">
-                    <a class="logo" href="<?php echo base_url().$language;?>" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
+                    <a class="logo" href="<?php echo base_url().$language;?>/" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
                     <div class="mindHolder">
                         <?php
                         echo '<p>"' . $tought[0]['text'] . '"<span class="author"> ' . $tought[0]['author'] . '</span></p>';
@@ -40,8 +41,8 @@ $this->load->helper('url');
                     <div class="bubbles"></div>
                     <div class="rightPart">
                         <section class="language clear">	
-                            <a href="<?php echo base_url()."en";?>" class="en"></a>
-                            <a href="<?php echo base_url()."bg";?>" class="bg"></a>
+                            <a href="<?php echo base_url()."en/";?>" class="en"></a>
+                            <a href="<?php echo base_url()."bg/";?>" class="bg"></a>
                         </section>
 						<section id="searchHolder" class="search">
 							<form id="formSearch" action="<?php echo $language; ?>/search/wordSearch" method="post" onsubmit="return searchValidation();">

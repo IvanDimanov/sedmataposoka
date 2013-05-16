@@ -1,5 +1,5 @@
 $(document).ready(function () {	
-	
+
 	//datepicker
 	
 	var date = new Date();
@@ -12,18 +12,24 @@ $(document).ready(function () {
 	var dateNumber=dateText.substring(0,2);;
 	var today=$(".ui-state-highlight").html();
 	var sendNumber=(dateNumber-today);
-	$.post("todo.php", {'date': sendNumber},  function(response) {
-	if (response==true)
-	{
-	alert(1);
+	/*var url = window.location.pathname;
+    url = url.split("/");
+	//document.write(location.hostname);
+	//window.reload=location.hostname+url[1]+'/'+url[2]+'/'+'search/dateSearch/'+sendNumber;
+	//alert(location.hostname)
+	window.location.href='laalal';
+	//window.location = url[1]+'/'+url[2]+'/'+'search/dateSearch/'+sendNumber;
+	*/	
+	var location = document.location.href;
+	var searchRegLocation = /\/[a-zA-Z]{2}\//;
+	var searchSubstring=location.match(searchRegLocation);	
+	var findIndex=location.indexOf(searchSubstring);
+	var toRegLocationIndex=findIndex+4;
+	var currentLocation=location.substring(0,toRegLocationIndex);
+	window.location.href=currentLocation+'search/dateSearch/'+sendNumber;
 	}
-	else
-	{
-	alert(2);
-	}
-	});	
+
 	
-	}
 	});
 
 	/* paging */
@@ -183,9 +189,24 @@ $(document).ready(function () {
 		return regex.test(email);
 	}	
 	
+	//slides image number check
+	
+	var bannerImgNumber=$("#slides").find('img').size();
+	if(bannerImgNumber==1)
+	{
+		$("#slides").find('.slidesjs-previous').hide();
+		$("#slides").find('.slidesjs-previous').css("width, 0px");
+		$("#slides .slidesjs-previous").css('display','none');
+		$("#slides .slidesjs-next").hide();
+		$("#slides .slidesjs-pagination").hide();
+	}
+	
+	else{}
+
+	
+	
 });
 
-// banner function
 $(function() {
   $('#slides').slidesjs({
 	width: 488,
@@ -198,6 +219,26 @@ $(function() {
 	}
   });
 });
+
+	// calback must check
+	$(function(){
+	$("#slides").slidesjs({
+	callback: {
+	loaded: function(number) {
+	// banner function
+
+	},
+	start: function(number) {
+	alert(2)// Do something awesome!
+	// Passes slide number at start of animation
+	},
+	complete: function(number) {
+	alert(3)// Do something awesome!
+	// Passes slide number at end of animation
+	}
+	}
+	});
+	});
 
 // search validation and submit
 function searchValidation() {	
