@@ -39,7 +39,7 @@ $this->load->helper('url');
 		<nav class ="navBottom">
 			<?php
 			$this->load->helper('url');
-			echo "<a href='" . base_url().$language . "'>Събития</a>";
+			echo "<a href='" . base_url().$language .'/'."events'>Събития</a>";
 			echo "<a href='" . base_url().$language.'/' . "contacts'>Контакти</a>";
 			?>
 		</nav>
