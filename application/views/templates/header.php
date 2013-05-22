@@ -45,7 +45,7 @@ $this->load->helper('url');
                             <a href="<?php echo base_url()."bg/";?>" class="bg"></a>
                         </section>
 						<section id="searchHolder" class="search">
-							<form id="formSearch" action="<?php echo $language; ?>/search/wordSearch" method="post" onsubmit="return searchValidation();">
+							<form id="formSearch" name="formSearch" action="" method="post" onsubmit="return searchByWord();">
 								<input class="searchTxt" id="searchTxt" name="searchTxt" type="search" />
 								<input class="searchBttn" id="searchBttn" type="submit" value="" />
 							</form>
