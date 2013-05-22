@@ -368,7 +368,12 @@ textarea {
 /* partners */
 .partnersMainHolder{padding: 7px; width: 108px; background: #e4e4e4; border: 1px solid #b3b3b2; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}	
 	.partnersMainHolder h3{padding: 0 0 7; text-transform:uppercase}	
-	.partnersMainHolder h4{padding: 0 0 5px;}	
+	.partnersMainHolder h4{padding: 0 0 5px;}
+
+.partnersInerPageHolder{}	
+.partnersInerPageHolder .box{width: 150px; margin: 0 10px 10px 0; float:left; background:#e4e4e4;text-align:center}	
+.partnersInerPageHolder img{max-width: 150px; max-height:150px; margin: 0 0 10px}	
+.partnersInerPageHolder h2{}	
 /* advHolder */	
 .advHolder{width:120px; height: 60px; margin: 0px 0px 10px 0px; border:3px solid #fff; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
 	.advHolder a{display: block;}

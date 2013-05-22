@@ -241,14 +241,34 @@ $(function() {
 	});
 
 // search validation and submit
-function searchValidation() {	
+
+function searchByWord() {
 	$('#searchHolder').removeClass("err");
-	var searchReg = /^[a-zA-Z0-9- ]{2,50}$/;
+	//var searchReg = /^[a-zA-Z0-9- ]{2,50}$/;
+	//var searchReg = /[\u0A00-\u0A7F ]*/;
+	var searchReg = /[\u0A00-\u0A7F ]*/;
 	var searchVal = $("#searchTxt").val();
 	if (!searchReg.test(searchVal))
 	{
 	$('#searchHolder').addClass("err");
 	return false;
 	}
-	else{return true;}
-}
+	else{
+		var location = document.location.href;
+		var searchRegLocation = /\/[a-zA-Z]{2}\//;
+		var searchSubstring=location.match(searchRegLocation);	
+		var findIndex=location.indexOf(searchSubstring);
+		var toRegLocationIndex=findIndex+4;
+		var currentLocation=location.substring(0,toRegLocationIndex);
+		document.formSearch.action =currentLocation+'search/wordSearch/';
+		return true;
+	}
+
+}	
+
+
+
+
+
+
+
