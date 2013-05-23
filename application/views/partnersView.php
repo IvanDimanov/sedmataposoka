@@ -1,14 +1,14 @@
-﻿<div class="partnersHolder">
+﻿<div class="partnersInerPageHolder">
 	<h1>Patners</h1>
-	<a href="#" >to do links for partners</a>
+	<div class="box">
+		<?php
+		foreach($partners as $partner)
+		{
+			echo '<img src="'.$partner['logoSrc'].'"/>';
+			echo '<h2><a href="'.$partner['link'].'">'.$partner['name'].'</a></h2>';
+			   
+			
+		}
+		?>
+	</div>
 </div>
-<?php
-foreach($partners as $partner)
-{
-    echo $partner['name']. ' ';
-    echo 'link :' .$partner['link'];
-    echo '<img src="'.$partner['logoSrc'].'"/>';
-    
-    
-}
-?>
