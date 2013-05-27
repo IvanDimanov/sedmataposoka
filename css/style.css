@@ -248,10 +248,11 @@ textarea {
 	.footer .footerRight{float:left;display: inline-block; width: 20%; color: #fff;font-family: 'Arial';font-size: 16px;text-decoration: none; text-align: right;}
 
 .navMain ul{list-style:none; padding:0;margin:0}
+	.navMain .level1Li{position:relative}
 	.navMain .level1Link{
 		display:block;
 		height:30px;
-		padding: 0px 5px;
+		padding: 2px 5px;
 		line-height:30px;
 		border: 1px solid #c4c4c4;
 		border-bottom:none;
@@ -267,17 +268,18 @@ textarea {
 	}
 
 	.navMain .level1Link:hover{
-		background: #aba9a9;
+		color:#000
+		/*background: #aba9a9;
 		filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#aba9a9,EndColorStr=#efefef);
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aba9a9', endColorstr='#efefef'); /* for IE */
-		background: -webkit-gradient(linear, left top, left bottom, from(#aba9a9), to(#efefef)); /* for webkit browsers */
-		background: -moz-linear-gradient(top,  #aba9a9,  #efefef); /* for firefox 3.6+ */
+		/*background: -webkit-gradient(linear, left top, left bottom, from(#aba9a9), to(#efefef)); /* for webkit browsers */
+		/*background: -moz-linear-gradient(top,  #aba9a9,  #efefef); /* for firefox 3.6+ */
 	}
 
 .navMain li:hover .level2{display:block}
-.navMain .level2{display:none; padding:7px 0;background: #aba9a9}
+.navMain .level2{display:none; position:absolute; z-index: 11;left:0; top:34px; width:100%; padding:7px 0;background: #aba9a9}
 	.navMain .level2 a{display:block;padding: 3px 5px;color: #575757;font-family: Arial;font-size: 16px;text-decoration: none;}
-	.navMain .level2 a:hover{color: #efefef}
+	.navMain .level2 a:hover{color: #000}
 
 
 .navBottom a{

@@ -1,5 +1,4 @@
 $(document).ready(function () {	
-
 	//datepicker
 	
 	var date = new Date();
@@ -203,10 +202,10 @@ $(document).ready(function () {
 	
 	else{}
 
-	
+	initializeSliders();
 	
 });
-
+/*
 $(function() {
   $('#slides').slidesjs({
 	width: 488,
@@ -219,7 +218,35 @@ $(function() {
 	}
   });
 });
+*/
 
+function initializeSliders(){
+
+/* workshop slides */
+
+	$('#slides').slidesjs({
+	width: 488,
+	height: 164,
+		callback: {
+	      loaded: function(number) {	        
+	        var count_element = $('#slides:visible img').length
+			if (count_element==1)
+			{
+				$("#slides .slidesjs-navigation").hide();
+				$("#slides .slidesjs-pagination").hide();
+			}
+
+	      },
+	      start: function(number) {
+	        
+	      },
+	      complete: function(number) {
+	      	
+	      }
+	    }
+	});
+	}
+/*
 	// calback must check
 	$(function(){
 	$("#slides").slidesjs({
@@ -239,14 +266,13 @@ $(function() {
 	}
 	});
 	});
-
+*/
 // search validation and submit
 
 function searchByWord() {
 	$('#searchHolder').removeClass("err");
-	//var searchReg = /^[a-zA-Z0-9- ]{2,50}$/;
-	//var searchReg = /[\u0A00-\u0A7F ]*/;
-	var searchReg = /[\u0A00-\u0A7F ]*/;
+	// regex for latin and cyrillic words bigger than two letters
+	var searchReg = /^[\u0400-\u04FFa-zA-Z0-9- ]{2,50}$/;
 	var searchVal = $("#searchTxt").val();
 	if (!searchReg.test(searchVal))
 	{
