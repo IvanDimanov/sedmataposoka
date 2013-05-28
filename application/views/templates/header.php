@@ -67,7 +67,7 @@ $this->load->helper('url');
                             $this->load->helper('url');
                             foreach ($categories as $category) {
                                 // echo '<h1>' . $category['name'] . '</h1>';
-                                echo '<li><a class="level1Link" href="' . base_url() .$language.'/'. 'category/' . $category['id'] . '">' .
+                                echo '<li class="level1Li"><a class="level1Link" href="' . base_url() .$language.'/'. 'category/' . $category['id'] . '">' .
                                 $category['name'] . ' </a>';
                                 $menu_elements = '';
                                 for ($i = 0; $i < sizeof($subcategories); $i++) {
