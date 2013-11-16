@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"desc",
+				"descrId"
+			],
+			[
+				"name",
+				"nameId"
+			],
+			[
 				"echo",
 				"echo"
 			],
@@ -506,14 +514,6 @@
 			[
 				"C",
 				"C22"
-			],
-			[
-				"sport",
-				"sport_event_id"
-			],
-			[
-				"key",
-				"keystroke"
 			]
 		]
 	},
@@ -523,15 +523,7 @@
 			"file": "notes.todo",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/wamp/www/sedmataposoka/application/config/database.php",
-			"settings":
-			{
-				"buffer_size": 3250,
+				"buffer_size": 7,
 				"line_ending": "Windows"
 			}
 		}
@@ -672,6 +664,36 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/sedmataposoka/application/config/database.php",
+		"/C/wamp/www/sedmataposoka/application/views/createEventView.php",
+		"/C/wamp/www/sedmataposoka/application/views/createSubcategoryView.php",
+		"/C/wamp/www/sedmataposoka/application/views/createCategoryView.php",
+		"/C/wamp/www/sedmataposoka/application/models/eventModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/create_tables.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_patners.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_ads.sql",
+		"/C/wamp/www/sedmataposoka/application/views/templates/footer.php",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_thughts.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/readme.md",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_events.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_values.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_subcategories.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_categories.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_admins.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_values.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values",
+		"/C/wamp/www/sedmataposoka/application/models/adminModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/subcategoryModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/adsModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/toughtModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/partnerModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/categoryModel.php",
+		"/C/wamp/www/sedmataposoka/application/helpers/model_helper.php",
+		"/C/wamp/www/sedmataposoka/application/controllers/event.php",
+		"/C/wamp/www/photo_gallery/docs/tables.sql",
+		"/C/wamp/www/photo_gallery/docs/80406.doc",
+		"/C/wamp/www/photo_gallery/docs/mysql.php",
+		"/C/wamp/www/photo_gallery/docs/notes.TODO",
 		"/I/shop/Gruntfile.js",
 		"/C/Users/dimanov_88/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/dimanov_88/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
@@ -769,37 +791,7 @@
 		"/home/ivandimanov/projects/booking/application/models/client_booking_model.php",
 		"/home/ivandimanov/projects/booking/application/models/event_model.php",
 		"/home/ivandimanov/projects/booking/application/models/soccer_handle_event_startdate_change_model.php",
-		"/home/ivandimanov/projects/booking/application/views/client/manage_users/manage.php",
-		"/home/ivandimanov/projects/booking/application/views/client/profile.php",
-		"/home/ivandimanov/projects/booking/js/client/calendar/calendar.js",
-		"/home/ivandimanov/projects/booking/application/libraries/api/api_client/example.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/check_expenses_cron.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/calendar.php",
-		"/home/ivandimanov/projects/booking/application/controllers/admin/event.php",
-		"/home/ivandimanov/projects/booking/application/controllers/admin/client_user.php",
-		"/home/ivandimanov/projects/booking/application/controllers/admin/access_groups.php",
-		"/home/ivandimanov/projects/booking/application/controllers/test.php",
-		"/home/ivandimanov/projects/booking/application/controllers/admin/event_badminton.php",
-		"/home/ivandimanov/projects/booking/application/controllers/admin/news_badminton.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/calendar_badminton.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/liveviewer_badminton.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/faq_badminton.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/odds_badminton.php",
-		"/home/ivandimanov/projects/booking/application/controllers/api/api_server.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/profile.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/log_queue.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/trigger_queue.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/api.php",
-		"/home/ivandimanov/projects/booking/application/views/client/default/wrapper.php",
-		"/home/ivandimanov/projects/booking/application/views/client/helpdesk/badminton_info.php",
-		"/home/ivandimanov/projects/booking/application/views/client/helpdesk/tennis_info.php",
-		"/home/ivandimanov/projects/booking/application/views/client/helpdesk/info.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/helpdesk_tennis.php",
-		"/home/ivandimanov/projects/booking/application/models/badminton_add_basic_package_model.php",
-		"/home/ivandimanov/projects/booking/application/models/editor_model.php",
-		"/home/ivandimanov/projects/booking/application/models/log_queue_model.php",
-		"/home/ivandimanov/projects/booking/application/models/object_log_model.php",
-		"/home/ivandimanov/projects/booking/application/models/admin_sport_model.php"
+		"/home/ivandimanov/projects/booking/application/views/client/manage_users/manage.php"
 	],
 	"find":
 	{
@@ -810,6 +802,8 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"C:\\wamp\\www\\sedmataposoka\\application",
+			"C:\\wamp\\www\\sedmataposoka\\application\\models",
 			"C:\\wamp\\www\\sedmataposoka",
 			"/home/ivandimanov/projects/tests/git/shop/node_modules/grunt-contrib-htmlmin",
 			"/home/ivandimanov/projects/tests/git/shop/node_modules/grunt-usemin",
@@ -910,6 +904,72 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"banner",
+			"''  ,",
+			"''",
+			"', ''",
+			"',",
+			"('",
+			"['ban",
+			"['ads",
+			"$ads",
+			"imagePath",
+			",",
+			") ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;",
+			"insert into",
+			"create table",
+			",",
+			"();",
+			"() values",
+			"create table",
+			", '', '",
+			"'', '2013",
+			"('",
+			"description*/",
+			",",
+			"tempor incididunt ut labore et dolore magna aliqua.')",
+			"aliqua.'),",
+			", '",
+			"James Brown",
+			". ', '",
+			"', '",
+			"',",
+			"('",
+			"*/",
+			"events name*/",
+			"->",
+			"( ",
+			"/",
+			"descriptions",
+			")",
+			"),",
+			", ",
+			",",
+			"descriptions",
+			"('', '')",
+			"names",
+			"subcategories",
+			"cat",
+			"eventModel",
+			" (",
+			"create",
+			" ENGINE=INNODB;",
+			"2",
+			"1",
+			",",
+			"pictureSrc",
+			"int",
+			"cat",
+			"db->get(",
+			"adsModel",
+			"int",
+			"varchar",
+			"ENGINE",
+			"categoryname",
+			"db->get(",
+			"varchar",
+			"adsModel",
+			"select",
 			"sedmataposokaModel",
 			"html",
 			"global",
@@ -971,73 +1031,7 @@
 			"outputStyle",
 			"tmp",
 			"compass",
-			"server",
-			"awesomeThings",
-			"id",
-			"awesomeThings",
-			"compass",
-			"angular",
-			"(function ()",
-			"testValue",
-			"testService",
-			"testFactory",
-			"testProviderObject",
-			"World",
-			"Value",
-			"Service",
-			"Factory",
-			"return",
-			"Provider",
-			"\"",
-			"constructor",
-			"soccer",
-			"tennis",
-			"soccer",
-			"Tennis_Add_Basic_Package_Model",
-			"ENVIRONMENT",
-			"ENVVIRONMENT",
-			"create procedure",
-			"request_link",
-			"loadObjectFromQuery",
-			"limit_per_year",
-			"loadObjectFromQuery",
-			"load_query",
-			"loadObjectFromDBResult(",
-			"There are more than one",
-			"error_reporting",
-			"tennis",
-			"bookingtest_ts",
-			"conn_id",
-			"database(",
-			"database",
-			"? ",
-			" db_select(",
-			"db_select",
-			"db_unable_to_select",
-			"driver",
-			"db_unable_to_select",
-			"Unable to select the specified database",
-			"the specified database",
-			"Unable to select the specified database",
-			"require",
-			"DB(",
-			"DB",
-			"soccer",
-			"tennis",
-			"soccer",
-			"Soccer_Copy_Object_Access_Model",
-			"Soccer_Handle_Event_Startdate_Change_Model",
-			"Soccer_Copy_Object_Access_Model",
-			"Soccer_Update_Event_Information_Model",
-			"tennis",
-			"soccer",
-			"tennis",
-			"soccer",
-			"Soccer",
-			"soccer",
-			"client_soccer_events",
-			"soccer",
-			"tennis"
+			"server"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1082,7 +1076,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1090,49 +1084,127 @@
 					"file": "notes.todo",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 7,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								7,
+								7
 							]
 						],
 						"settings":
 						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
 							"syntax": "Packages/PlainTasks/PlainTasks.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/wamp/www/sedmataposoka/application/config/database.php",
-					"settings":
-					{
-						"buffer_size": 3250,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2661,
-								2674
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 539.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
