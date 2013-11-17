@@ -86,38 +86,40 @@ insert into eventdescr
 insert into event
 (titleId, descrId, subcatId, link, fee, startDate, endDate) values
 
+/*The below code will set events evenly in time by the interval from now to every 4 days*/
+
 /*Books: Reading events*/
-(1, 1, 1, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(2, 2, 1, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(1, 1, 1, 'http://google.com', '20 BGN/лв.', CURRENT_DATE, ADDDATE(CURRENT_DATE, INTERVAL 4 DAY)),
+(2, 2, 1, 'http://google.com', '20 BGN/лв.', CURRENT_DATE, ADDDATE(CURRENT_DATE, INTERVAL 4 DAY)),
 
 /*Books: Presentation events*/
-(3, 3, 2, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(4, 4, 2, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(3, 3, 2, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 4 DAY), ADDDATE(CURRENT_DATE, INTERVAL 8 DAY)),
+(4, 4, 2, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 4 DAY), ADDDATE(CURRENT_DATE, INTERVAL 8 DAY)),
 
 /*Yoga: Ashtanga events*/
-(5, 5, 3, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(6, 6, 3, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(5, 5, 3, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 8 DAY), ADDDATE(CURRENT_DATE, INTERVAL 12 DAY)),
+(6, 6, 3, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 8 DAY), ADDDATE(CURRENT_DATE, INTERVAL 12 DAY)),
 
 /*Yoga: Hatha events*/
-(7, 7, 4, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(8, 8, 4, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(7, 7, 4, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 12 DAY), ADDDATE(CURRENT_DATE, INTERVAL 16 DAY)),
+(8, 8, 4, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 12 DAY), ADDDATE(CURRENT_DATE, INTERVAL 16 DAY)),
 
 /*Yoga: Vinyasa events*/
-( 9,  9, 5, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(10, 10, 5, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+( 9,  9, 5, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 16 DAY), ADDDATE(CURRENT_DATE, INTERVAL 20 DAY)),
+(10, 10, 5, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 16 DAY), ADDDATE(CURRENT_DATE, INTERVAL 20 DAY)),
 
 /*Dances: HipHop events*/
-(11, 11, 6, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(12, 12, 6, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(11, 11, 6, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 20 DAY), ADDDATE(CURRENT_DATE, INTERVAL 24 DAY)),
+(12, 12, 6, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 20 DAY), ADDDATE(CURRENT_DATE, INTERVAL 24 DAY)),
 
 /*Dances: Break events*/
-(13, 13, 7, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(14, 14, 7, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(13, 13, 7, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 24 DAY), ADDDATE(CURRENT_DATE, INTERVAL 28 DAY)),
+(14, 14, 7, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 24 DAY), ADDDATE(CURRENT_DATE, INTERVAL 28 DAY)),
 
 /*Dances: Salsa events*/
-(15, 15, 8, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(16, 16, 8, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
+(15, 15, 8, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 32 DAY), ADDDATE(CURRENT_DATE, INTERVAL 36 DAY)),
+(16, 16, 8, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 32 DAY), ADDDATE(CURRENT_DATE, INTERVAL 36 DAY)),
 
 /*Dances: Tango events*/
-(17, 17, 9, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16'),
-(18, 18, 9, 'http://google.com', '20 BGN/лв.', '2013-11-16', '2013-12-16');
+(17, 17, 9, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 40 DAY), ADDDATE(CURRENT_DATE, INTERVAL 44 DAY)),
+(18, 18, 9, 'http://google.com', '20 BGN/лв.', ADDDATE(CURRENT_DATE, INTERVAL 40 DAY), ADDDATE(CURRENT_DATE, INTERVAL 44 DAY));
