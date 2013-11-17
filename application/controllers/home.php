@@ -15,7 +15,7 @@ class home extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-                $this->load->model('eventModel');
+        $this->load->model('eventModel');
     }
     
     function index($language)
@@ -26,14 +26,15 @@ class home extends CI_Controller{
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
-                
+        $ui_labels = $this->uiLabelsModel->getLabelsForLanguage( $language );
+
         $data['events'] = $this->eventModel->getAllEvents(0,null,$language);
         $data['language']=$language;
         //to do select from db according selected lenaguage
-        $data['viewedEventsTitle'] = 'Results for today';
-                  
+        $data['viewedEventsTitle'] = $ui_labels['search']['results'].' '.$ui_labels['search']['today'];
+
         $this->load->helper('printLayout_helper');
-        printLayout($this,null,"homeView",$data);
+        printLayout($this, null, "homeView", $data);
     }
 }
 

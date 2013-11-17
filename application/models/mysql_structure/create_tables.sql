@@ -207,3 +207,11 @@ create table partner (
     on delete cascade
     on update cascade
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+
+/*Will hold each page specific labels per language as JSON*/
+create table ui_labels (
+  id          int not null auto_increment primary key,
+  language    varchar(12) not null,
+  json_labels text not null
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;

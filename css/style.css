@@ -418,7 +418,7 @@ textarea {
 	background: -webkit-gradient(linear, left top, left bottom, from(#32a8ea), to(#0a73bd));
 	background: -moz-linear-gradient(top,  #32a8ea,  #0a73bd);					
 	}
-		.articleHolder .articleNav a{float: left; display: inline-block; height: 36px; line-height: 36px; min-width:90px; border-left: 2px solid #0db0eb; color: #fff; font-family: 'Arial'; font-weight: bold; text-align: center; text-decoration: none;}
+		.articleHolder .articleNav a{float: left; display: inline-block; height: 36px; line-height: 36px; min-width:100px; border-left: 2px solid #0db0eb; color: #fff; font-family: 'Arial'; font-weight: bold; text-align: center; text-decoration: none;}
 		.articleHolder .articleNav a:first-child{border-left: none;}
 		.articleHolder .articleNav a:hover{						
 		background: #32a8ea;

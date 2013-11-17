@@ -19,7 +19,7 @@ $this->load->helper('url');
         ?>				
     </aside>
     <div class="partnersMainHolder">
-        <h3>Partners list</h3>
+        <h3><?=$ui_labels['partners']['list']?></h3>
         <?php
         foreach ($partners as $partner) {
             echo '<h4>' . $partner['name'] . '</h4>';
@@ -27,7 +27,7 @@ $this->load->helper('url');
             //TODO redirection to partner link
            // echo '<a href="' . $partner['link'] . '">View our partner</a>';
         }
-        echo '<a href="' . base_url().$language.'/partners'.'">View our partner</a>';
+        echo '<a href="' . base_url().$language.'/partners'.'">'.$ui_labels['partners']['view_all'].'</a>';
         ?>
     </div>
 </div>
@@ -39,11 +39,11 @@ $this->load->helper('url');
 		<nav class ="navBottom">
 			<?php
 			$this->load->helper('url');
-			echo "<a href='".base_url().$language.'/'."search/dateSearch/0'>Събития</a>";
+			echo "<a href='".base_url().$language.'/'."search/dateSearch/0'>".$ui_labels['footer']['links']['events']."</a>";
             echo '<span class="separator">-</span>';
-            echo "<a href='".base_url().$language.'/'."contacts'>Контакти</a>";
+            echo "<a href='".base_url().$language.'/'."contacts'>".$ui_labels['footer']['links']['contacts']."</a>";
             echo '<span class="separator">-</span>';
-			echo "<a href='".base_url().$language.'/'."partners'>Партньори</a>";
+			echo "<a href='".base_url().$language.'/'."partners'>".$ui_labels['footer']['links']['partners']."</a>";
 			?>
 		</nav>
 		<span class="footerRight">&copy;Copyright 2012 - 2013</span>

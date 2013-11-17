@@ -1,5 +1,5 @@
 ﻿<div class="partnersInerPageHolder">
-	<h1>Patners</h1>
+	<h1><?=$ui_labels['partners']['content_title']?></h1>
 		<?php
 		foreach($partners as $partner)
 		{

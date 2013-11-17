@@ -35,19 +35,20 @@ class search extends CI_Controller {
 
 
         //to do select from db according selected lenaguage
-        $data['viewedEventsTitle'] = 'Results for ';
+        $ui_labels = $this->uiLabelsModel->getLabelsForLanguage( $language );
+        $data['viewedEventsTitle'] = $ui_labels['search']['results'].' ';
         switch ($EndDate) {
-            case 0 : $data['viewedEventsTitle'].= 'today';
+            case 0 : $data['viewedEventsTitle'].= $ui_labels['search']['today'];
                 break;
-            case 7: $data['viewedEventsTitle'].= 'week';
+            case 7: $data['viewedEventsTitle'].= $ui_labels['search']['week'];
                 break;
-            case 14: $data['viewedEventsTitle'].= '2 weeks';
+            case 14: $data['viewedEventsTitle'].= $ui_labels['search']['2_weeks'];
                 break;
-            case 30: $data['viewedEventsTitle'].= 'month';
+            case 30: $data['viewedEventsTitle'].= $ui_labels['search']['month'];
                 break;
             default :
                 $date = Date('Y:m:d', mktime(0, 0, 0, date("m"), date("d") + $EndDate, date("Y")));
-                $data['viewedEventsTitle'].= $date;
+                $data['viewedEventsTitle'].= ' '.$date;
                 break;
         }
 
@@ -108,12 +109,13 @@ class search extends CI_Controller {
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
+        $ui_labels = $this->uiLabelsModel->getLabelsForLanguage( $language );
 
         $data['events'] = $arrayInfo;
 
         $data['language'] = $language;
         //to do select from db according selected lenaguage
-        $data['viewedEventsTitle'] = 'Results for ' . $searchTxt;
+        $data['viewedEventsTitle'] = $ui_labels['search']['results'].' '.$searchTxt;
 
         $this->load->helper('printLayout_helper');
         printLayout($this, 'templates/header', 'homeView', $data);

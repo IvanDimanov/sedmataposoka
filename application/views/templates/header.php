@@ -3,14 +3,21 @@
 
 $this->load->helper('url');
 
-$query    = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
-$full_url = $this->config->site_url().'/'.$this->uri->uri_string().$query;
+/*Detect any requests coming as URL strings*/
+$query = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
+
+/*Secure at least language URL var*/
+$uri_string = $this->uri->uri_string();
+$uri_string = $uri_string ? $uri_string : $language;
+
+/*Combine the final URL link & remove the not needed 'index.php' location*/
+$full_url = $this->config->site_url().'/'.$uri_string.$query;
 $full_url = str_replace('/index.php', '', $full_url);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Седмата посока</title>
+        <title><?=$ui_labels['page_title']?></title>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css" />
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.js"></script>
@@ -42,8 +49,8 @@ $full_url = str_replace('/index.php', '', $full_url);
                     <div class="bubbles"></div>
                     <div class="rightPart">
                         <section class="language clear">	
-                            <a href="<?php echo str_replace('bg/', 'en/', $full_url); ?>" class="en"></a>
-                            <a href="<?php echo str_replace('en/', 'bg/', $full_url); ?>" class="bg"></a>
+                            <a href="<?php echo str_replace('/bg', '/en', $full_url); ?>" class="en"></a>
+                            <a href="<?php echo str_replace('/en', '/bg', $full_url); ?>" class="bg"></a>
                         </section>
 						<section id="searchHolder" class="search">
 							<form id="formSearch" name="formSearch" action="" method="post" onsubmit="return searchByWord();">
