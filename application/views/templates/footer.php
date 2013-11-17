@@ -11,8 +11,8 @@ $this->load->helper('url');
             echo '<div class ="advHolder">';
             //TODO redirection to partner link
             echo '<a href="' . $add['link'] . '">';
-            echo '<p>' . $add['title'] . '</p>';
-            echo '<img src="'.  base_url().'img/' . $add['imagePath'] . '" alt="' . $add['title'] . '" height="42" width="42">';
+            if ($add['title']) echo '<p>'.$add['title'].'</p>';
+            echo '<img src="'.  base_url().'img/' . $add['imagePath'] . '" alt="' . $add['title'] . '" />';
             echo '</a>';
             echo '</div>';
         }
@@ -27,7 +27,7 @@ $this->load->helper('url');
             //TODO redirection to partner link
            // echo '<a href="' . $partner['link'] . '">View our partner</a>';
         }
-        echo '<a href="' . base_url().$language.'/partners' . '">View our partner</a>';
+        echo '<a href="' . base_url().$language.'/partners'.'">View our partner</a>';
         ?>
     </div>
 </div>
@@ -39,11 +39,14 @@ $this->load->helper('url');
 		<nav class ="navBottom">
 			<?php
 			$this->load->helper('url');
-			echo "<a href='" . base_url().$language .'/'."events'>Събития</a>";
-			echo "<a href='" . base_url().$language.'/' . "contacts'>Контакти</a>";
+			echo "<a href='".base_url().$language.'/'."search/dateSearch/0'>Събития</a>";
+            echo '<span class="separator">-</span>';
+            echo "<a href='".base_url().$language.'/'."contacts'>Контакти</a>";
+            echo '<span class="separator">-</span>';
+			echo "<a href='".base_url().$language.'/'."partners'>Партньори</a>";
 			?>
 		</nav>
-		<span class="footerRight">&copy;Copyright</span>
+		<span class="footerRight">&copy;Copyright 2012 - 2013</span>
 	</div>
 </footer>
 </div>

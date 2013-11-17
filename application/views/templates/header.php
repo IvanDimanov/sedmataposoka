@@ -60,7 +60,6 @@ $this->load->helper('url');
             <section class="wrapMain">
                 <div class="clear">
                     <div class ="wrapMainLeft">
-                        <h2>Каталог</h2>
                         <nav class ="navMain">
 							<ul class="level1">
                             <?php
