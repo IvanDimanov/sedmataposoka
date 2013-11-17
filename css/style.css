@@ -218,14 +218,14 @@ textarea {
 /** Home pages and separated content **/
 .wrapAllMain{position:relative;min-height: 100%;height: 100%}
 .wrapAll{width: 850px; margin: 0px auto;}
-	.wrapMain{padding: 20px 0px;}
+	.wrapMain{padding: 7px 0px;}
 		.wrapMain .wrapMainLeft{width:200px; padding: 0px 7px 0px 0px; float:left;}
 			.wrapMain .wrapMainLeft h2{color:#000}
 		.wrapMain .wrapMainMiddle{width:490px; float:left; padding: 10px; background: #fff; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
 
 		.wrapMain .wrapMainRight{width:126px; float:right;}
 
-.wrapHeader{background: #fff; padding: 13px 18px; position: relative;-moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
+.wrapHeader{background: #fff; margin: 7px 0px 0px 0px; padding: 13px 18px; position: relative;-moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272}
 	.wrapHeader .logo{float:left; margin: 0px 40px 0px 0px;}
 	.wrapHeader .mindHolder{float:left; height: 51px; overflow: hidden; width:380px; margin: 42px 0px 0px 0px; padding: 0; background: #fff; border: 2px solid #368fca; -moz-box-shadow: inset 2px 2px 6px 1px #cfcfcf; -webkit-box-shadow: inset 2px 2px 6px 1px #cfcfcf; box-shadow: inset 2px 2px 6px 1px #cfcfcf}
 		.wrapHeader .mindHolder p{display:table-cell; padding:0; height:51px; vertical-align:middle; text-align:center}
@@ -376,7 +376,7 @@ textarea {
 .partnersInerPageHolder img{max-width: 150px; max-height:150px; margin: 0 0 10px}	
 .partnersInerPageHolder h2{}	
 /* advHolder */	
-.advHolder{width:120px; margin: 0px 0px 10px 0px; border:3px solid #fff; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272; background: #fff;}
+.advHolder{width:120px; margin: 0px 0px 8px 0px; border:3px solid #fff; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272; background: #fff;}
   .advHolder a{display: block;}
 	.advHolder p{padding: 0px 0px 6px 0px}
 	.advHolder img{width:120px;}

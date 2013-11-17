@@ -15,31 +15,30 @@ class eventModel extends CI_Model {
     //put your code here
 
     function getAllEventsForSubcategory($timeframe, $subcatId, $language) {
-        $today = Date('Y:m:d');
+        $today        = Date('Y:m:d');
         $timeframeEnd = Date('Y:m:d', mktime(0, 0, 0, date("m"), date("d") + $timeframe, date("Y")));
-        $this->db->select('event.id as eventId, subcatId,eventtitle.' . $language . ' as title,
-            eventdescr.' . $language . ' as descr, 
-            startDate, endDate, fee, link');
+
+        $this->db->select('event.id as eventId, subcatId, eventtitle.'.$language.' as title,
+            eventdescr.'.$language.' as descr, 
+            startDate, endDate, fee, link'
+        );
         $this->db->from('event');
         $this->db->join('eventtitle', 'eventtitle.id = event.titleId');
         $this->db->join('eventdescr', 'eventdescr.id = event.descrId');
-        $this->db->where('(subcatId = "' . $subcatId . '")');
-        
-       //case start and end date are in timerange
-        $this->db->where("((`startDate` <=  '" . $today . "' 
-                AND  `endDate` >=  '" . $timeframeEnd . "')");
-        //case: start date is before timeframe, end date is after timeframe
-        $this->db->or_where("(`startDate` <=  '" . $today . "' 
-                AND  `endDate` >=  '" . $timeframeEnd . "')");
-         //case: start date is IN timeframe, end date is after timeframe
-        $this->db->or_where("(`startDate` >=  '" . $today . "' 
-                AND `startDate` <= '".$timeframeEnd."'
-                AND  `endDate` >=  '" . $timeframeEnd . "')");
-        //case: end date is in timerange, start date is before timeRange
-        $this->db->or_where("(`startDate` <=  '" . $today . "' 
-                AND  `endDate` <=  '" . $timeframeEnd . "' AND `endDate` >= '".$today."'))");
-        $query = $this->db->get();
+        $this->db->where('subcatId = '.$subcatId.'');
 
+        /*NOTE: CodeIgniter doesn't put any separating brackets*/
+
+        /*Searching time frame is in between event time frame*/
+        $this->db->where("((`startDate` <= '".$today."' AND `endDate` >= '".$timeframeEnd."')");
+
+        /*Event start date is in between the searching time frame*/
+        $this->db->or_where("(`startDate` > '".$today."' AND `startDate` <= '".$timeframeEnd."')");
+
+        /*Event end date is in between the searching time frame*/
+        $this->db->or_where("(`endDate` > '".$today."' AND `endDate` <= '".$timeframeEnd."'))");
+
+        $query = $this->db->get();
         return $query->result_array();
     }
 
@@ -62,7 +61,7 @@ class eventModel extends CI_Model {
         $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
 
        
-            //case start and end date are in timerange
+            //case start and end date are in time range
         $this->db->where("((`startDate` >=  '" . $today . "' 
                 AND  `endDate` <=  '" . $timeframeEnd . "')");
         //case: start date is before timeframe, end date is after timeframe
@@ -72,7 +71,7 @@ class eventModel extends CI_Model {
         $this->db->or_where("(`startDate` >=  '" . $today . "' 
                 AND `startDate` <= '".$timeframeEnd."'
                 AND  `endDate` >=  '" . $timeframeEnd . "')");
-        //case: end date is in timerange, start date is before timeRange
+        //case: end date is in time range, start date is before time Range
         $this->db->or_where("(`startDate` <=  '" . $today . "' 
                 AND  `endDate` <=  '" . $timeframeEnd . "' AND `endDate` >= '".$today."'))");
         

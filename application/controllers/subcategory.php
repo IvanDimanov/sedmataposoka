@@ -29,7 +29,7 @@ class subcategory extends CI_Controller {
         
         $data['subcategoryInfo'] = $this->subcategoryModel->getSubcategriesInfo($subcatId, $language); 
         //get all events for current subcategory for 1 month
-        $data['events'] = $this->eventModel->getAllEventsForSubcategory(30 ,$subcatId,$language);
+        $data['events'] = $this->eventModel->getAllEventsForSubcategory(30 ,$subcatId, $language);
         $data['language'] = $language;
                
         //call helper function which loads header, footer,
@@ -42,4 +42,3 @@ class subcategory extends CI_Controller {
 }
 
 ?>
-
