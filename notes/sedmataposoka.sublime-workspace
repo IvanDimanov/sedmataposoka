@@ -523,7 +523,7 @@
 			"file": "notes.todo",
 			"settings":
 			{
-				"buffer_size": 7,
+				"buffer_size": 100,
 				"line_ending": "Windows"
 			}
 		}
@@ -664,6 +664,13 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/sedmataposoka/application/views/subcategoryView.php",
+		"/C/wamp/www/sedmataposoka/application/views/homeView.php",
+		"/C/wamp/www/sedmataposoka/application/views/partnersView.php",
+		"/C/wamp/www/sedmataposoka/application/controllers/subcategory.php",
+		"/C/wamp/www/sedmataposoka/application/controllers/home.php",
+		"/C/wamp/www/sedmataposoka/application/helpers/printLayout_helper.php",
+		"/C/wamp/www/sedmataposoka/application/views/templates/header.php",
 		"/C/wamp/www/sedmataposoka/application/config/database.php",
 		"/C/wamp/www/sedmataposoka/application/views/createEventView.php",
 		"/C/wamp/www/sedmataposoka/application/views/createSubcategoryView.php",
@@ -784,14 +791,7 @@
 		"/home/ivandimanov/projects/booking/application/models/admin_model.php",
 		"/home/ivandimanov/projects/booking/application/controllers/cron/check_not_booked_matches_cron.php",
 		"/home/ivandimanov/projects/booking/application/controllers/cron/populate_table_cron.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/review_tokens_cron.php",
-		"/home/ivandimanov/projects/booking/application/libraries/client_pass.class.php",
-		"/home/ivandimanov/projects/booking/application/libraries/client_viewer_profile_token.class.php",
-		"/home/ivandimanov/projects/booking/application/libraries/event_info_token.class.php",
-		"/home/ivandimanov/projects/booking/application/models/client_booking_model.php",
-		"/home/ivandimanov/projects/booking/application/models/event_model.php",
-		"/home/ivandimanov/projects/booking/application/models/soccer_handle_event_startdate_change_model.php",
-		"/home/ivandimanov/projects/booking/application/views/client/manage_users/manage.php"
+		"/home/ivandimanov/projects/booking/application/controllers/cron/review_tokens_cron.php"
 	],
 	"find":
 	{
@@ -904,6 +904,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\"",
+			".date",
+			"n printLayout",
+			"jquery-ui-1.10.2.custom",
 			"banner",
 			"''  ,",
 			"''",
@@ -1027,11 +1031,7 @@
 			"removeComments",
 			"requirejs",
 			"autoprefixer",
-			"concurrent",
-			"outputStyle",
-			"tmp",
-			"compass",
-			"server"
+			"concurrent"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1084,15 +1084,15 @@
 					"file": "notes.todo",
 					"settings":
 					{
-						"buffer_size": 7,
+						"buffer_size": 100,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7,
-								7
+								100,
+								100
 							]
 						],
 						"settings":

@@ -34,9 +34,9 @@
 
                     echo "<div class='subCategoryEvent'><h3><a href='" . base_url().$language.'/' . "event/" . $event['eventId'] . "'>
 						" . $event['event_title'] . "</a></h3>";
-                    echo '<p class="date">начало: </span>.'.$event["startDate"].'</p>';
-                    echo '<p><span class="bold">край: </span>.'.$event["endDate"].'</p>';
-                    echo "<p>" . $event['event_descr'] . "</p></div>";
+                    echo '<p class="date"><span class="bold">начало: </span>.'.$event["startDate"].'</p>';
+                    echo '<p class="date"><span class="bold">край:   </span>.'.$event["endDate"]  .'</p>';
+                    echo '<p>'.$event['event_descr'].'</p></div>';
                 }
                 ?>
             </div>	
