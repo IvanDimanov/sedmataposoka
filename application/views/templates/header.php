@@ -3,6 +3,9 @@
 
 $this->load->helper('url');
 
+$query    = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
+$full_url = $this->config->site_url().'/'.$this->uri->uri_string().$query;
+$full_url = str_replace('/index.php', '', $full_url);
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,8 +29,6 @@ $this->load->helper('url');
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     </head>
     <body>
-
-
         <div class="wrapAllMain">
         <div class="wrapAll">
             <header class="wrapHeader">
@@ -41,8 +42,8 @@ $this->load->helper('url');
                     <div class="bubbles"></div>
                     <div class="rightPart">
                         <section class="language clear">	
-                            <a href="<?php echo base_url()."en/";?>" class="en"></a>
-                            <a href="<?php echo base_url()."bg/";?>" class="bg"></a>
+                            <a href="<?php echo str_replace('bg/', 'en/', $full_url); ?>" class="en"></a>
+                            <a href="<?php echo str_replace('en/', 'bg/', $full_url); ?>" class="bg"></a>
                         </section>
 						<section id="searchHolder" class="search">
 							<form id="formSearch" name="formSearch" action="" method="post" onsubmit="return searchByWord();">
