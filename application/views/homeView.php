@@ -15,14 +15,10 @@
     <div class="articleNav">
         <?php
         $this->load->helper('url');
-        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/0'>
-				Днес</a>";
-        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/7'>
-				Седмица</a>";
-        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/14'>
-				2 Седмици</a>";
-        echo "<a href='" . base_url() .$language.'/'. "search/dateSearch/30'>
-				Месец</a>";
+        echo "<a href='".base_url().$language.'/'."search/dateSearch/0' >".$ui_labels['search']['today'  ]."</a>";
+        echo "<a href='".base_url().$language.'/'."search/dateSearch/7' >".$ui_labels['search']['week'   ]."</a>";
+        echo "<a href='".base_url().$language.'/'."search/dateSearch/14'>".$ui_labels['search']['2_weeks']."</a>";
+        echo "<a href='".base_url().$language.'/'."search/dateSearch/30'>".$ui_labels['search']['month'  ]."</a>";
         ?>
     </div>
     <article class="articleText">
@@ -34,9 +30,9 @@
 
                     echo "<div class='subCategoryEvent'><h3><a href='" . base_url().$language.'/' . "event/" . $event['eventId'] . "'>
 						" . $event['event_title'] . "</a></h3>";
-                    echo '<p class="date">начало: </span>.'.$event["startDate"].'</p>';
-                    echo '<p><span class="bold">край: </span>.'.$event["endDate"].'</p>';
-                    echo "<p>" . $event['event_descr'] . "</p></div>";
+                    echo '<p class="date"><span class="bold">'.$ui_labels['event']['start_date'].': </span>'.$event["startDate"].'</p>';
+                    echo '<p class="date"><span class="bold">'.$ui_labels['event']['end_date'  ].': </span>'.$event["endDate"]  .'</p>';
+                    echo '<p>'.$event['event_descr'].'</p></div>';
                 }
                 ?>
             </div>	

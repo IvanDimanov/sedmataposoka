@@ -29,31 +29,21 @@ class contacts extends CI_Controller {
         
         $this->load->helper('printLayout_helper');
         
-        printLayout($this, "templates/header","contactView",$data);;
+        printLayout($this, "templates/header","contactView",$data);
     }
     
     function sendEmail()
     {
-       $mailTo = 'teodorapshv@gmail.com'; 
-       $mailFrom = $this->input->post('mailFrom');
+       $mailTo    = 'teodorapshv@gmail.com'; 
+       $mailFrom  = $this->input->post('mailFrom');
        $firstName = $this->input->post('firstName');
-       $lastName = $this->input->post('lastName');
-       $subject = 'Sedmata posoka request from '. $firstName.' '.$lastName;
-       $message = $this->input->post('message');
+       $lastName  = $this->input->post('lastName');
+       $subject   = 'Sedmata posoka request from '. $firstName.' '.$lastName;
+       $message   = $this->input->post('message');
        if($message)
        {
            $message = $message.'\r\n'.'From '.$mailFrom;
        }
-       $result = mail($mailTo, $subject, $message);
-       if ($result)
-       {
-           return true;
-       }
-       return false;
-       
-        
-        
+       return mail($mailTo, $subject, $message);
     }
 }
-
-?>

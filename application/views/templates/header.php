@@ -3,31 +3,39 @@
 
 $this->load->helper('url');
 
+/*Detect any requests coming as URL strings*/
+$query = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
+
+/*Secure at least language URL var*/
+$uri_string = $this->uri->uri_string();
+$uri_string = $uri_string ? $uri_string : $language;
+
+/*Combine the final URL link & remove the not needed 'index.php' location*/
+$full_url = $this->config->site_url().'/'.$uri_string.$query;
+$full_url = str_replace('/index.php', '', $full_url);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Седмата посока</title>
+        <title><?=$ui_labels['page_title']?></title>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css" />
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/html5shiv.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.slides.min.js"></script>
         
+		<!--
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.css"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.min.css"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
-		<!--link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-		
-        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script-->
+        <script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
+        -->
 
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     </head>
     <body>
-
-
         <div class="wrapAllMain">
         <div class="wrapAll">
             <header class="wrapHeader">
@@ -41,8 +49,8 @@ $this->load->helper('url');
                     <div class="bubbles"></div>
                     <div class="rightPart">
                         <section class="language clear">	
-                            <a href="<?php echo base_url()."en/";?>" class="en"></a>
-                            <a href="<?php echo base_url()."bg/";?>" class="bg"></a>
+                            <a href="<?php echo str_replace('/bg', '/en', $full_url); ?>" class="en"></a>
+                            <a href="<?php echo str_replace('/en', '/bg', $full_url); ?>" class="bg"></a>
                         </section>
 						<section id="searchHolder" class="search">
 							<form id="formSearch" name="formSearch" action="" method="post" onsubmit="return searchByWord();">
@@ -60,7 +68,6 @@ $this->load->helper('url');
             <section class="wrapMain">
                 <div class="clear">
                     <div class ="wrapMainLeft">
-                        <h2>Каталог</h2>
                         <nav class ="navMain">
 							<ul class="level1">
                             <?php
