@@ -35,6 +35,7 @@
                     echo '<p>'.$event['event_descr'].'</p></div>';
                 }
                 ?>
+				<div class="pagging"></div>
             </div>	
         </div>
     </article>

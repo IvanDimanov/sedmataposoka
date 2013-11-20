@@ -382,7 +382,8 @@ textarea {
 	.advHolder img{width:120px;}
 	
 /* paging */
-.pagging{text-align:center;}
+.pagging{padding:10px 0; text-align:center}
+.pagging span{cursor:pointer}
 .pagging .page{color: #0a73bd; font-size: 10px; line-height: 11px;margin: 0px 3px;text-decoration:none; text-transform: uppercase;}
 .pagging .page:hover{color: #32a8ea; text-decoration: underline;}
 .pagging .page.active{height: 10px;width: 10px; display: inline-block;padding: 5px;background:#0a73bd;border-radius: 10px;webkit-border-radius: 10px;moz-border-radius: 10px;color: #fff;}
