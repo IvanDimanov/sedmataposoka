@@ -33,10 +33,11 @@ $(document).ready(function () {
 
 	/* paging */
 
-	var i=0, n=0, eventsPerPage=1, dotPagesLimit=10, hideChildren=eventsPerPage-1;
+	var i=0, n=0, eventsPerPage=5, dotPagesLimit=10, hideChildren=eventsPerPage-1;
 	// hide children after hideChildren var
 	$('.subCategoryEventHolder .subCategoryEvent:gt('+hideChildren+')').hide();		
 	var allEvents=$( ".subCategoryEvent" ).length;
+	$(".pagging").append('<span class="prev" data-page='+eventsPerPage+'><<</span>');
 	var pagesNumber = Math.ceil( allEvents/eventsPerPage );
 	while(i<pagesNumber) {		
 		i++;
@@ -64,6 +65,8 @@ $(document).ready(function () {
 	$(".pagging").append('<span class="next" data-page='+eventsPerPage+'>>></span>');
 	$(".pagging .page:nth-child(2)").addClass("active");
 	$(".pagging .active").prev('.pagging .prev').hide();
+	var pageLength=$(".page").length;
+	if (pageLength==1){$(".pagging .next").hide();}
 	
 	$('.pagging .page').click(function () {		
 		$(".pagging .page").removeClass("active");
