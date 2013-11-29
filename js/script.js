@@ -1,4 +1,9 @@
 $(document).ready(function () {	
+	// layout columns
+	
+	setTimeout("takeColumnHeight()", 200);
+
+
 	//datepicker
 	
 	var date = new Date();
@@ -7,18 +12,11 @@ $(document).ready(function () {
 	minDate: new Date(y, m, d),
 	dateFormat: 'dd-mm-yy',
 	onSelect: function(dateText, inst) {
-	//$("input[name='dateInput']").val(dateText);	
+	//$("input[name='dateInput']").val(dateText);
+	$(this).addClass("lalalalla");
 	var dateNumber=dateText.substring(0,2);;
 	var today=$(".ui-state-highlight").html();
 	var sendNumber=(dateNumber-today);
-	/*var url = window.location.pathname;
-    url = url.split("/");
-	//document.write(location.hostname);
-	//window.reload=location.hostname+url[1]+'/'+url[2]+'/'+'search/dateSearch/'+sendNumber;
-	//alert(location.hostname)
-	window.location.href='laalal';
-	//window.location = url[1]+'/'+url[2]+'/'+'search/dateSearch/'+sendNumber;
-	*/	
 	var location = document.location.href;
 	var searchRegLocation = /\/[a-zA-Z]{2}\//;
 	var searchSubstring=location.match(searchRegLocation);	
@@ -208,20 +206,6 @@ $(document).ready(function () {
 	initializeSliders();
 	
 });
-/*
-$(function() {
-  $('#slides').slidesjs({
-	width: 488,
-	height: 164,
-	play: {
-	  active: true,
-	  auto: true,
-	  interval: 4000,
-	  swap: true
-	}
-  });
-});
-*/
 
 function initializeSliders(){
 
@@ -249,27 +233,7 @@ function initializeSliders(){
 	    }
 	});
 	}
-/*
-	// calback must check
-	$(function(){
-	$("#slides").slidesjs({
-	callback: {
-	loaded: function(number) {
-	// banner function
-
-	},
-	start: function(number) {
-	alert(2)// Do something awesome!
-	// Passes slide number at start of animation
-	},
-	complete: function(number) {
-	alert(3)// Do something awesome!
-	// Passes slide number at end of animation
-	}
-	}
-	});
-	});
-*/
+	
 // search validation and submit
 
 function searchByWord() {
@@ -295,7 +259,10 @@ function searchByWord() {
 
 }	
 
-
+function takeColumnHeight(){
+	var allColumnHeight=$(".wrapMain").height();
+	$(".wrapMainMiddle").css("min-height", (allColumnHeight-20))
+}
 
 
 
