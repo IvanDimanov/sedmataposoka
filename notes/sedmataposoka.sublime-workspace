@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"res",
+				"results"
+			],
+			[
+				"err",
+				"error_name"
+			],
+			[
+				"е",
+				"Имейл"
+			],
+			[
+				"error",
+				"error_email"
+			],
+			[
+				"er",
+				"error_name"
+			],
+			[
+				"con",
+				"content_title"
+			],
+			[
+				"subca",
+				"subcategoryInfo"
+			],
+			[
+				"base",
+				"base_url"
+			],
+			[
+				"page",
+				"page_title"
+			],
+			[
+				"json",
+				"json_decode"
+			],
+			[
+				"lan",
+				"mb_language"
+			],
+			[
+				"end",
+				"endDate"
+			],
+			[
+				"ti",
+				"timeframeEnd  (variable)"
+			],
+			[
+				"ec",
+				"echo	echo \"…\""
+			],
+			[
 				"desc",
 				"descrId"
 			],
@@ -58,10 +114,6 @@
 			[
 				"gro",
 				"group_indexes"
-			],
-			[
-				"con",
-				"continue"
 			],
 			[
 				"loop",
@@ -304,10 +356,6 @@
 				"preg_match_all"
 			],
 			[
-				"res",
-				"result"
-			],
-			[
 				"tab",
 				"table_stop"
 			],
@@ -346,10 +394,6 @@
 			[
 				"da",
 				"date_match"
-			],
-			[
-				"ec",
-				"echo"
 			],
 			[
 				"fun",
@@ -396,10 +440,6 @@
 				"preg_match"
 			],
 			[
-				"json",
-				"json_decode"
-			],
-			[
 				"ar",
 				"array"
 			],
@@ -440,10 +480,6 @@
 				"background-color"
 			],
 			[
-				"er",
-				"error"
-			],
-			[
 				"sse_",
 				"sse_connection"
 			],
@@ -478,42 +514,6 @@
 			[
 				"ss",
 				"sse_client_id"
-			],
-			[
-				"cli",
-				"sse_client_id"
-			],
-			[
-				"se",
-				"server_emitter"
-			],
-			[
-				"err",
-				"error_message"
-			],
-			[
-				"erro",
-				"error_message"
-			],
-			[
-				"en",
-				"end"
-			],
-			[
-				"timeo",
-				"TIMEOUT"
-			],
-			[
-				"ani",
-				"AMINATION"
-			],
-			[
-				"col",
-				"COLOR"
-			],
-			[
-				"C",
-				"C22"
 			]
 		]
 	},
@@ -525,6 +525,23 @@
 			{
 				"buffer_size": 100,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "drop PROCEDURE if exists sedmataposoka.do_insert;\n\nDELIMITER $$\n\nCREATE PROCEDURE sedmataposoka.do_insert(value INT)\nBEGIN\n  -- Declare variables to hold diagnostics area information\n  DECLARE code   CHAR(5) DEFAULT '00000';\n  DECLARE msg    TEXT;\n  DECLARE rows   INT;\n  DECLARE result TEXT;\n\n  -- Declare exception handler for failed insert\n  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION\n    BEGIN\n      GET DIAGNOSTICS CONDITION 1\n        code = RETURNED_SQLSTATE, msg = MESSAGE_TEXT;\n    END;\n\n  -- Perform the insert\n  INSERT INTO sedmataposoka.t1 (int_col) VALUES(value);\n\n  -- Check whether the insert was successful\n  IF code = '00000' THEN\n    GET DIAGNOSTICS rows = ROW_COUNT;\n    SET result = CONCAT('insert succeeded, row count = ', rows);\n  ELSE\n    SET result = CONCAT('insert failed, error = ', code, ', message = ', msg);\n  END IF;\n\n  -- Say what happened\n  SELECT result;\nEND$$",
+			"settings":
+			{
+				"buffer_size": 891,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "CREATE PROCEDURE sedmataposoka.do_insert(value INT)\nBEGIN\n  -- Declare variables to hold diagnostics area information\n  DECLARE code CHAR(5) DEFAULT '00000';\n  DECLARE msg TEXT;\n  DECLARE rows INT;\n  DECLARE result TEXT;\n  -- Declare exception handler for failed insert\n  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION\n    BEGIN\n      GET DIAGNOSTIC CONDITION 1\n        code = RETURNED_SQLSTATE, msg = MESSAGE_TEXT;\n    END;\n\n  -- Perform the insert\n  INSERT INTO sedmataposoka.t1 (int_col) VALUES(value);\n  -- Check whether the insert was successful\n  IF code = '00000' THEN\n    GET DIAGNOSTICS rows = ROW_COUNT;\n    SET result = CONCAT('insert succeeded, row count = ',rows);\n  ELSE\n    SET result = CONCAT('insert failed, error = ',code,', message = ',msg);\n  END IF;\n  -- Say what happened\n  SELECT result;\nEND;",
+			"settings":
+			{
+				"buffer_size": 810,
+				"line_ending": "Windows",
+				"name": "CREATE PROCEDURE sedmataposoka.do_insert(value INT"
 			}
 		}
 	],
@@ -664,25 +681,38 @@
 	},
 	"file_history":
 	[
-		"/C/wamp/www/sedmataposoka/application/views/subcategoryView.php",
-		"/C/wamp/www/sedmataposoka/application/views/homeView.php",
-		"/C/wamp/www/sedmataposoka/application/views/partnersView.php",
-		"/C/wamp/www/sedmataposoka/application/controllers/subcategory.php",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_ui_labels.sql",
 		"/C/wamp/www/sedmataposoka/application/controllers/home.php",
+		"/C/wamp/www/sedmataposoka/application/controllers/search.php",
+		"/C/wamp/www/sedmataposoka/css/style.css",
 		"/C/wamp/www/sedmataposoka/application/helpers/printLayout_helper.php",
+		"/C/wamp/www/sedmataposoka/application/views/homeView.php",
+		"/C/wamp/www/sedmataposoka/application/views/contactView.php",
+		"/C/wamp/www/sedmataposoka/application/views/subcategoryView.php",
+		"/C/wamp/www/sedmataposoka/application/views/eventView.php",
+		"/C/wamp/www/sedmataposoka/application/controllers/subcategory.php",
 		"/C/wamp/www/sedmataposoka/application/views/templates/header.php",
+		"/C/wamp/www/sedmataposoka/application/views/templates/footer.php",
+		"/C/wamp/www/sedmataposoka/application/views/partnersView.php",
+		"/C/wamp/www/sedmataposoka/application/config/config.php",
+		"/C/wamp/www/sedmataposoka/application/models/eventModel.php",
+		"/C/wamp/www/sedmataposoka/application/models/uiLabelsModel.php",
+		"/C/wamp/www/sedmataposoka/application/config/autoload.php",
+		"/C/wamp/www/sedmataposoka/application/models/event2Model.php",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/create_tables.sql",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_patners.sql",
+		"/C/Users/dimanov_88/AppData/Roaming/Sublime Text 2/Packages/PHP/php.sublime-snippet",
+		"/C/Users/dimanov_88/AppData/Roaming/Sublime Text 2/Packages/PHP/PHP.sublime-completions",
+		"/C/Users/dimanov_88/AppData/Roaming/Sublime Text 2/Packages/PHP/php-$this.sublime-snippet",
+		"/C/wamp/www/sedmataposoka/application/controllers/contacts.php",
+		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_events.sql",
 		"/C/wamp/www/sedmataposoka/application/config/database.php",
 		"/C/wamp/www/sedmataposoka/application/views/createEventView.php",
 		"/C/wamp/www/sedmataposoka/application/views/createSubcategoryView.php",
 		"/C/wamp/www/sedmataposoka/application/views/createCategoryView.php",
-		"/C/wamp/www/sedmataposoka/application/models/eventModel.php",
-		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/create_tables.sql",
-		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_patners.sql",
 		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_ads.sql",
-		"/C/wamp/www/sedmataposoka/application/views/templates/footer.php",
 		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_thughts.sql",
 		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/readme.md",
-		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_events.sql",
 		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_values.sql",
 		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_subcategories.sql",
 		"/C/wamp/www/sedmataposoka/application/models/mysql_structure/initial_test_values/initial_categories.sql",
@@ -778,20 +808,7 @@
 		"/home/ivandimanov/projects/booking/system/database/DB_driver.php",
 		"/home/ivandimanov/projects/booking/system/database/DB.php",
 		"/home/ivandimanov/projects/booking/system/core/Loader.php",
-		"/home/ivandimanov/projects/booking/index.php",
-		"/home/ivandimanov/projects/booking/application/controllers/blog.php",
-		"/home/ivandimanov/projects/booking/system/language/english/db_lang.php",
-		"/home/ivandimanov/projects/booking/application/config/autoload.php",
-		"/home/ivandimanov/projects/booking/application/config/constants.php",
-		"/home/ivandimanov/projects/booking/application/controllers/admin/client.php",
-		"/home/ivandimanov/projects/booking/application/controllers/client/helpdesk_badminton.php",
-		"/home/ivandimanov/projects/booking/application/core/SCT_Controller.php",
-		"/home/ivandimanov/projects/booking/application/libraries/client_event_token.class.php",
-		"/home/ivandimanov/projects/booking/application/models/admin_menu_model.php",
-		"/home/ivandimanov/projects/booking/application/models/admin_model.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/check_not_booked_matches_cron.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/populate_table_cron.php",
-		"/home/ivandimanov/projects/booking/application/controllers/cron/review_tokens_cron.php"
+		"/home/ivandimanov/projects/booking/index.php"
 	],
 	"find":
 	{
@@ -799,9 +816,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
+			"C:\\wamp\\www\\sedmataposoka",
 			"C:\\wamp\\www\\sedmataposoka\\application",
 			"C:\\wamp\\www\\sedmataposoka\\application\\models",
 			"C:\\wamp\\www\\sedmataposoka",
@@ -904,6 +922,67 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"do_insert",
+			"viewedEventsTitle",
+			"['results']",
+			"$ui_labels['search']['results']",
+			".articleNav",
+			"{\"",
+			"n printLayout(",
+			"Results",
+			"><",
+			"</a",
+			". ",
+			" .",
+			"'>",
+			"error_last_name",
+			" =",
+			"/'",
+			"start_data",
+			"_data",
+			"start_data",
+			"$ui_labels['event']['start_date']",
+			"<?php echo ",
+			"\">",
+			"$ui_labels['event']['start_date']",
+			"\"}",
+			"\"",
+			"начало",
+			"start",
+			"<?=",
+			"']",
+			"eventModel",
+			"query",
+			"n printLayout(",
+			"{}",
+			", )",
+			"1",
+			">.",
+			"\"",
+			"where",
+			"startDate",
+			" . ",
+			"time range",
+			"timeRange",
+			"timerange",
+			"timeRange",
+			"timerange",
+			" . ",
+			"getAllEventsForSubcategory",
+			"subcategory",
+			".wrapMain",
+			"mail(",
+			"echo",
+			";?>",
+			"echo",
+			"footerRight",
+			"navBottom",
+			"footer",
+			"teodo",
+			"advHolder",
+			"teodo",
+			"'2013-11-16'",
+			"searchByWord",
 			"\"",
 			".date",
 			"n printLayout",
@@ -970,68 +1049,7 @@
 			"varchar",
 			"ENGINE",
 			"categoryname",
-			"db->get(",
-			"varchar",
-			"adsModel",
-			"select",
-			"sedmataposokaModel",
-			"html",
-			"global",
-			"minify(",
-			"console.log",
-			"options.",
-			"removeComments",
-			"htmlmin",
-			"Parse Error",
-			"after_usemin",
-			"htmlmin",
-			"changed to",
-			"change",
-			"Processing as",
-			"reference",
-			"update",
-			"html",
-			"htmlmin",
-			"concurrent",
-			"htmlmin",
-			".plugins.js",
-			"create",
-			"File",
-			"File ",
-			"err",
-			"concurrent",
-			"htmlmin",
-			"concurrent",
-			"htmlmin",
-			"___i",
-			"log",
-			"tags",
-			"prevTag",
-			"str",
-			" collapseWhitespace(",
-			"collapseWhitespace(",
-			"collapseWhitespaceSmart",
-			"stackNoTrimWhitespace",
-			"options.collapseWhitespace",
-			"collapseWhitespace",
-			"htmlmin",
-			"usemin",
-			"htmlmin",
-			"index",
-			"<%= ",
-			"html_minify",
-			"htmlmin",
-			"grunt-html-minify",
-			"plugins.js",
-			"scripts/",
-			"modules",
-			"plugins",
-			"<html",
-			"removeCDATASectionsFromCDATA",
-			"removeComments",
-			"requirejs",
-			"autoprefixer",
-			"concurrent"
+			"db->get("
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1076,7 +1094,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1202,6 +1220,269 @@
 							"codeintel_tooltips": "popup",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/PlainTasks/PlainTasks.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"settings":
+					{
+						"buffer_size": 891,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								891,
+								891
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/SQL/SQL.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"settings":
+					{
+						"buffer_size": 810,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								220,
+								220
+							]
+						],
+						"settings":
+						{
+							"auto_name": "CREATE PROCEDURE sedmataposoka.do_insert(value INT",
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

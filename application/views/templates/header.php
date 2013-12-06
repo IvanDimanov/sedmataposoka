@@ -54,7 +54,7 @@ $full_url = str_replace('/index.php', '', $full_url);
 							</form>
 						</section>
                         <section class="socials clear">
-                            <a class="email" href=""></a>
+                            <a class="email" href="<?=base_url().$language?>/contacts"></a>
                             <a class="fb" href=""></a>
                         </section>
                     </div>

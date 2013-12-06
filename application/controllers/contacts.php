@@ -32,18 +32,26 @@ class contacts extends CI_Controller {
         printLayout($this, "templates/header","contactView",$data);
     }
     
-    function sendEmail()
-    {
-       $mailTo    = 'teodorapshv@gmail.com'; 
-       $mailFrom  = $this->input->post('mailFrom');
-       $firstName = $this->input->post('firstName');
-       $lastName  = $this->input->post('lastName');
-       $subject   = 'Sedmata posoka request from '. $firstName.' '.$lastName;
-       $message   = $this->input->post('message');
-       if($message)
-       {
-           $message = $message.'\r\n'.'From '.$mailFrom;
-       }
-       return mail($mailTo, $subject, $message);
+    function sendEmail($language) {
+      $language = strtolower($language);
+
+      $mailTo    = ADMIN_EMAIL; 
+      $mailFrom  = $this->input->post('mailFrom');
+      $firstName = $this->input->post('firstName');
+      $lastName  = $this->input->post('lastName');
+      $subject   = 'Sedmata posoka request from '. $firstName.' '.$lastName;
+      $message   = $this->input->post('message');
+      if ($message) $message = $message.'\r\n'.'From '.$mailFrom;
+
+      $response  = array();
+      $ui_labels = $this->uiLabelsModel->getLabelsForLanguage( $language );
+
+      if (mail($mailTo, $subject, $message)) {
+        $response['success'] = $ui_labels['send_email']['success'];
+      } else {
+        $response['error'] = $ui_labels['send_email']['error'];
+      }
+
+      return json_encode( $response );
     }
 }
