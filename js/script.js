@@ -1,8 +1,34 @@
 $(document).ready(function () {	
-	// layout columns
-	
+	// layout columns	
 	setTimeout("takeColumnHeight()", 200);
-
+	
+	// add three dots to events
+	$( ".eventDescr" ).each(function() {
+		var eventsString = $(this).text();
+		var eventCharacters = eventsString.length;
+		//console.log(eventsString);
+		//console.log(eventCharacters);
+		var item=150;
+		/*if((eventCharacters==item) || (eventCharacters==(item+1)) || (eventCharacters==(item+2)))
+		{
+			console.log("lalal")
+			return false;
+			sliceEvent=eventsString.substring(0,item);
+		}
+		else*/
+		if(eventCharacters>item)
+		{
+			sliceEvent=eventsString.substring(0,item);
+			var sliceEventArray = sliceEvent.split(" ");
+			//console.log(sliceEventArray)
+			sliceEventArray.push(".",".",".")
+			var showEvent = sliceEventArray.join(" ");
+			//console.log(showEvent);
+			$(this).text(showEvent);
+			var showEventCharacters = showEvent.length;
+			//console.log(showEventCharacters);
+		}
+	});	
 
 	//datepicker
 	
@@ -171,7 +197,55 @@ $(document).ready(function () {
 		}
 
 		//ajax call php page
-		$.post("contacts.php", {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},  function(response) {
+	
+	function clearInputs(data){
+		$(".form :input").each(function(){
+		$(this).val('');
+		});
+	}
+
+	function disabledFormElements(data){
+		$(".form :input").each(function(){
+			$(this).prop( "disabled", true );
+		});
+		$(".form :textarea").each(function(){
+			$(this).prop( "disabled", true );
+		});
+	}	
+	
+	function enabledFormElements(data){
+		$(".form :input").each(function(){
+			$(this).prop( "disabled", false );
+		});
+		$(".form :textarea").each(function(){
+			$(this).prop( "disabled", false );
+		});
+	}
+
+	var bttnContactForm=$(".formContact .bttn").val();
+	var bttnBeforeSendTxt=sending;
+	
+	$.ajax({
+	type: "POST",
+	url: "contacts.php",
+	data: {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},
+	beforeSend: function() {
+		disabledFormElements()
+		$(".formContact .bttn").val(bttnBeforeSendTxt);
+	},
+	success: function( response ) {
+		enabledFormElements();
+		$(".formContact .bttn").val(bttnContactForm);		
+		if (result[0]!="''"){
+			$('.formResponse').html(contactFormErrorMsg).show();
+		}
+		else{
+			$('.formResponse').html(contactFormSuccessMsg).show();
+		}
+	}
+	})	
+		
+		/*$.post("contacts.php", {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},  function(response) {
 		if (response==true)
 		{
 		$('.formResponse').html('Успешно изпращане на формата.').show();
@@ -181,6 +255,7 @@ $(document).ready(function () {
 		$('.formResponse').html('Възникна проблем, моля опитайте пак.').show();
 		}
 		});
+		*/
 		return false;
 	});
 

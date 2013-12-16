@@ -130,6 +130,10 @@ textarea {
     color: #575757;
 }
 
+textarea:focus, input:focus{
+    outline: 0;
+}
+
 body {
     font-size: 1em;
     line-height: 1.4;
@@ -305,7 +309,7 @@ textarea {
 .form  textarea{height: 100px; width:468px; padding: 10px; border: 1px solid #696969;}
 .form .inputHolder .errorTxt{display:none; padding: 0 0 5px; color: #ff0000;}
 .form .inputHolder.err label{color: #ff0000;}
-.form .inputHolder.err input{border: 1px solid #ff0000}
+.form .inputHolder.err input{border: 1px solid #ff0000;color: #ff0000}
 .form .inputHolder.err textarea{border: 1px solid #ff0000}
 .form .inputHolder.err textarea{border: 1px solid #ff0000}
 .form .inputHolder.err .errorTxt{display:block}
@@ -372,14 +376,14 @@ textarea {
 	.partnersMainHolder h4{padding: 0 0 5px;}
 
 .partnersInerPageHolder{}	
-.partnersInerPageHolder .box{width: 150px; margin: 0 10px 10px 0; float:left; background:#e4e4e4;text-align:center}	
-.partnersInerPageHolder img{max-width: 150px; max-height:150px; margin: 0 0 10px}	
+.partnersInerPageHolder .box{width: 150px; height:150px; margin: 0 10px 10px 0; float:left; background:#e4e4e4;text-align:center}	
+.partnersInerPageHolder img{max-width: 150px; max-height:120px; margin: 0 0 10px}	
 .partnersInerPageHolder h2{}	
 /* advHolder */	
 .advHolder{width:120px; margin: 0px 0px 8px 0px; border:3px solid #fff; -moz-box-shadow: 2px 3px 6px 1px #727272; -webkit-box-shadow: 2px 3px 6px 1px #727272; box-shadow: 2px 3px 6px 1px #727272; background: #fff;}
   .advHolder a{display: block;}
 	.advHolder p{padding: 0px 0px 6px 0px}
-	.advHolder img{width:120px;}
+	.advHolder img{max-width:120px;}
 	
 /* paging */
 .pagging{padding:10px 0; text-align:center}
