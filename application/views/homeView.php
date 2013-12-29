@@ -24,6 +24,7 @@
     <article class="articleText">
         <div class="subCategoryMainHolder">
             <h1><?php echo $viewedEventsTitle;?></h1>
+			<p class="noItems">There are no Events for this date :(</p>
             <div class="subCategoryEventHolder">
                 <?php
                 foreach ($events as $event) {

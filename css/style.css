@@ -352,6 +352,7 @@ textarea {
 /* subcategory holder */	
 .subCategoryMainHolder .subCategoryHolder{}
 	.subCategoryMainHolder .subCategoryEvent{padding: 10px 0 0; margin:0 0 10px; border-top: 1px dotted #696969;}
+	.subCategoryMainHolder .subCategoryEventHolder .noItems{display:none}
 	.subCategoryMainHolder .subCategoryEventHolder .subCategoryEvent:first-child{border-top: none}
 		.subCategoryMainHolder .subCategoryEvent h2{font-size: 16px; line-height:18px;}
 		.subCategoryMainHolder .subCategoryEvent p{padding: 0;}

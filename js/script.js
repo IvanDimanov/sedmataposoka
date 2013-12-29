@@ -19,14 +19,14 @@ $(document).ready(function () {
 	//datepicker	
 	var date = new Date();
 	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+	var location = document.location.href;
 	$("#datepicker").datepicker({
 		minDate: new Date(y, m, d),
 		dateFormat: 'dd-mm-yy',
 		onSelect: function(dateText, inst) {
 			var dateNumber=dateText.substring(0,2);;
 			var today=$(".ui-state-highlight").html();
-			var sendNumber=(dateNumber-today);
-			var location = document.location.href;
+			var sendNumber=(dateNumber-today);			
 			var searchRegLocation = /\/[a-zA-Z]{2}\//;
 			var searchSubstring=location.match(searchRegLocation);	
 			var findIndex=location.indexOf(searchSubstring);
@@ -35,10 +35,25 @@ $(document).ready(function () {
 			window.location.href=currentLocation+'search/dateSearch/'+sendNumber;
 		}	
 	});
-
+	
+	// show no events txt for selected date
+	function getLastPathSegment(url) {
+		var match = url.match(/\/([^\/]+)\/?$/);
+		if (match) {
+			return(match[1]);
+		}
+	}
+	
+	noEventsTxt=$(".noItems").hide();
+	var endPath = getLastPathSegment(location);
+		if (endPath == "NaN") {
+			$(noEventsTxt).show();
+			$(".pagging").hide();
+		}
+		
 	/* paging */
 
-	var i=0, n=0, eventsPerPage=5, dotPagesLimit=10, hideChildren=eventsPerPage-1;
+	var i=0, n=0, eventsPerPage=1, dotPagesLimit=10, hideChildren=eventsPerPage-1;
 	// hide children after hideChildren var
 	$('.subCategoryEventHolder .subCategoryEvent:gt('+hideChildren+')').hide();		
 	var allEvents=$( ".subCategoryEvent" ).length;
@@ -246,19 +261,6 @@ $(document).ready(function () {
 	}	
 	
 	//slides image number check
-	
-	var bannerImgNumber=$("#slides").find('img').size();
-	if(bannerImgNumber==1)
-	{
-		$("#slides").find('.slidesjs-previous').hide();
-		$("#slides").find('.slidesjs-previous').css("width, 0px");
-		$("#slides .slidesjs-previous").css('display','none');
-		$("#slides .slidesjs-next").hide();
-		$("#slides .slidesjs-pagination").hide();
-	}
-	
-	else{}
-
 	initializeSliders();
 	
 });
@@ -277,6 +279,7 @@ function initializeSliders(){
 			{
 				$("#slides .slidesjs-navigation").hide();
 				$("#slides .slidesjs-pagination").hide();
+				$("#slides .slidesjs-slide").css("left", "0px");
 			}
 
 	      },
