@@ -6,53 +6,34 @@ $(document).ready(function () {
 	$( ".eventDescr" ).each(function() {
 		var eventsString = $(this).text();
 		var eventCharacters = eventsString.length;
-		//console.log(eventsString);
-		//console.log(eventCharacters);
 		var item=150;
-		/*if((eventCharacters==item) || (eventCharacters==(item+1)) || (eventCharacters==(item+2)))
-		{
-			console.log("lalal")
-			return false;
-			sliceEvent=eventsString.substring(0,item);
-		}
-		else*/
+		continue_text = '...';
 		if(eventCharacters>item)
 		{
-			sliceEvent=eventsString.substring(0,item);
-			var sliceEventArray = sliceEvent.split(" ");
-			//console.log(sliceEventArray)
-			sliceEventArray.push(".",".",".")
-			var showEvent = sliceEventArray.join(" ");
-			//console.log(showEvent);
-			$(this).text(showEvent);
-			var showEventCharacters = showEvent.length;
-			//console.log(showEventCharacters);
+			sliceEvent=eventsString.substring(0, item - continue_text.length);
+			sliceEvent+=continue_text;
+			$(this).text(sliceEvent);
 		}
 	});	
 
-	//datepicker
-	
+	//datepicker	
 	var date = new Date();
 	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
 	$("#datepicker").datepicker({
-	minDate: new Date(y, m, d),
-	dateFormat: 'dd-mm-yy',
-	onSelect: function(dateText, inst) {
-	//$("input[name='dateInput']").val(dateText);
-	$(this).addClass("lalalalla");
-	var dateNumber=dateText.substring(0,2);;
-	var today=$(".ui-state-highlight").html();
-	var sendNumber=(dateNumber-today);
-	var location = document.location.href;
-	var searchRegLocation = /\/[a-zA-Z]{2}\//;
-	var searchSubstring=location.match(searchRegLocation);	
-	var findIndex=location.indexOf(searchSubstring);
-	var toRegLocationIndex=findIndex+4;
-	var currentLocation=location.substring(0,toRegLocationIndex);
-	window.location.href=currentLocation+'search/dateSearch/'+sendNumber;
-	}
-
-	
+		minDate: new Date(y, m, d),
+		dateFormat: 'dd-mm-yy',
+		onSelect: function(dateText, inst) {
+			var dateNumber=dateText.substring(0,2);;
+			var today=$(".ui-state-highlight").html();
+			var sendNumber=(dateNumber-today);
+			var location = document.location.href;
+			var searchRegLocation = /\/[a-zA-Z]{2}\//;
+			var searchSubstring=location.match(searchRegLocation);	
+			var findIndex=location.indexOf(searchSubstring);
+			var toRegLocationIndex=findIndex+4;
+			var currentLocation=location.substring(0,toRegLocationIndex);
+			window.location.href=currentLocation+'search/dateSearch/'+sendNumber;
+		}	
 	});
 
 	/* paging */
