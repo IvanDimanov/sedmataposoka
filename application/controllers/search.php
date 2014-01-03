@@ -69,8 +69,6 @@ class search extends CI_Controller {
         foreach ($words as $word) {
             $word = mysql_real_escape_string($word);
             $events = $this->eventModel->getEventTitleByWord($language, $word);
-            //var_dump($events);
-            echo $word;
             foreach ($events as $event) {
                 if (array_key_exists($event['eventId'], $weightedEvents)) {
                     $weightedEvents[$event['eventId']]+=2;
@@ -81,13 +79,9 @@ class search extends CI_Controller {
 
 
             $eventsDescr = $this->eventModel->getEventDescrByWord($language, $word);
-            //echo'<br/> eventDescr';
-            //var_dump($eventsDescr);
-            echo '</br></br>';
             foreach ($eventsDescr as $eventDescr) {
                 if (array_key_exists($eventDescr['eventId'], $weightedEvents)) {
                     $weightedEvents[$eventDescr['eventId']]+=1;
-                    echo 'in array';
                 } else {
                     $weightedEvents[$eventDescr['eventId']] = 1;
                 }
@@ -104,8 +98,6 @@ class search extends CI_Controller {
             $arrayInfo[$i] = $temp[0];
         }
 
-
-        echo'</br></br></br>';
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);

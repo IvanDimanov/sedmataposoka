@@ -1,37 +1,59 @@
 $(document).ready(function () {	
-	// layout columns
-	
+	// layout columns	
 	setTimeout("takeColumnHeight()", 200);
-
-
-	//datepicker
 	
+	// add three dots to events
+	$( ".eventDescr" ).each(function() {
+		var eventsString = $(this).text();
+		var eventCharacters = eventsString.length;
+		var item=150;
+		continue_text = '...';
+		if(eventCharacters>item)
+		{
+			sliceEvent=eventsString.substring(0, item - continue_text.length);
+			sliceEvent+=continue_text;
+			$(this).text(sliceEvent);
+		}
+	});	
+
+	//datepicker	
 	var date = new Date();
 	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
-	$("#datepicker").datepicker({
-	minDate: new Date(y, m, d),
-	dateFormat: 'dd-mm-yy',
-	onSelect: function(dateText, inst) {
-	//$("input[name='dateInput']").val(dateText);
-	$(this).addClass("lalalalla");
-	var dateNumber=dateText.substring(0,2);;
-	var today=$(".ui-state-highlight").html();
-	var sendNumber=(dateNumber-today);
 	var location = document.location.href;
-	var searchRegLocation = /\/[a-zA-Z]{2}\//;
-	var searchSubstring=location.match(searchRegLocation);	
-	var findIndex=location.indexOf(searchSubstring);
-	var toRegLocationIndex=findIndex+4;
-	var currentLocation=location.substring(0,toRegLocationIndex);
-	window.location.href=currentLocation+'search/dateSearch/'+sendNumber;
-	}
-
-	
+	$("#datepicker").datepicker({
+		minDate: new Date(y, m, d),
+		dateFormat: 'dd-mm-yy',
+		onSelect: function(dateText, inst) {
+			var dateNumber=dateText.substring(0,2);;
+			var today=$(".ui-state-highlight").html();
+			var sendNumber=(dateNumber-today);			
+			var searchRegLocation = /\/[a-zA-Z]{2}\//;
+			var searchSubstring=location.match(searchRegLocation);	
+			var findIndex=location.indexOf(searchSubstring);
+			var toRegLocationIndex=findIndex+4;
+			var currentLocation=location.substring(0,toRegLocationIndex);
+			window.location.href=currentLocation+'search/dateSearch/'+sendNumber;
+		}	
 	});
-
+	
+	// show no events txt for selected date
+	function getLastPathSegment(url) {
+		var match = url.match(/\/([^\/]+)\/?$/);
+		if (match) {
+			return(match[1]);
+		}
+	}
+	
+	noEventsTxt=$(".noItems").hide();
+	var endPath = getLastPathSegment(location);
+		if (endPath == "NaN") {
+			$(noEventsTxt).show();
+			$(".pagging").hide();
+		}
+		
 	/* paging */
 
-	var i=0, n=0, eventsPerPage=5, dotPagesLimit=10, hideChildren=eventsPerPage-1;
+	var i=0, n=0, eventsPerPage=1, dotPagesLimit=10, hideChildren=eventsPerPage-1;
 	// hide children after hideChildren var
 	$('.subCategoryEventHolder .subCategoryEvent:gt('+hideChildren+')').hide();		
 	var allEvents=$( ".subCategoryEvent" ).length;
@@ -171,7 +193,55 @@ $(document).ready(function () {
 		}
 
 		//ajax call php page
-		$.post("contacts.php", {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},  function(response) {
+	
+	function clearInputs(data){
+		$(".form :input").each(function(){
+		$(this).val('');
+		});
+	}
+
+	function disabledFormElements(data){
+		$(".form :input").each(function(){
+			$(this).prop( "disabled", true );
+		});
+		$(".form :textarea").each(function(){
+			$(this).prop( "disabled", true );
+		});
+	}	
+	
+	function enabledFormElements(data){
+		$(".form :input").each(function(){
+			$(this).prop( "disabled", false );
+		});
+		$(".form :textarea").each(function(){
+			$(this).prop( "disabled", false );
+		});
+	}
+
+	var bttnContactForm=$(".formContact .bttn").val();
+	var bttnBeforeSendTxt=sending;
+	
+	$.ajax({
+	type: "POST",
+	url: "contacts.php",
+	data: {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},
+	beforeSend: function() {
+		disabledFormElements()
+		$(".formContact .bttn").val(bttnBeforeSendTxt);
+	},
+	success: function( response ) {
+		enabledFormElements();
+		$(".formContact .bttn").val(bttnContactForm);		
+		if (result[0]!="''"){
+			$('.formResponse').html(contactFormErrorMsg).show();
+		}
+		else{
+			$('.formResponse').html(contactFormSuccessMsg).show();
+		}
+	}
+	})	
+		
+		/*$.post("contacts.php", {'firstName': name, 'lastName': lname,'mailFrom': email, 'message' : message},  function(response) {
 		if (response==true)
 		{
 		$('.formResponse').html('Успешно изпращане на формата.').show();
@@ -181,6 +251,7 @@ $(document).ready(function () {
 		$('.formResponse').html('Възникна проблем, моля опитайте пак.').show();
 		}
 		});
+		*/
 		return false;
 	});
 
@@ -190,19 +261,6 @@ $(document).ready(function () {
 	}	
 	
 	//slides image number check
-	
-	var bannerImgNumber=$("#slides").find('img').size();
-	if(bannerImgNumber==1)
-	{
-		$("#slides").find('.slidesjs-previous').hide();
-		$("#slides").find('.slidesjs-previous').css("width, 0px");
-		$("#slides .slidesjs-previous").css('display','none');
-		$("#slides .slidesjs-next").hide();
-		$("#slides .slidesjs-pagination").hide();
-	}
-	
-	else{}
-
 	initializeSliders();
 	
 });
@@ -221,6 +279,7 @@ function initializeSliders(){
 			{
 				$("#slides .slidesjs-navigation").hide();
 				$("#slides .slidesjs-pagination").hide();
+				$("#slides .slidesjs-slide").css("left", "0px");
 			}
 
 	      },
