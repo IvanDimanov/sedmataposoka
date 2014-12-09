@@ -9,6 +9,3 @@ RewriteCond $1 ^(application|system|private|logs)
 RewriteRule ^index\.php/?$ / [L,R=301,NC]
 
 RewriteCond $1 !^(index\.php|user_guide|js|css|img)
-
-# TODO: The string "/sedmataposoka" may cause migration problems
-RewriteRule ^(.*)$ /sedmataposoka/index.php/$1 [L]
