@@ -24,6 +24,7 @@
     <article class="articleText">
         <div class="subCategoryMainHolder">
             <h1><?php echo $viewedEventsTitle;?></h1>
+			<p class="noItems">There are no Events for this date :(</p>
             <div class="subCategoryEventHolder">
                 <?php
                 foreach ($events as $event) {
@@ -32,7 +33,7 @@
 						" . $event['event_title'] . "</a></h3>";
                     echo '<p class="date"><span class="bold">'.$ui_labels['event']['start_date'].': </span>'.$event["startDate"].'</p>';
                     echo '<p class="date"><span class="bold">'.$ui_labels['event']['end_date'  ].': </span>'.$event["endDate"]  .'</p>';
-                    echo '<p>'.$event['event_descr'].'</p></div>';
+                    echo '<p class="eventDescr">'.$event['event_descr'].'</p></div>';
                 }
                 ?>
 				<div class="pagging"></div>
