@@ -272,8 +272,6 @@ class CI_Loader {
 			show_error('The model name you are loading is the name of a resource that is already being used: '.$name);
 		}
 
-		$model = strtolower($model);
-
 		foreach ($this->_ci_model_paths as $mod_path)
 		{
 			if ( ! file_exists($mod_path.'models/'.$path.$model.'.php'))
@@ -298,7 +296,7 @@ class CI_Loader {
 
 			require_once($mod_path.'models/'.$path.$model.'.php');
 
-			$model = ucfirst($model);
+			$model = ucfirst(strtolower($model));
 
 			$CI->$name = new $model();
 
@@ -1230,13 +1228,13 @@ class CI_Loader {
 	{
 		if ( ! is_array($filename))
 		{
-			return array(strtolower(str_replace('.php', '', str_replace($extension, '', $filename)).$extension));
+			return array(str_replace('.php', '', str_replace($extension, '', $filename)).$extension);
 		}
 		else
 		{
 			foreach ($filename as $key => $val)
 			{
-				$filename[$key] = strtolower(str_replace('.php', '', str_replace($extension, '', $val)).$extension);
+				$filename[$key] = str_replace('.php', '', str_replace($extension, '', $val)).$extension;
 			}
 
 			return $filename;
