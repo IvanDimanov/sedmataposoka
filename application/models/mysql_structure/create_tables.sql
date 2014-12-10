@@ -5,7 +5,6 @@
 
 
 /*Group responsible for the updates made from the administration panel*/
-drop table if exists admin;
 create table admin (
   id        int not null auto_increment primary key,
   name      varchar(80)  not null,
@@ -19,21 +18,18 @@ create table admin (
   Giving all events/subcategories a category to go under.
   Multiple languages are supported for the category name and description.
 */
-drop table if exists categoryname;
 create table categoryname (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists categorydescr;
 create table categorydescr (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists category;
 create table category (
   id         int not null auto_increment primary key,
   pictureSrc varchar(150) not null,
@@ -57,21 +53,18 @@ create table category (
   There could be times when basic categories fork into subcategories,
   catID will present the relation between them.
 */
-drop table if exists subcategoryname;
 create table subcategoryname (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists subcategorydescr;
 create table subcategorydescr (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists subcategory;
 create table subcategory (
   id         int not null auto_increment primary key,
   catId      int not null,
@@ -98,21 +91,18 @@ create table subcategory (
 
 
 /*All important event information with translatable title and description*/
-drop table if exists eventtitle;
 create table eventtitle (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists eventdescr;
 create table eventdescr (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists event;
 create table event (
   id        int not null auto_increment primary key,
   titleId   int not null,
@@ -145,21 +135,18 @@ create table event (
   presented by its text content and author.
   Both translatable.
 */
-drop table if exists tought_author;
 create table tought_author (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists tought_text;
 create table tought_text (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists tought;
 create table tought (
   id        int not null auto_increment primary key,
   authorId  int not null,
@@ -180,14 +167,12 @@ create table tought (
 
 
 /*Different site ads have their images, time-to-live, URL link, and translatable title*/
-drop table if exists adstitle;
 create table adstitle (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists ads;
 create table ads (
   id        int not null auto_increment primary key,
   imagePath varchar(150) not null,
@@ -205,14 +190,12 @@ create table ads (
 
 
 /*Every site partner can have its log and translatable name*/
-drop table if exists partnername;
 create table partnername (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-drop table if exists partner;
 create table partner (
   id      int not null auto_increment primary key,
   logoSrc varchar(150) not null,
@@ -227,7 +210,6 @@ create table partner (
 
 
 /*Will hold each page specific labels per language as JSON*/
-drop table if exists ui_labels;
 create table ui_labels (
   id          int not null auto_increment primary key,
   language    varchar(12) not null,
