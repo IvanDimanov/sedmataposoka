@@ -1,11 +1,14 @@
 # This .htaccess file removes the index.php before each URI
 # and enables accessing our user_guide, js, css and img folders
+DirectoryIndex index.php
+
 RewriteEngine on
 RewriteBase /sedmataposoka/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|user_guide|js|css|img)
+
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
 # Protect application and system files from being viewed when the index.php is missing
 RewriteCond $1 ^(application|system|private|logs)
-
-# Rewrite to index.php/URL
-RewriteRule ^index\.php/?$ / [L,R=301,NC]
-
-RewriteCond $1 !^(index\.php|user_guide|js|css|img)
