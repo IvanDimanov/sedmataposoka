@@ -1,0 +1,22 @@
+{
+  "domain"  : "idimanov.com",
+  "database": {
+    "host"     : "localhost",
+    "name"     : "sedmataposoka",
+    "user_name": "sedmataposoka",
+    "password" : "vo#7|6I}$nt[@CQMV~%XTH"
+  },
+  "controllers": {
+    "login": {
+      "max_error_attempts"            : 3,
+      "time_after_captcha_is_required": 300
+    },
+    "create_user": {
+      "access_token_expiration_time": 86400
+    }
+  },
+  "recaptcha": {
+    "public_key" : "6LcJSPoSAAAAABGa0Gf1of7UdLLs2PawIy5YXFPa",
+    "private_key": "6LcJSPoSAAAAAHiUBr1Fh5SgpVHffFBIxtAUbTyK"
+  }
+}
