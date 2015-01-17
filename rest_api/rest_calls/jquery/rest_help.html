@@ -1,0 +1,162 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="./jquery-2.1.3.js"></script>
+<script type="text/javascript" src="./utils.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  var log         = utils.log;
+  var documentLog = utils.documentLog;
+
+
+  /**
+   * 
+   *     The Code below is made with the sole purpose to be a step stone
+   *     of how REST calls should be made and what behavior should be expected
+   * 
+   */
+
+
+  /* General form */
+  $.ajax({
+    type: 'POST',                                           /*Mandatory, enumerate of GET, POST, PUT, DELETE; all CAPS*/
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads', /*Mandatory, the REST endpoint*/
+    data: {}                                                /*Optional, valid JSON structure to be sent to Server*/
+  })
+  .done(function (statusText, status, jqXHR) {
+    /*
+      {string} statusText
+        - JSON string response body from the Server
+        - example: '[{"id":"1","imagePath":"banner_1.jpg"},{"id":"2","imagePath":"banner_2.jpg"}]'
+
+      {string} status
+        - normally will always be 'success'
+
+      {object} jqXHR
+        - holds all connection settings and statuses
+        - more at: http://api.jquery.com/jQuery.ajax/#jqXHR
+    */
+  })
+  .fail(function (jqXHR, status, statusText) {
+    /*
+      {object} jqXHR
+        - holds all connection settings and statuses
+        - more at: http://api.jquery.com/jQuery.ajax/#jqXHR
+
+      {string} status
+        - normally will be just 'error'
+
+      {string} statusText
+        - it is one of the HTTP status texts from http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+        - example: 'Not Implemented', 'Unauthorized', etc.
+    */
+  });
+
+
+  /*Create Ad*/
+  $.ajax({
+    type: 'POST',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads',
+    data: {
+      title: {
+        bg: 'Тестови баннер 1',
+        en: 'Test banner 1'
+      },
+      imagePath: 'ads/add_1.jpg',
+      link     : 'http://test_banner_link.com',
+      type     : 1,
+      startDate: '2014-12-10',
+      endDate  : '2015-10-10'
+    }
+  })
+  .done(function (statusText, status, jqXHR) {
+    /*
+      If Ad creation when OK, expected values should be as follow
+
+      statusText = ''
+      status     = 'success'
+    */
+  })
+  .fail(function (jqXHR, status, statusText) {
+    /*
+      If something when wrong incoming values can be as follow
+
+      status             = 'error'
+      statusText         = 'Unauthorized'
+      jqXHR.responseText = ''
+
+      status             = 'error'
+      statusText         = 'Bad Request'
+      jqXHR.responseText = '{"error":"Invalid 'startDate' property"}'
+
+      status             = 'error'
+      statusText         = 'Bad Request'
+      jqXHR.responseText = '{"error":"Missing 'link' property"}'
+
+      status             = 'error'
+      statusText         = 'Conflict' -> means duplicated record
+      jqXHR.responseText = ''
+    */
+  });
+
+
+  /*Update Ad property*/
+  $.ajax({
+    type: 'PUT',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads/1', /*ending '1' stands for the ad id we want to update*/
+    data: {
+
+      /*We pass only the properties we want to update*/
+
+      title: {
+        en: 'Test banner 1 - updated'
+      },
+      startDate: '2018-12-10',
+      endDate  : '2019-10-10'
+    }
+  })
+  .done(function (statusText, status, jqXHR) {
+    /*Common 'success' state*/
+  })
+  .fail(function (jqXHR, status, statusText) {
+    /*Common 'error' state*/
+  });
+
+
+  /*Get Ad full info*/
+  $.ajax({
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads/1' /*ending '1' stands for the ad id we want to read*/
+  })
+  .done(function (statusText, status, jqXHR) {
+    /*Common 'success' state*/
+  })
+  .fail(function (jqXHR, status, statusText) {
+    /*Common 'error' state*/
+  });
+
+
+  /*Delete Ad*/
+  $.ajax({
+    type: 'DELETE',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads/1' /*ending '1' stands for the ad id we want to delete*/
+  })
+  .done(function (statusText, status, jqXHR) {
+    /*Common 'success' state*/
+  })
+  .fail(function (jqXHR, status, statusText) {
+    /*Common 'error' state*/
+  });
+
+});
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
