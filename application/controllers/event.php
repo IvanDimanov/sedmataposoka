@@ -14,7 +14,7 @@ class event extends CI_Controller{
         public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('toughtModel');
+		$this->load->model('thoughtModel');
                 $this->load->model('partnerModel');
                 $this->load->model('adsModel');
                 $this->load->model('categoryModel');
@@ -64,7 +64,7 @@ class event extends CI_Controller{
         //get adds for today type = 2, limit = 2
         $data['ads'] = $this->adsModel->getAds( null,2,2,$language);
         $data['partners'] = $this->partnerModel->getPartners($language);
-        $data['tought'] = $this->toughtModel->getTought(null,1,$language);
+        $data['thought'] = $this->thoughtModel->getThought(null,1,$language);
         $data['categories'] = $this->categoryModel->
                 getAllCategoriesName($language);
         $data['subcategories'] = $this->subcategoryModel->

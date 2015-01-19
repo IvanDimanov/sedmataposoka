@@ -1,7 +1,7 @@
 <?php
 
 function printLayout($this, $templateLayout = null, $mainLayout, $data) {
-    //v header-a se zarejda catalog ads baner tought of day 
+    //v header-a se zarejda catalog ads baner thought of day 
     $this->load->view('templates/header',$data);
     if(isset($templateLayout))
     {

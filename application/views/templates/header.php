@@ -38,7 +38,7 @@ $full_url = str_replace('/index.php', '', $full_url);
                     <a class="logo" href="<?php echo base_url().$language;?>/" ><img src="<?php echo base_url()?>img/logo_sedmata_posoka.png" alt="logo" /></a>	
                     <div class="mindHolder">
                         <?php
-                        echo '<p>"' . $tought[0]['text'] . '"<span class="author"> ' . $tought[0]['author'] . '</span></p>';
+                        echo '<p>"' . $thought[0]['text'] . '"<span class="author"> ' . $thought[0]['author'] . '</span></p>';
                         ?>
                     </div>
                     <div class="bubbles"></div>

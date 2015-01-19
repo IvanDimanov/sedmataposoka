@@ -29,8 +29,8 @@ class Load_Data extends CI_Controller {
         $language = strtolower($language);
         $CI = &get_instance();
 
-        $CI->load->model('toughtModel');
-        $CI->load->model('toughtModel');
+        $CI->load->model('thoughtModel');
+        $CI->load->model('thoughtModel');
         $CI->load->model('partnerModel');
         $CI->load->model('adsModel');
         $CI->load->model('categoryModel');
@@ -45,7 +45,7 @@ class Load_Data extends CI_Controller {
                 getAllCategoriesName($language);
         $data['subcategories'] = $CI->subcategoryModel->
                 getSubcategoriesForCategory($catId = null, $language);
-        $data['tought'] = $CI->toughtModel->getTought(null, 1, $language);
+        $data['thought'] = $CI->thoughtModel->getThought(null, 1, $language);
 
         return $data;
     }

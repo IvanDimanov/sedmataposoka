@@ -11,9 +11,9 @@ class Page extends CI_Controller {
     
     // $this->load->view('page.php', $data);
     
-    $this->load->model('toughtModel');
+    $this->load->model('thoughtModel');
     
-    echo $this->toughtModel->getTought();
+    echo $this->thoughtModel->getThought();
     
   }
 }

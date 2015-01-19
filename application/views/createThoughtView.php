@@ -10,7 +10,7 @@ include('templates/header.php');
 <?php echo validation_errors();
 $this->load->helper('url');?>
 
-<?php echo form_open(base_url().'createTought') ?>
+<?php echo form_open(base_url().'createThought') ?>
 
 <label for="text">Text*</label> 
 <input type="input" name="text" /><br />

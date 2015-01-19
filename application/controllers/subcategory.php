@@ -10,7 +10,7 @@ class subcategory extends CI_Controller {
     public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('toughtModel');
+		$this->load->model('thoughtModel');
                 $this->load->model('partnerModel');
                 $this->load->model('adsModel');
                 $this->load->model('categoryModel');

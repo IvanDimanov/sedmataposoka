@@ -6,29 +6,29 @@
  */
 
 /**
- * Description of createTought
+ * Description of createThought
  *
  * @author Tedy
  */
-class createTought extends CI_Controller {
+class createThought extends CI_Controller {
 
     //put your code here
     function index() {
         $this->load->library('form_validation');
         $this->load->helper('form');
-        $this->load->model('toughtModel');
+        $this->load->model('thoughtModel');
 
-        $this->form_validation->set_rules('text', 'Tought text', 'trim|required|addslashes');
+        $this->form_validation->set_rules('text', 'Thought text', 'trim|required|addslashes');
         $this->form_validation->set_rules('author', 'Author', 'trim|max_length[30]|addslashes');
         $this->form_validation->set_rules('startDate', 'start date', 'callback_validateDate');
         $this->form_validation->set_rules('endDate', 'end date', 'callback_validateDate');
         $this->form_validation->set_message('validateDate', 'your date is not in valid format');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('createToughtView');
+            $this->load->view('createThoughtView');
         } else {
-            if ($this->toughtModel->insertTought()) {
-                $data['formName'] = 'tought';
+            if ($this->thoughtModel->insertThought()) {
+                $data['formName'] = 'thought';
                 $this->load->view('formSuccess', $data);
             } else {
                 echo 'error while inserting into database';

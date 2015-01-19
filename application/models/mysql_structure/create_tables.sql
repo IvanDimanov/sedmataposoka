@@ -8,6 +8,7 @@
 create table admin (
   id        int not null auto_increment primary key,
   name      varchar(80)  not null,
+  type      varchar(80)  not null,
   pass      varchar(512) not null,
   salt      varchar(512) not null,
   createdAt timestamp default current_timestamp
@@ -135,19 +136,19 @@ create table event (
   presented by its text content and author.
   Both translatable.
 */
-create table tought_author (
+create table thought_author (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-create table tought_text (
+create table thought_text (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-create table tought (
+create table thought (
   id        int not null auto_increment primary key,
   authorId  int not null,
   textId    int not null,
@@ -155,12 +156,12 @@ create table tought (
   endDate   timestamp,
 
   foreign key (authorId) 
-    references tought_author(id)
+    references thought_author(id)
     on delete cascade
     on update cascade,
 
   foreign key (textId) 
-    references tought_text(id)
+    references thought_text(id)
     on delete cascade
     on update cascade
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;

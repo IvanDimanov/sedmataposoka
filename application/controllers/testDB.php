@@ -14,7 +14,7 @@ class TestDB extends CI_Controller{
     public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('toughtModel');
+		$this->load->model('thoughtModel');
                 $this->load->model('partnerModel');
                 $this->load->model('adsModel');
                 $this->load->model('categoryModel');
@@ -23,9 +23,9 @@ class TestDB extends CI_Controller{
 	}
 
     function index(){
-       //get tought for current day
+       //get thought for current day
         $todayday = date('Y:m:d');
-        $data['tought'] = $this->toughtModel->getTought(null,1);
+        $data['thought'] = $this->thoughtModel->getThought(null,1);
         
         //get all parthners
         $data['partners'] = $this->partnerModel->getPartners();

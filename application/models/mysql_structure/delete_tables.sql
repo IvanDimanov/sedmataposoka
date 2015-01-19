@@ -12,9 +12,9 @@ drop table if exists partner;
 drop table if exists partnername;
 drop table if exists ui_labels;
 
-drop table if exists tought;
-drop table if exists tought_text;
-drop table if exists tought_author;
+drop table if exists thought;
+drop table if exists thought_text;
+drop table if exists thought_author;
 
 drop table if exists event;
 drop table if exists eventtitle;

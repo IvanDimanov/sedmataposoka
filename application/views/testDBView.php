@@ -10,7 +10,7 @@
 <?php
 
 function printLayout($this, $layout_name) {
-    //v header-a se zarejda catalog ads baner tought of day 
+    //v header-a se zarejda catalog ads baner thought of day 
     $this->load->view('templates/header',$data);
     $this->load->view( $layout_name );
     $this->load->view( $layout_name );
@@ -30,9 +30,9 @@ function printLayout($this, $layout_name) {
   endforeach;
 
  */
-echo 'testview tought </br>';
-//var_dump($tought);
-echo '"' . $tought[0]['text'] . '" ' . $tought[0]['author'];
+echo 'testview thought </br>';
+//var_dump($thought);
+echo '"' . $thought[0]['text'] . '" ' . $thought[0]['author'];
 
 
 foreach ($partners as $partner) {
