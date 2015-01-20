@@ -4,6 +4,7 @@
 */
 
 drop table if exists admin;
+drop table if exists error_login;
 
 drop table if exists ads;
 drop table if exists adstitle;

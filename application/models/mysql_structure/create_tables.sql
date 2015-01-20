@@ -9,9 +9,19 @@ create table admin (
   id        int not null auto_increment primary key,
   name      varchar(80)  not null,
   type      varchar(80)  not null,
-  pass      varchar(512) not null,
+  password  varchar(512) not null,
   salt      varchar(512) not null,
+  is_active boolean default 0,
   createdAt timestamp default current_timestamp
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+
+/*Will be used to record all error login attempts from any IP*/
+create table error_login (
+  id               int not null auto_increment primary key,
+  ip               varchar(100) not null,
+  count            int unsigned not null,
+  last_error_login int unsigned
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 

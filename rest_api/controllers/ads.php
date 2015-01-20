@@ -4,6 +4,10 @@
 
 /*Shows all saved Ads taken from the DB*/
 function showAllAds() {
+  global $user, $request;
+
+lg( $user );
+
   require_once('./models/ads.php');
 
   $ads = getAllAds();
@@ -23,9 +27,9 @@ function showAllAds() {
 in methods:
   GET
 */
-if (sizeof( $request['url_conponents'] ) === 1 &&
-    $request['url_conponents'][0] === 'ads'    &&
-    $request['method']            === 'GET'
+if (sizeof( $request['url_conponents'] ) === 1     &&
+    $request['url_conponents'][0]        === 'ads' &&
+    $request['method']                   === 'GET'
 ) {
   showAllAds();
   return;
