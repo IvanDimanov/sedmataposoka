@@ -25,7 +25,7 @@ By default, PUT requests should return the resulting object.
 
 CSRF Prevention:
 With each PUT, POST or DELETE request, the UI will send a XSRF-TOKEN cookie and a X-XSRF-TOKEN header, which must be identical.
-If they are missing or mismatched, return error 401 with appropriate message and log the event on the server side, because this was a possible hacker attack.
+If they are missing or mismatched, return error 401 and log the event on the server side, because this was a possible hacker attack.
 
 
 SUPER ADMIN USER ACCESS:
@@ -34,7 +34,7 @@ Accessible only to users with admin type "super_admin".
 
 Name        : Create Ad
 Route       : /ads
-HTTP types  : POST
+Request type: POST
 Request data: {
   "title": {
     "bg": "Тестови баннер",
@@ -77,7 +77,7 @@ Response data: ''
 
 Name        : Get all Ads
 Route       : /ads
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -92,7 +92,7 @@ Response data: ''
 
 Name        : Get specific Ad
 Route       : /ads/:ad_id
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -110,7 +110,7 @@ Response data: '{error:"Unknown Ad ID"}'
 
 Name        : Get specific Ads
 Route       : /ads
-HTTP types  : POST
+Request type: GET
 Request data: {
   "ids"     : [1, 2],
   "types"   : [1],
@@ -139,7 +139,7 @@ Response data: ''
 
 Name        : Update specific Ad
 Route       : /ads/:ad_id
-HTTP types  : PUT
+Request type: PUT
 Request data: {
   "imagePath": "ads/new_path.jpg",
   "endDate"  : "2015-11-16 00:00:00"
@@ -163,7 +163,7 @@ Response data: '{error:"Unknown Ad ID"}'
 
 Name        : Delete specific Ad
 Route       : /ads/:ad_id
-HTTP types  : DELETE
+Request type: DELETE
 Request data: ''
 
 Response type: 204
@@ -181,7 +181,7 @@ Response data: '{error:"Unknown Ad ID"}'
 
 Name        : Create Thought
 Route       : /thoughts
-HTTP types  : POST
+Request type: POST
 Request data: {
   "text": {
     "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
@@ -223,7 +223,7 @@ Response data: ''
 
 Name        : Get all Thoughts
 Route       : /thoughts
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -238,7 +238,7 @@ Response data: ''
 
 Name        : Get specific Thought
 Route       : /thoughts/:thought_id
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -256,7 +256,7 @@ Response data: '{error:"Unknown Thought ID"}'
 
 Name        : Get specific Thoughts
 Route       : /thoughts
-HTTP types  : POST
+Request type: GET
 Request data: {
   "ids"     : [1, 2],
   "text": {
@@ -281,7 +281,7 @@ Response data: ''
 
 Name        : Update specific Thought
 Route       : /thoughts/:thought_id
-HTTP types  : PUT
+Request type: PUT
 Request data: {
   "text": {
     "bg": "Неможем да разрешим въобще",
@@ -307,7 +307,7 @@ Response data: '{error:"Unknown Thought ID"}'
 
 Name        : Delete specific Thought
 Route       : /thoughts/:thought_id
-HTTP types  : DELETE
+Request type: DELETE
 Request data: ''
 
 Response type: 204
@@ -325,7 +325,7 @@ Response data: '{error:"Unknown Thought ID"}'
 
 Name        : Create Partner
 Route       : /partners
-HTTP types  : POST
+Request type: POST
 Request data: {
   "name": {
     "bg": "Тестови партньор",
@@ -359,7 +359,7 @@ Response data: ''
 
 Name        : Get all Partners
 Route       : /partners
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -374,11 +374,11 @@ Response data: ''
 
 Name        : Get specific Partner
 Route       : /partners/:partner_id
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: {"id":1,"name":{"bg":"Неможем да разрешим ..."}, ...}
+Response data: {"id":1,"name":{"bg":"Тестови партньор 1"}, ...}
 
 Response type: 401
 Response data: ''
@@ -392,7 +392,7 @@ Response data: '{error:"Unknown Partner ID"}'
 
 Name        : Get specific Partners
 Route       : /partners
-HTTP types  : POST
+Request type: GET
 Request data: {
   "ids"     : [1, 2],
   "name": {
@@ -415,7 +415,7 @@ Response data: ''
 
 Name        : Update specific Partner
 Route       : /partners/:partner_id
-HTTP types  : PUT
+Request type: PUT
 Request data: {
   "name": {
     "bg": "Тестови",
@@ -441,7 +441,7 @@ Response data: '{error:"Unknown Partner ID"}'
 
 Name        : Delete specific Partner
 Route       : /partners/:partner_id
-HTTP types  : DELETE
+Request type: DELETE
 Request data: ''
 
 Response type: 204
@@ -459,7 +459,7 @@ Response data: '{error:"Unknown Partner ID"}'
 
 Name        : Create Category
 Route       : /categories
-HTTP types  : POST
+Request type: POST
 Request data: {
   "name": {
     "bg": "Книги",
@@ -502,7 +502,7 @@ Response data: ''
 
 Name        : Get all Categories
 Route       : /categories
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -517,7 +517,7 @@ Response data: ''
 
 Name        : Get specific Category
 Route       : /categories/:category_id
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -535,7 +535,7 @@ Response data: '{error:"Unknown Category ID"}'
 
 Name        : Get specific Categories
 Route       : /categories
-HTTP types  : POST
+Request type: GET
 Request data: {
   "ids"     : [1, 2],
   "name": {
@@ -558,7 +558,7 @@ Response data: ''
 
 Name        : Update specific Category
 Route       : /categories/:category_id
-HTTP types  : PUT
+Request type: PUT
 Request data: {
   "name": {
     "bg": "Развлекателни книги",
@@ -584,7 +584,7 @@ Response data: '{error:"Unknown Category ID"}'
 
 Name        : Delete specific Category
 Route       : /categories/:category_id
-HTTP types  : DELETE
+Request type: DELETE
 Request data: ''
 
 Response type: 204
@@ -602,7 +602,7 @@ Response data: '{error:"Unknown Category ID"}'
 
 Name        : Create Subcategory
 Route       : /subcategory
-HTTP types  : POST
+Request type: POST
 Request data: {
   "catId": 3,
 
@@ -652,7 +652,7 @@ Response data: ''
 
 Name        : Get all Subcategories
 Route       : /subcategory
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -667,7 +667,7 @@ Response data: ''
 
 Name        : Get specific Subcategory
 Route       : /subcategory/:subcategory_id
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -685,7 +685,7 @@ Response data: '{error:"Unknown Subcategory ID"}'
 
 Name        : Get specific Subcategories
 Route       : /subcategory
-HTTP types  : POST
+Request type: GET
 Request data: {
   "ids"     : [1, 2],
   "catIds"  : [3, 4]
@@ -709,7 +709,7 @@ Response data: ''
 
 Name        : Update specific Subcategory
 Route       : /subcategory/:subcategory_id
-HTTP types  : PUT
+Request type: PUT
 Request data: {
   "name": {
     "bg": "Хатха - 2",
@@ -735,7 +735,7 @@ Response data: '{error:"Unknown Subcategory ID"}'
 
 Name        : Delete specific Subcategory
 Route       : /subcategory/:subcategory_id
-HTTP types  : DELETE
+Request type: DELETE
 Request data: ''
 
 Response type: 204
@@ -753,7 +753,7 @@ Response data: '{error:"Unknown Subcategory ID"}'
 
 Name        : Create Event
 Route       : /events
-HTTP types  : POST
+Request type: POST
 Request data: {
   "subcatId": 3,
 
@@ -811,7 +811,7 @@ Response data: ''
 
 Name        : Get all Events
 Route       : /events
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -826,7 +826,7 @@ Response data: ''
 
 Name        : Get specific Event
 Route       : /events/:event_id
-HTTP types  : GET
+Request type: GET
 Request data: ''
 
 Response type: 200
@@ -844,7 +844,7 @@ Response data: '{error:"Unknown Event ID"}'
 
 Name        : Get specific Events
 Route       : /events
-HTTP types  : POST
+Request type: GET
 Request data: {
   "ids"      : [1, 2],
   "subcatIds": [3, 4]
@@ -868,7 +868,7 @@ Response data: ''
 
 Name        : Update specific Event
 Route       : /events/:event_id
-HTTP types  : PUT
+Request type: PUT
 Request data: {
   "title": {
     "bg": "В мир с учителя Комар",
@@ -894,7 +894,7 @@ Response data: '{error:"Unknown Event ID"}'
 
 Name        : Delete specific Event
 Route       : /events/:event_id
-HTTP types  : DELETE
+Request type: DELETE
 Request data: ''
 
 Response type: 204
