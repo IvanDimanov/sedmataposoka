@@ -10,14 +10,15 @@ Request Types:
  - DELETE - used when removing existing record
 
 Response Types:
- - 200 - ok                   - must be accompanied by server response data
- - 201 - created successfully - no returned data
- - 204 - ok                   - no returned data
- - 400 - request data error   - must be accompanied by meaningful description of the error
- - 401 - not authenticated    - this should be returned when user tries to access some private data, but does not have an active session on the server
- - 403 - forbidden            - cannot call this method duo specific reasons different from "authenticated" accessed
- - 404 - resource not found   - no returned data
- - 409 - duplicate record     - returned for POST and PUT request
+ - 200 - ok                    - must be accompanied by server response data
+ - 201 - created successfully  - no returned data
+ - 204 - ok                    - no returned data
+ - 400 - request data error    - must be accompanied by meaningful description of the error
+ - 401 - not authenticated     - this should be returned when user tries to access some private data, but does not have an active session on the server
+ - 403 - forbidden             - cannot call this method duo specific reasons different from "authenticated" accessed
+ - 404 - resource not found    - no returned data
+ - 409 - duplicate record      - returned for POST and PUT request
+ - 500 - internal server error - error in the back-end core function
 
 PUT requests may not contain all data. If some resource data was existing before the PUT request and it is not mentioned in the request, it should not be updated by the server.
 Example - send PUT request to /ads/:ad_id with data {startDate: "2018-12-10"}, should update only the ad startDate property and leave all remaining fields untouched.
@@ -30,6 +31,62 @@ If they are missing or mismatched, return error 401 and log the event on the ser
 
 SUPER ADMIN USER ACCESS:
 Accessible only to users with admin type "super_admin".
+
+
+Name        : Login as Admin
+Route       : /login
+Request type: POST
+Request data: {
+  "name"    : "7Admin",
+  "password": "6c730ae5d030587ee60254aa4d0eb4174f9e8b4fc4a8cf59e5388cba396c77af"
+}
+
+/*
+  Please be advised that plain text passwords should not be transfered through the web.
+  That's is why if client password is '7@posoka'
+  then we should send sha3('7@posoka') = '6c730ae5d030587ee60254aa4d0eb4174f9e8b4fc4a8cf59e5388cba396c77af'
+*/
+
+Response type: 200
+Response data: '{"id":"1","name":"7Admin","type":"super_admin","password":"6828d28372d2b369efefbbf75dcb58a49ba0df67","salt":"0b5745acf1e6c9","is_active":"1","access_token_value":null,"access_token_created_at":null,"createdAt":"2015-01-21 09:13:52","login":true}'
+
+Response type: 400
+Response data: '{"login":false}'
+Response data: '{"login":false,"captcha_required":true}'
+Response data: '{"login":false,"captcha_required":true,"captcha_correct":false}'
+
+
+-----------------------------------------------------------------------
+
+
+Name        : Get login details of an already logged user
+Route       : /login
+Request type: POST
+Request data: ''
+
+Response type: 200
+Response data: '{"id":"1","name":"7Admin","type":"super_admin","password":"6828d28372d2b369efefbbf75dcb58a49ba0df67","salt":"0b5745acf1e6c9","is_active":"1","access_token_value":null,"access_token_created_at":null,"createdAt":"2015-01-21 09:13:52","login":true}'
+
+Response type: 400
+Response data: '{"login":false}'
+
+
+-----------------------------------------------------------------------
+
+
+Name        : Logout
+Route       : /login
+Request type: DELETE
+Request data: ''
+
+Response type: 204
+Response data: ''
+
+Response type: 500
+Response data: '{"error":"Unable to destroy the user session completely"}'
+
+
+-----------------------------------------------------------------------
 
 
 Name        : Create Ad

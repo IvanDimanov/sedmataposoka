@@ -53,13 +53,9 @@ function clearLogin() {
 
 
     $recaptcha_is_valid = false;
-    if (!isset($user_request['captchaResponse' ]) ||
-        !isset($user_request['captchaChallenge'])
+    if (isset($user_request['captchaResponse' ]) &&
+        isset($user_request['captchaChallenge'])
     ) {
-      $recaptcha_is_valid = false;
-
-    } else {
-
       $recaptcha          = recaptcha_check_answer( $settings['recaptcha']['private_key'], $_SERVER['REMOTE_ADDR'], $user_request['captchaChallenge'], $user_request['captchaResponse']);
       $recaptcha_is_valid = $recaptcha->is_valid;
     }
@@ -77,16 +73,14 @@ function clearLogin() {
     Use the DB module function to determine
     if the user have a valid login details
   */
-  if ($user = authenticate( $user_request['email'], $user_request['password'] )) {
-    $user['login'] = true;
-    $user          = reorderUserObjectData( $user );
-
+  if ($user = authenticate( $user_request['name'], $user_request['password'] )) {
+    $user['login']    = true;
     $_SESSION['user'] = $user;
 
     $response = array(
       'login'            => true,
       'captcha_required' => false,
-      'user_type'        => $user['user_type'],
+      'user_type'        => $user['type'],
       'user_data'        => $user
     );
 
@@ -95,12 +89,12 @@ function clearLogin() {
     }
 
     header('HTTP/1.1 200 OK');
-    die(json_unicode_encode($user));
+    die(json_unicode_encode( $user ));
   }
 
 
   /*
-    Check if we need to start asking about a "captcha"
+    Check if we need to start asking for a "captcha"
     since the IP exceeded the limit of "total error logins" in the timeframe of "time after captcha is required" (both in settings.json)
   */
   $captcha_request = checkErrorLogins(true) ? '' : ',"captcha_required":true';
@@ -121,7 +115,7 @@ function checkLogin() {
 
   if (isset($user)) {
     header('HTTP/1.1 200 OK');
-    die(json_unicode_encode($user));
+    die(json_unicode_encode( $user ));
   }
 
   header('HTTP/1.1 400 Bad Request');
@@ -155,7 +149,7 @@ function logout() {
     die();
 
   } else {
-    header('HTTP/1.1 400 Bad Request');
+    header('HTTP/1.1 500 Internal Server Error');
     die('{"error":"Unable to destroy the user session completely"}');
   }
 }
@@ -166,7 +160,7 @@ function logout() {
   Check if the request is meant to login a user with some $request['data']
   or it just want to check & get all of the session user data
 */
-if ($request['method'] == 'POST') {
+if ($request['method'] === 'POST') {
 
   if (sizeof( $request['data'] )) {
     clearLogin();
@@ -178,9 +172,8 @@ if ($request['method'] == 'POST') {
   }
 }
 
-if (
-  $request['method'] == 'DELETE' &&
-  !sizeof( $request['data'] )
+if ($request['method'] === 'DELETE' &&
+    !sizeof( $request['data'] )
 ) {
   logout();
   return;

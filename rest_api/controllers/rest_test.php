@@ -11,7 +11,7 @@ $db = getDBConnection();
 /*
 $query = $db->prepare('
   UPDATE admin
-  SET password = sha( concat("7@posoka", salt))
+  SET password = sha( concat("6c730ae5d030587ee60254aa4d0eb4174f9e8b4fc4a8cf59e5388cba396c77af", salt))
   where id = 1
 
 ');
@@ -21,7 +21,7 @@ print_r( $query->errorInfo() );
 
 
 /**/
-$query = $db->prepare('SELECT * FROM admin where password = sha( concat("7@posoka", salt))');
+$query = $db->prepare('SELECT * FROM admin where password = sha( concat("6c730ae5d030587ee60254aa4d0eb4174f9e8b4fc4a8cf59e5388cba396c77af", salt))');
 $query->execute();
 
 $result = $query->fetchAll(PDO::FETCH_ASSOC);

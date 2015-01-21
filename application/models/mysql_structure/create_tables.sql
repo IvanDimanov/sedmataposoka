@@ -6,13 +6,15 @@
 
 /*Group responsible for the updates made from the administration panel*/
 create table admin (
-  id        int not null auto_increment primary key,
-  name      varchar(80)  not null,
-  type      varchar(80)  not null,
-  password  varchar(512) not null,
-  salt      varchar(512) not null,
-  is_active boolean default 0,
-  createdAt timestamp default current_timestamp
+  id                      int not null auto_increment primary key,
+  name                    varchar(80)  not null,
+  type                    varchar(80)  not null,
+  password                varchar(512) not null,
+  salt                    varchar(512) not null,
+  is_active               boolean default 0,
+  access_token_value      varchar(512),
+  access_token_created_at int unsigned,
+  createdAt               timestamp default current_timestamp
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 

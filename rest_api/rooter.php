@@ -38,6 +38,10 @@ switch ($request['method']) {
   case 'PUT':
     parse_str( file_get_contents('php://input'), $request['data'] );
   break;
+
+  case 'DELETE':
+    $request['data'] = array();
+  break;
 }
 
 
