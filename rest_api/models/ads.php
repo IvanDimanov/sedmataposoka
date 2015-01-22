@@ -255,24 +255,31 @@ function getFilteredAds($filters) {
 
 
 
-/*Returns a list out of '$properties' that can safely be used to create an Ad*/
-function validateAdProperties(&$properties) {
+/*
+  Returns a list out of '$properties' that can safely be used to create or update an Ad.
+*/
+function validateAdProperties(&$properties, $validate_only_if_set = false) {
   if (!isset( $properties) ||
       gettype($properties) !== 'array'
   ) {
     return 'Invalid properties';
   }
 
+!isset( ) &&
+validate_only_if_set
+
   if (!isset( $properties['title']) ||
       gettype($properties['title']) !== 'array'
   ) {
     return 'Invalid "title" property';
-  }
 
-  if (!isset( $properties['title']['bg']) ||
-      gettype($properties['title']['bg']) !== 'string'
-  ) {
-    return 'Invalid "title"->"bg" property';
+  } else {
+
+    if (!isset( $properties['title']['bg']) ||
+        gettype($properties['title']['bg']) !== 'string'
+    ) {
+      return 'Invalid "title"->"bg" property';
+    }
   }
 
   if (!isset( $properties['title']['en']) ||
