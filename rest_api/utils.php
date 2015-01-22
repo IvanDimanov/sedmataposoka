@@ -144,14 +144,22 @@ function getCommonBoolean($variable) {
 
 
 /*
-  Checks if a certain string is a valid date format.
-  More info at: http://php.net/manual/en/function.checkdate.php#113205
+  Tries to convert incoming date into the given format.
+  Returns formated date into string or false;
+
   Examples:
-    isValidDate('2012-02-28 12:12:12'))  =>  true
-    isValidDate('28/02/2012', 'd/m/Y'))  =>  true
-    isValidDate('30/02/2012', 'd/m/Y'))  =>  false
+    getValidDate('2013-02-17')  =>  '2013-02-17 00:00:00 '
+    getValidDate('2013-02-47')  =>  false
 */
-function isValidDate($date, $format = 'Y-m-d H:i:s') {
-  $valid_date = DateTime::createFromFormat($format, $date);
-  return $valid_date && $valid_date->format($format) == $date;
+function getValidDate($test_date_string = false, $format = 'Y-m-d H:i:s') {
+  $valid_date_string = false;
+
+  try {
+    $date              = new DateTime( $test_date_string );
+    $valid_date_string = $date->format( $format );
+  } catch (Exception $error) {
+    /*No action needed since '$valid_date_string' is still 'false'*/
+  }
+
+  return $valid_date_string;
 }

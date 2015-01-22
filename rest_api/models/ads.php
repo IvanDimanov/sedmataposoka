@@ -132,8 +132,8 @@ function validateAdsFilters(&$filters) {
   $date_format = 'Y-m-d H:i:s';
 
   if (isset($filters['fromDate'])) {
-    if (gettype(   $filters['fromDate']) !== 'string' ||
-        !strtotime($filters['fromDate'])
+    if (gettype($filters['fromDate']) !== 'string' ||
+        !getValidDate($filters['fromDate'], $date_format)
     ) {
       return 'Filter "fromDate" is not a valid "'.$date_format.'" date';
     }
@@ -141,8 +141,8 @@ function validateAdsFilters(&$filters) {
 
 
   if (isset($filters['toDate'])) {
-    if (gettype(   $filters['toDate']) !== 'string' ||
-        !strtotime($filters['toDate'])
+    if (gettype($filters['toDate']) !== 'string' ||
+        !getValidDate($filters['toDate'], $date_format)
     ) {
       return 'Filter "toDate" is not a valid "'.$date_format.'" date';
     }
@@ -251,4 +251,145 @@ function getFilteredAds($filters) {
 
   /*Send the entire query result in indexed array*/
   return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+/*Returns a list out of '$properties' that can safely be used to create an Ad*/
+function validateAdProperties(&$properties) {
+  if (!isset( $properties) ||
+      gettype($properties) !== 'array'
+  ) {
+    return 'Invalid properties';
+  }
+
+  if (!isset( $properties['title']) ||
+      gettype($properties['title']) !== 'array'
+  ) {
+    return 'Invalid "title" property';
+  }
+
+  if (!isset( $properties['title']['bg']) ||
+      gettype($properties['title']['bg']) !== 'string'
+  ) {
+    return 'Invalid "title"->"bg" property';
+  }
+
+  if (!isset( $properties['title']['en']) ||
+      gettype($properties['title']['en']) !== 'string'
+  ) {
+    return 'Invalid "title"->"en" property';
+  }
+
+  if (!isset(     $properties['type']) ||
+      !is_numeric($properties['type'])
+  ) {
+    return 'Invalid "type" property';
+  }
+
+  $properties['type'] *= 1;
+  if ($properties['type'] !== 1 &&
+      $properties['type'] !== 2
+  ) {
+    return 'Invalid "type" property value. Valid "type" values are: 1, 2';
+  }
+
+  if (!isset( $properties['imagePath'])              ||
+      gettype($properties['imagePath']) !== 'string' ||
+      !sizeof($properties['imagePath'])
+  ) {
+    return 'Invalid "imagePath" property';
+  }
+
+  if (!isset($properties['link']) ||
+      !filter_var($properties['link'], FILTER_VALIDATE_URL)
+  ) {
+    return 'Invalid "link" property';
+  }
+
+
+  $date_format = 'Y-m-d H:i:s';
+
+  if (!isset( $properties['startDate'] ) ||
+      !getValidDate( $properties['startDate'], $date_format)
+  ) {
+    return 'Invalid "startDate" property';
+  }
+
+  if (!isset( $properties['endDate'] ) ||
+      !getValidDate( $properties['endDate'], $date_format)
+  ) {
+    return 'Invalid "endDate" property';
+  }
+
+  $startDate = strtotime($properties['startDate']);
+  $endDate   = strtotime($properties['endDate'  ]);
+
+  if ($startDate > $endDate) {
+    return 'Ad "startDate" must not be greater then its "endDate"';
+  }
+
+
+  /*Be sure to return a list containing only valid properties as keys*/
+  $valid_property_keys = array('type', 'title', 'link', 'imagePath', 'startDate', 'endDate');
+  foreach ($properties as $key => $value) {
+    if (!in_array($key, $valid_property_keys)) {
+      unset( $properties[ $key ] );
+    }
+  }
+
+
+  return $properties;
+}
+
+
+
+/*
+  Use 'validateAdProperties() to save already valid Ad properties.
+  Will return error {string} of failure or newly created Ad as {array}
+*/
+function createAd($properties) {
+
+  /*Be sure we can use all of the user input to create new Ad*/
+  $properties = validateAdProperties( $properties );
+  if (gettype($properties) !== 'array') {
+    return $properties;
+  }
+
+
+  /*Access the common DB connection handler*/
+  require_once('./models/db_manager.php');
+  $db = getDBConnection();
+
+
+  /*Try to create Ad title first*/
+  $query  = $db->prepare('insert into adstitle ( en,  bg) values
+                                               (:en, :bg)');
+  $result = $query->execute(array(
+    'en' => $properties['title']['en'],
+    'bg' => $properties['title']['bg']
+  ));
+
+  /*Prevent further creation if current query fail*/
+  if (!$result) {
+    return 'Unable to create Ad title';
+  }
+
+
+  /*Set reference to already saved title property*/
+  unset( $properties['title'] );
+  $properties['titleId'] = $db->lastInsertId();
+
+  /*Try to create Ad in its main table*/
+  $query  = $db->prepare('insert into ads ( imagePath,  link,  titleId,  type,  startDate,  endDate) values
+                                          (:imagePath, :link, :titleId, :type, :startDate, :endDate)');
+  $result = $query->execute( $properties );
+
+  if (!$result) {
+    return 'Unable to create Ad';
+  }
+
+
+  /*Try to show the creation result*/
+  return getAdByID( $db->lastInsertId() );
 }

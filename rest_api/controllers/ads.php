@@ -2,6 +2,43 @@
 /*This file holds the entire rooting of all Ads client requests*/
 
 
+/*Attempt to create new Ad using user data input*/
+function createAdController() {
+  global $user, $request;
+
+  /*Secure only logged "super admin" to have access to this function*/
+  if (!isset($user['type']) ||
+      $user['type'] !== 'super_admin'
+  ) {
+    header('HTTP/1.1 401 Unauthorized');
+    die();
+  }
+
+
+  require_once('./models/ads.php');
+
+  /*Use DB model function to determine if the input can be correctly used*/
+  $ad_properties = validateAdProperties( $request['data'] );
+  if (gettype($ad_properties) !== 'array') {
+    header('HTTP/1.1 400 Bad Request');
+    die('{"error":"'.str_replace('"', '\"', $ad_properties).'"}');
+  }
+
+  /*Try to create an Ad with validated properties*/
+  $new_ad = createAd( $ad_properties );
+  if (gettype($new_ad) !== 'array') {
+    header('HTTP/1.1 400 Bad Request');
+    die('{"error":"'.str_replace('"', '\"', $new_ad).'"}');
+  }
+
+
+  /*Return new successfully created Ad*/
+  header('HTTP/1.1 201 Created');
+  die(json_unicode_encode( $new_ad ));
+}
+
+
+
 /*Shows all saved Ads taken from the DB*/
 function showAllAds() {
   global $user, $request;
@@ -90,6 +127,21 @@ function showAd() {
   die(json_unicode_encode( $ad ));
 }
 
+
+
+/*Validates rooting:
+  /ads
+in methods:
+  POST
+*/
+if (sizeof( $request['url_conponents'] ) === 1      &&
+    $request['url_conponents'][0]        === 'ads'  &&
+    $request['method']                   === 'POST' &&
+    sizeof( $request['data'] )
+) {
+  createAdController();
+  return;
+}
 
 
 /*Validates rooting:
