@@ -29,7 +29,7 @@ function showAllAds() {
 
 
 
-/**/
+/*Tries to find all ads matching sent filters*/
 function showFilteredAds() {
   global $user, $request;
 
@@ -54,7 +54,7 @@ function showFilteredAds() {
   $ads = getFilteredAds( $filters );
   if (gettype($ads) !== 'array') {
     header('HTTP/1.1 400 Bad Request');
-    die('{"error":"'.str_replace('"', '\"', $error_message).'"}');
+    die('{"error":"'.str_replace('"', '\"', $ads).'"}');
   }
 
   header('HTTP/1.1 200 OK');

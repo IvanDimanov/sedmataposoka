@@ -13,12 +13,29 @@ $(function () {
 
 
   $.ajax({
+/*
+    type: 'POST',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/login',
+    data: {
+      name    : '7Admin',
+      password: '6c730ae5d030587ee60254aa4d0eb4174f9e8b4fc4a8cf59e5388cba396c77af'
+    }
+/**/
+
+/**/
     type: 'GET',
     url : 'http://idimanov.com/sedmataposoka/rest_api/ads',
     data: {
-      ids  : [1, 3],
-      types: [2]
+      _ids      : [1, 3],
+      _types    : [2],
+      _title    : 'test',
+      _link     : 'test_add',
+      _imagePath: 'ad',
+      fromDate : '2013-12-17 00:00:00',
+      toDate   : '2013-12-17 05:00:00'
     }
+/**/
+
   })
   .always(function (param_1, status, param_2) {
     var jqXHR;
@@ -36,11 +53,7 @@ $(function () {
     documentLog( jqXHR.status +' - '+ jqXHR.statusText );
     documentLog( jqXHR.responseText );
   })
-
-
 });
-
-
 </script>
 </head>
 <body>
