@@ -258,22 +258,44 @@ function getFilteredAds($filters) {
 /*
   Returns a list out of '$properties' that can safely be used to create or update an Ad.
 */
-function validateAdProperties(&$properties, $validate_only_if_set = false) {
+function validateAdProperties(&$properties, $validate_only_set_properties = false) {
   if (!isset( $properties) ||
       gettype($properties) !== 'array'
   ) {
     return 'Invalid properties';
   }
 
-!isset( ) &&
-validate_only_if_set
 
-  if (!isset( $properties['title']) ||
-      gettype($properties['title']) !== 'array'
+if (
+  isset( ) 
+) {
+  Validate
+}
+
+
+if (
+  !validate_only_set_properties
+  !isset( ) ||
+) {
+  Validate
+}
+
+
+if (
+  isset( ) ||
+  !validate_only_set_properties
+) {
+  Validate
+}
+
+
+  if (isset($properties['title']) ||
   ) {
-    return 'Invalid "title" property';
-
-  } else {
+    if (!isset( $properties['title']) ||
+        gettype($properties['title']) !== 'array'
+    ) {
+      return 'Invalid "title" property';
+    }
 
     if (!isset( $properties['title']['bg']) ||
         gettype($properties['title']['bg']) !== 'string'
@@ -281,6 +303,7 @@ validate_only_if_set
       return 'Invalid "title"->"bg" property';
     }
   }
+
 
   if (!isset( $properties['title']['en']) ||
       gettype($properties['title']['en']) !== 'string'
