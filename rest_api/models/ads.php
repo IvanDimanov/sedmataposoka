@@ -2,6 +2,29 @@
 /*This file holds all DB functions which effects Ads*/
 
 
+/*Used to convert raw DB result to expected JSON-like result*/
+function reorderADrecord(&$ad) {
+  if (gettype($ad) !== 'array' ||
+      !sizeof($ad)
+  ) {
+    return $ad;
+  }
+
+
+  /*Convert title structure 'title_*' to array*/
+  $ad['title'] = array(
+    'bg' => $ad['title_bg'],
+    'en' => $ad['title_en']
+  );
+
+  unset( $ad['title_bg'] );
+  unset( $ad['title_en'] );
+
+  return $ad;
+}
+
+
+
 /*Returns an indexed array of all ads records we have in DB*/
 function getAllAds() {
 
@@ -11,10 +34,20 @@ function getAllAds() {
 
 
   /*Gets a list of all currently saved ads*/
-  $query = $db->prepare('SELECT *
-                         FROM ads
-                         JOIN adstitle
-                         ON ads.titleId = adstitle.id');
+  $query = $db->prepare('SELECT
+                          ads.id        as id,
+                          ads.imagePath as imagePath,
+                          ads.link      as link,
+                          ads.type      as type,
+                          ads.startDate as startDate,
+                          ads.endDate   as endDate,
+                          adstitle.id   as title_id,
+                          adstitle.bg   as title_bg,
+                          adstitle.en   as title_en
+
+                        FROM ads
+                        JOIN adstitle
+                        ON ads.titleId = adstitle.id');
 
   /*Prevent further calculation if the query fail to load*/
   if (!$query->execute()) {
@@ -22,8 +55,17 @@ function getAllAds() {
   }
 
 
-  /*Send the entire query result in indexed array*/
-  return $query->fetchAll(PDO::FETCH_ASSOC);
+  $ads = $query->fetchAll(PDO::FETCH_ASSOC);
+
+  /*Reposition raw DB values*/
+  if (gettype($ads) === 'array' &&
+      sizeof( $ads)
+  ) {
+    foreach ($ads as &$ad) reorderADrecord( $ad );
+  }
+
+
+  return $ads;
 }
 
 
@@ -36,12 +78,22 @@ function getAdByID($id) {
   $db = getDBConnection();
 
 
-  $query = $db->prepare('SELECT *
-                         FROM ads
-                         JOIN adstitle
-                         ON ads.titleId = adstitle.id
-                         WHERE ads.id = :id
-                         LIMIT 1');
+  $query = $db->prepare('SELECT
+                          ads.id        as id,
+                          ads.imagePath as imagePath,
+                          ads.link      as link,
+                          ads.type      as type,
+                          ads.startDate as startDate,
+                          ads.endDate   as endDate,
+                          adstitle.id   as title_id,
+                          adstitle.bg   as title_bg,
+                          adstitle.en   as title_en
+
+                        FROM ads
+                        JOIN adstitle
+                        ON ads.titleId = adstitle.id
+                        WHERE ads.id = :id
+                        LIMIT 1');
   $result = $query->execute(array(
     'id' => $id
   ));
@@ -52,8 +104,8 @@ function getAdByID($id) {
   }
 
 
-  /*Send the entire query result in indexed array*/
-  return $query->fetch(PDO::FETCH_ASSOC);
+  /*Set DB values in ordered JSON-like list*/
+  return reorderADrecord( $query->fetch(PDO::FETCH_ASSOC) );
 }
 
 
@@ -236,7 +288,17 @@ function getFilteredAds($filters) {
 
 
   /*Gets a list of all currently saved ads*/
-  $query = $db->prepare('SELECT *
+  $query = $db->prepare('SELECT
+                          ads.id        as id,
+                          ads.imagePath as imagePath,
+                          ads.link      as link,
+                          ads.type      as type,
+                          ads.startDate as startDate,
+                          ads.endDate   as endDate,
+                          adstitle.id   as title_id,
+                          adstitle.bg   as title_bg,
+                          adstitle.en   as title_en
+
                          FROM ads
                          JOIN adstitle
                          ON ads.titleId = adstitle.id
@@ -249,16 +311,27 @@ function getFilteredAds($filters) {
   }
 
 
-  /*Send the entire query result in indexed array*/
-  return $query->fetchAll(PDO::FETCH_ASSOC);
+  $ads = $query->fetchAll(PDO::FETCH_ASSOC);
+
+  /*Reposition raw DB values*/
+  if (gettype($ads) === 'array' &&
+      sizeof( $ads)
+  ) {
+    foreach ($ads as &$ad) reorderADrecord( $ad );
+  }
+
+
+  return $ads;
 }
 
 
 
 /*
   Returns a list out of '$properties' that can safely be used to create or update an Ad.
+  if 2nd argument '$mandatory_validation' is set to 'true' then only  set properties will be validated,
+  e.g. if 'type' is set to 'Z' the will be invalid but if not set at all, no error will be send.
 */
-function validateAdProperties(&$properties, $validate_only_set_properties = false) {
+function validateAdProperties(&$properties, $mandatory_validation = true) {
   if (!isset( $properties) ||
       gettype($properties) !== 'array'
   ) {
@@ -266,30 +339,8 @@ function validateAdProperties(&$properties, $validate_only_set_properties = fals
   }
 
 
-if (
-  isset( ) 
-) {
-  Validate
-}
-
-
-if (
-  !validate_only_set_properties
-  !isset( ) ||
-) {
-  Validate
-}
-
-
-if (
-  isset( ) ||
-  !validate_only_set_properties
-) {
-  Validate
-}
-
-
-  if (isset($properties['title']) ||
+  if ($mandatory_validation ||
+      isset($properties['title'])
   ) {
     if (!isset( $properties['title']) ||
         gettype($properties['title']) !== 'array'
@@ -297,66 +348,105 @@ if (
       return 'Invalid "title" property';
     }
 
-    if (!isset( $properties['title']['bg']) ||
-        gettype($properties['title']['bg']) !== 'string'
+
+    if ($mandatory_validation ||
+        isset($properties['title']['bg'])
     ) {
-      return 'Invalid "title"->"bg" property';
+      if (!isset( $properties['title']['bg']) ||
+          gettype($properties['title']['bg']) !== 'string'
+      ) {
+        return 'Invalid "title"->"bg" property';
+      }
+    }
+
+
+    if ($mandatory_validation ||
+        isset($properties['title']['en'])
+    ) {
+      if (!isset( $properties['title']['en']) ||
+          gettype($properties['title']['en']) !== 'string'
+      ) {
+        return 'Invalid "title"->"en" property';
+      }
     }
   }
 
 
-  if (!isset( $properties['title']['en']) ||
-      gettype($properties['title']['en']) !== 'string'
+  if ($mandatory_validation ||
+      isset($properties['type'])
   ) {
-    return 'Invalid "title"->"en" property';
+    if (!isset(     $properties['type']) ||
+        !is_numeric($properties['type'])
+    ) {
+      return 'Invalid "type" property';
+    }
+
+    $properties['type'] *= 1;
+    if ($properties['type'] !== 1 &&
+        $properties['type'] !== 2
+    ) {
+      return 'Invalid "type" property value. Valid "type" values are: 1, 2';
+    }
   }
 
-  if (!isset(     $properties['type']) ||
-      !is_numeric($properties['type'])
+
+  if ($mandatory_validation ||
+      isset($properties['imagePath'])
   ) {
-    return 'Invalid "type" property';
+    if (!isset( $properties['imagePath'])              ||
+        gettype($properties['imagePath']) !== 'string' ||
+        !sizeof($properties['imagePath'])
+    ) {
+      return 'Invalid "imagePath" property';
+    }
   }
 
-  $properties['type'] *= 1;
-  if ($properties['type'] !== 1 &&
-      $properties['type'] !== 2
-  ) {
-    return 'Invalid "type" property value. Valid "type" values are: 1, 2';
-  }
 
-  if (!isset( $properties['imagePath'])              ||
-      gettype($properties['imagePath']) !== 'string' ||
-      !sizeof($properties['imagePath'])
+  if ($mandatory_validation ||
+      isset($properties['link'])
   ) {
-    return 'Invalid "imagePath" property';
-  }
-
-  if (!isset($properties['link']) ||
-      !filter_var($properties['link'], FILTER_VALIDATE_URL)
-  ) {
-    return 'Invalid "link" property';
+    if (!isset($properties['link']) ||
+        !filter_var($properties['link'], FILTER_VALIDATE_URL)
+    ) {
+      return 'Invalid "link" property';
+    }
   }
 
 
   $date_format = 'Y-m-d H:i:s';
 
-  if (!isset( $properties['startDate'] ) ||
-      !getValidDate( $properties['startDate'], $date_format)
+
+  if ($mandatory_validation ||
+      isset($properties['startDate'])
   ) {
-    return 'Invalid "startDate" property';
+    if (!isset( $properties['startDate'] ) ||
+        !getValidDate( $properties['startDate'], $date_format)
+    ) {
+      return 'Invalid "startDate" property';
+    }
   }
 
-  if (!isset( $properties['endDate'] ) ||
-      !getValidDate( $properties['endDate'], $date_format)
+
+  if ($mandatory_validation ||
+      isset($properties['endDate'])
   ) {
-    return 'Invalid "endDate" property';
+    if (!isset( $properties['endDate'] ) ||
+        !getValidDate( $properties['endDate'], $date_format)
+    ) {
+      return 'Invalid "endDate" property';
+    }
   }
 
-  $startDate = strtotime($properties['startDate']);
-  $endDate   = strtotime($properties['endDate'  ]);
 
-  if ($startDate > $endDate) {
-    return 'Ad "startDate" must not be greater then its "endDate"';
+  if (isset($properties['startDate']) &&
+      isset($properties['endDate'  ])
+  ) {
+    $startDate = strtotime($properties['startDate']);
+    $endDate   = strtotime($properties['endDate'  ]);
+
+    if ($startDate > $endDate) {
+      return 'Ad "startDate" must not be greater then its "endDate"';
+    }
   }
 
 
@@ -366,6 +456,19 @@ if (
     if (!in_array($key, $valid_property_keys)) {
       unset( $properties[ $key ] );
     }
+
+    /*Be sure to leave only valid title values*/
+    if ($key === 'title' &&
+        gettype($properties['title']) === 'array'
+    ) {
+      $valid_title_keys = array('bg', 'en');
+
+      foreach ($properties['title'] as $title_key => $title_value) {
+        if (!in_array($title_key, $valid_title_keys)) {
+          unset( $properties['title'][ $title_key ] );
+        }
+      }
+    }/*End of "if key is title"*/
   }
 
 
@@ -422,4 +525,87 @@ function createAd($properties) {
 
   /*Try to show the creation result*/
   return getAdByID( $db->lastInsertId() );
+}
+
+
+
+/*
+  Update the Ad with id '$ad_id' with the values from '$properties'.
+  Values validation is secured with 'validateAdProperties()'
+*/
+function updateAd($ad_id, $properties) {
+
+  /*Be sure we have already existing record*/
+  $ad = getAdByID( $ad_id );
+  if (!$ad) {
+    return 'Unable to find Ad with ID: '.$ad_id;
+  }
+
+
+  /*This will secure the rule "startDate <= endDate" even if only one of them needs to be updated*/
+  if (isset($properties['startDate']) ||
+      isset($properties['endDate'  ])
+  ) {
+    if (!isset($properties['startDate'])) $properties['startDate'] = $ad['startDate'];
+    if (!isset($properties['endDate'  ])) $properties['endDate'  ] = $ad['endDate'  ];
+  }
+
+
+  /*Be sure we can use all correctly set Ad properties*/
+  $properties = validateAdProperties( $properties, false);
+  if (gettype($properties) !== 'array') {
+    return $properties;
+  }
+
+
+  /*Access the common DB connection handler*/
+  require_once('./models/db_manager.php');
+  $db = getDBConnection();
+
+
+  /*Check if we need to update Ad title since its not in Ad main table*/
+  if (isset(  $properties['title']) &&
+      gettype($properties['title']) === 'array'
+  ) {
+
+    $set_clauses = array();
+    foreach ($properties['title'] as $key => $value) {
+      $set_clauses []= $key.'=:'.$key;
+    }
+
+    /*Try to update Ad title*/
+    $query  = $db->prepare('UPDATE adstitle SET '.implode(', ', $set_clauses).' WHERE id='.$ad['title_id']);
+    $result = $query->execute( $properties['title'] );
+
+    /*Prevent further update if current query fail*/
+    if (!$result) {
+      return 'Unable to update Ad title';
+    }
+
+
+    /*
+      Remove the need for updating this property since
+      no updating errors were triggered so far
+    */
+    unset( $properties['title'] );
+  }
+
+
+  $set_clauses = array();
+  foreach ($properties as $key => $value) {
+    $set_clauses []= $key.'=:'.$key;
+  }
+
+  /*Try to update Ad title*/
+  $query  = $db->prepare('UPDATE ads SET '.implode(', ', $set_clauses).' WHERE id='.$ad['id']);
+  $result = $query->execute( $properties );
+
+  /*Prevent further update if current query fail*/
+  if (!$result) {
+    return 'Unable to update Ad';
+  }
+
+
+  /*Return the updated record so callee can verify the process too*/
+  return getAdByID( $ad['id'] );
 }

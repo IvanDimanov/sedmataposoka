@@ -39,6 +39,57 @@ function createAdController() {
 
 
 
+/*
+  Ask the model to update Ad with ID sent as 1st and only URL parameter.
+  Will print a possible update error or the full updated Ad on success.
+*/
+function updateAdController() {
+  global $user, $request;
+
+  /*Secure only logged "super admin" to have access to this function*/
+  if (!isset($user['type']) ||
+      $user['type'] !== 'super_admin'
+  ) {
+    header('HTTP/1.1 401 Unauthorized');
+    die();
+  }
+
+
+  require_once('./models/ads.php');
+
+
+  /*Be sure we try to update an existing Ad*/
+  $ad_id = $request['url_conponents'][1];
+  $ad    = getAdByID( $ad_id );
+  if (gettype($ad) !== 'array') {
+    header('HTTP/1.1 404 Not Found');
+    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+  }
+
+
+  /*Use DB model function to determine if the input can be correctly used*/
+  $ad_properties = validateAdProperties( $request['data'], false);
+  if (gettype($ad_properties) !== 'array') {
+    header('HTTP/1.1 400 Bad Request');
+    die('{"error":"'.str_replace('"', '\"', $ad_properties).'"}');
+  }
+
+
+  /*Try to update the Ad with validated properties*/
+  $updated_ad = updateAd( $ad_id, $ad_properties );
+  if (gettype($updated_ad) !== 'array') {
+    header('HTTP/1.1 400 Bad Request');
+    die('{"error":"'.str_replace('"', '\"', $updated_ad).'"}');
+  }
+
+
+  /*Return the successfully updated Ad*/
+  header('HTTP/1.1 200 OK');
+  die(json_unicode_encode( $updated_ad ));
+}
+
+
+
 /*Shows all saved Ads taken from the DB*/
 function showAllAds() {
   global $user, $request;
@@ -120,7 +171,7 @@ function showAd() {
 
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID '.$ad_id.'"}');
+    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
   }
 
   header('HTTP/1.1 200 OK');
@@ -140,6 +191,21 @@ if (sizeof( $request['url_conponents'] ) === 1      &&
     sizeof( $request['data'] )
 ) {
   createAdController();
+  return;
+}
+
+
+/*Validates rooting:
+  /ads
+in methods:
+  PUT
+*/
+if (sizeof( $request['url_conponents'] ) === 2     &&
+    $request['url_conponents'][0]        === 'ads' &&
+    $request['method']                   === 'PUT' &&
+    sizeof( $request['data'] )
+) {
+  updateAdController();
   return;
 }
 

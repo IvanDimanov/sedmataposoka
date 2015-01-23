@@ -22,19 +22,40 @@ $(function () {
     }
 /**/
 
+/**/
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads/15'
+/**/
+
 /*
     type: 'POST',
     url : 'http://idimanov.com/sedmataposoka/rest_api/ads',
     data: {
       title: {
-        bg: 'Ц тест адд',
-        en: 'C test add'
+        bg: '----- Ц тест адд',
+        en: '----- C test add'
       },
-      type     : 1,
-      imagePath: 'ad',
-      link     : 'http://www.testAdd.com',
-      startDate: '2013-02-17 00:00:00',
-      endDate  : '2013-12-17 05:00:00'
+      type     : 2,
+      imagePath: './image.png',
+      link     : 'htt://www.ZZZZZZtestAdd.com',
+      startDate: '2015-11-11 00:00:00',
+      endDate  : '2015-11-11 11:00:00'
+    }
+/**/
+
+/*
+    type: 'PUT',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/ads/15',
+    data: {
+      title: {
+        bg: 'База - обновена пак',
+        _en: 'Base - updated'
+      },
+      _type     : 2,
+      imagePath: './update_image.png',
+      link     : 'http://www.ZZZ.com',
+      startDate: '1999-11-11 00:00:00',
+      endDate  : '2000-11-11 11:00:00'
     }
 /**/
 
