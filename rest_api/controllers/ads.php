@@ -180,6 +180,45 @@ function showAd() {
 
 
 
+/*
+  Asks the DB model to remove all records for the Ad
+  described from its ID as 1st and only URL parameter
+*/
+function deleteAdController() {
+  global $user, $request;
+
+  /*Secure only logged "super admin" to have access to this function*/
+  if (!isset($user['type']) ||
+      $user['type'] !== 'super_admin'
+  ) {
+    header('HTTP/1.1 401 Unauthorized');
+    die();
+  }
+
+
+  require_once('./models/ads.php');
+
+  $ad_id = $request['url_conponents'][1];
+  $ad    = getAdByID( $ad_id );
+
+  if (gettype($ad) !== 'array') {
+    header('HTTP/1.1 404 Not Found');
+    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+  }
+
+
+  if ($error_message = deleteAd( $ad['id'] )) {
+    header('HTTP/1.1 400 Bad Request');
+    die('{"error":"'.str_replace('"', '\"', $error_message).'"}');
+  }
+
+
+  header('HTTP/1.1 204 No Content');
+  die();
+}
+
+
+
 /*Validates rooting:
   /ads
 in methods:
@@ -235,10 +274,25 @@ if (sizeof( $request['url_conponents'] ) === 1     &&
 in methods:
   GET
 */
-if (sizeof( $request['url_conponents'] ) === 2 &&
-    $request['url_conponents'][0]        === 'ads'
+if (sizeof( $request['url_conponents'] ) === 2     &&
+    $request['url_conponents'][0]        === 'ads' &&
+    $request['method']                   === 'GET'
 ) {
   showAd();
+  return;
+}
+
+
+/*Validates rooting:
+  /ads/:ad_id
+in methods:
+  DELETE
+*/
+if (sizeof( $request['url_conponents'] ) === 2     &&
+    $request['url_conponents'][0]        === 'ads' &&
+    $request['method']                   === 'DELETE'
+) {
+  deleteAdController();
   return;
 }
 

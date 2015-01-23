@@ -609,3 +609,50 @@ function updateAd($ad_id, $properties) {
   /*Return the updated record so callee can verify the process too*/
   return getAdByID( $ad['id'] );
 }
+
+
+
+/*
+  Tries to remove all known records for Ad with ID '$ad_id'.
+  Returns an error {string} or {boolean} 'false'.
+*/
+function deleteAd($ad_id) {
+
+  /*Be sure we have already existing record*/
+  $ad = getAdByID( $ad_id );
+  if (!$ad) {
+    return 'Unable to find Ad with ID: '.$ad_id;
+  }
+
+
+  /*Access the common DB connection handler*/
+  require_once('./models/db_manager.php');
+  $db = getDBConnection();
+
+
+  /*Try to delete Ad title first hence the foreign key constraint*/
+  $query  = $db->prepare('DELETE FROM adstitle WHERE id=:id');
+  $result = $query->execute(array('id' => $ad['title_id']));
+
+  /*Prevent further delete if current query fail*/
+  if (!$result) {
+    return 'Unable to delete Ad title';
+  }
+
+
+  $query  = $db->prepare('DELETE FROM ads WHERE id=:id');
+  $result = $query->execute(array('id' => $ad['id']));
+
+  if (!$result) {
+    return 'Unable to delete Ad from its main table';
+  }
+
+
+  /*Be sure no one can get the information again*/
+  $deleted_ad = getAdByID( $ad['id'] );
+  if (gettype($deleted_ad) === 'array') {
+    return 'Unable to delete Ad';
+  }
+
+  return;
+}
