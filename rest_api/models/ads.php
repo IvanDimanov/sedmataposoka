@@ -25,7 +25,47 @@ function reorderADrecord(&$ad) {
 
 
 
-/*Returns an indexed array of all ads records we have in DB*/
+/*Return all the info we have for Ad with ID '$id' or return 'false'*/
+function getAdByID($id) {
+
+  /*Access the common DB connection handler*/
+  require_once('./models/db_manager.php');
+  $db = getDBConnection();
+
+
+  $query = $db->prepare('SELECT
+                          ads.id        as id,
+                          ads.imagePath as imagePath,
+                          ads.link      as link,
+                          ads.type      as type,
+                          ads.startDate as startDate,
+                          ads.endDate   as endDate,
+                          adstitle.id   as title_id,
+                          adstitle.bg   as title_bg,
+                          adstitle.en   as title_en
+
+                        FROM ads
+                        JOIN adstitle
+                        ON ads.titleId = adstitle.id
+                        WHERE ads.id = :id
+                        LIMIT 1');
+  $result = $query->execute(array(
+    'id' => $id
+  ));
+
+  /*Prevent further calculation if the query fail to load*/
+  if (!$result) {
+    return;
+  }
+
+
+  /*Set DB values in ordered JSON-like list*/
+  return reorderADrecord( $query->fetch(PDO::FETCH_ASSOC) );
+}
+
+
+
+/*Returns an indexed array of all Ads records we have in DB*/
 function getAllAds() {
 
   /*Access the common DB connection handler*/
@@ -70,49 +110,9 @@ function getAllAds() {
 
 
 
-/*Return all the info we have for ad with ID '$id' or return 'false'*/
-function getAdByID($id) {
-
-  /*Access the common DB connection handler*/
-  require_once('./models/db_manager.php');
-  $db = getDBConnection();
-
-
-  $query = $db->prepare('SELECT
-                          ads.id        as id,
-                          ads.imagePath as imagePath,
-                          ads.link      as link,
-                          ads.type      as type,
-                          ads.startDate as startDate,
-                          ads.endDate   as endDate,
-                          adstitle.id   as title_id,
-                          adstitle.bg   as title_bg,
-                          adstitle.en   as title_en
-
-                        FROM ads
-                        JOIN adstitle
-                        ON ads.titleId = adstitle.id
-                        WHERE ads.id = :id
-                        LIMIT 1');
-  $result = $query->execute(array(
-    'id' => $id
-  ));
-
-  /*Prevent further calculation if the query fail to load*/
-  if (!$result) {
-    return;
-  }
-
-
-  /*Set DB values in ordered JSON-like list*/
-  return reorderADrecord( $query->fetch(PDO::FETCH_ASSOC) );
-}
-
-
-
 /*
   Will return an error string message if the incoming '$filters'
-  is not suitable for filtering search for Ads.
+  are not suitable for filtering search for Ads.
   Please be advised that keys in '$filters' that are not used
   for filtering will be deleted from '$filters'.
 */
@@ -231,7 +231,7 @@ function validateAdsFilters(&$filters) {
 
 
 
-/*Returns an indexed array of all ads records we have in DB*/
+/*Returns an indexed array of all Ads records we have in DB*/
 function getFilteredAds($filters) {
 
   /*Be sure we can safely use the input for filtering*/
@@ -247,47 +247,47 @@ function getFilteredAds($filters) {
   $where_clauses = array();
 
   if (isset($filters['ids'])) {
-    $where_clauses []= 'ads.id in ('.implode(', ', $filters['ids']).')';
+    $where_clauses []= 'ads.id IN ('.implode(', ', $filters['ids']).')';
     unset( $filters['ids'] );
   }
 
   if (isset($filters['types'])) {
-    $where_clauses []= 'ads.type in ('.implode(', ', $filters['types']).')';
+    $where_clauses []= 'ads.type IN ('.implode(', ', $filters['types']).')';
     unset( $filters['types'] );
   }
 
   if (isset($filters['title'])) {
-    $where_clauses []= '(adstitle.bg like :title or
-                         adstitle.en like :title)';
+    $where_clauses []= '(adstitle.bg LIKE :title OR
+                         adstitle.en LIKE :title)';
     $filters['title'] = '%'.$filters['title'].'%';
   }
 
   if (isset($filters['link'])) {
-    $where_clauses []= 'ads.link like :link';
+    $where_clauses []= 'ads.link LIKE :link';
     $filters['link'] = '%'.$filters['link'].'%';
   }
 
   if (isset($filters['imagePath'])) {
-    $where_clauses []= 'ads.imagePath like :imagePath';
+    $where_clauses []= 'ads.imagePath LIKE :imagePath';
     $filters['imagePath'] = '%'.$filters['imagePath'].'%';
   }
 
   if (isset($filters['fromDate'])) {
-    $where_clauses []= '(ads.startDate >= :fromDate or (
-                          ads.startDate <= :fromDate and
+    $where_clauses []= '(ads.startDate >= :fromDate OR (
+                          ads.startDate <= :fromDate AND
                           ads.endDate   > :fromDate
                         ))';
   }
 
   if (isset($filters['toDate'])) {
-    $where_clauses []= '(ads.endDate <= :toDate or (
-                          ads.startDate <= :toDate and
+    $where_clauses []= '(ads.endDate <= :toDate OR (
+                          ads.startDate <= :toDate AND
                           ads.endDate   >  :toDate
                         ))';
   }
 
 
-  /*Gets a list of all currently saved ads*/
+  /*Filter the Ads by the saved rules in '$where_clauses'*/
   $query = $db->prepare('SELECT
                           ads.id        as id,
                           ads.imagePath as imagePath,
@@ -328,8 +328,8 @@ function getFilteredAds($filters) {
 
 /*
   Returns a list out of '$properties' that can safely be used to create or update an Ad.
-  if 2nd argument '$mandatory_validation' is set to 'true' then only  set properties will be validated,
-  e.g. if 'type' is set to 'Z' the will be invalid but if not set at all, no error will be send.
+  if 2nd argument '$mandatory_validation' is set to 'true' then only set properties will be validated,
+  e.g. if 'type' is set to 'Z' it will be invalid but if not set at all, no error will be send.
 */
 function validateAdProperties(&$properties, $mandatory_validation = true) {
   if (!isset( $properties) ||
@@ -478,8 +478,8 @@ function validateAdProperties(&$properties, $mandatory_validation = true) {
 
 
 /*
-  Use 'validateAdProperties() to save already valid Ad properties.
-  Will return error {string} of failure or newly created Ad as {array}
+  Use 'validateAdProperties() to save already valid Ad values.
+  Will return error {string} in case of failure or newly created Ad as {array}
 */
 function createAd($properties) {
 
@@ -495,8 +495,11 @@ function createAd($properties) {
   $db = getDBConnection();
 
 
-  /*Try to create Ad title first*/
-  $query  = $db->prepare('insert into adstitle ( en,  bg) values
+  /*
+    Try to create Ad title first in order to use the Title ID later
+    when we create the Ad in its main table
+  */
+  $query  = $db->prepare('INSERT INTO adstitle ( en,  bg) VALUES
                                                (:en, :bg)');
   $result = $query->execute(array(
     'en' => $properties['title']['en'],
@@ -509,12 +512,12 @@ function createAd($properties) {
   }
 
 
-  /*Set reference to already saved title property*/
+  /*Set reference ID to already saved title property*/
   unset( $properties['title'] );
   $properties['titleId'] = $db->lastInsertId();
 
   /*Try to create Ad in its main table*/
-  $query  = $db->prepare('insert into ads ( imagePath,  link,  titleId,  type,  startDate,  endDate) values
+  $query  = $db->prepare('INSERT INTO ads ( imagePath,  link,  titleId,  type,  startDate,  endDate) VALUES
                                           (:imagePath, :link, :titleId, :type, :startDate, :endDate)');
   $result = $query->execute( $properties );
 
@@ -530,7 +533,7 @@ function createAd($properties) {
 
 
 /*
-  Update the Ad with id '$ad_id' with the values from '$properties'.
+  Update the Ad with ID '$ad_id' with the values from '$properties'.
   Values validation is secured with 'validateAdProperties()'
 */
 function updateAd($ad_id, $properties) {
@@ -542,7 +545,7 @@ function updateAd($ad_id, $properties) {
   }
 
 
-  /*This will secure the rule "startDate <= endDate" even if only one of them needs to be updated*/
+  /*This will secure the rule "startDate <= endDate" even if only date needs to be updated*/
   if (isset($properties['startDate']) ||
       isset($properties['endDate'  ])
   ) {
@@ -551,7 +554,7 @@ function updateAd($ad_id, $properties) {
   }
 
 
-  /*Be sure we can use all correctly set Ad properties*/
+  /*Be sure we can use only correctly set Ad properties*/
   $properties = validateAdProperties( $properties, false);
   if (gettype($properties) !== 'array') {
     return $properties;
@@ -596,7 +599,7 @@ function updateAd($ad_id, $properties) {
     $set_clauses []= $key.'=:'.$key;
   }
 
-  /*Try to update Ad title*/
+  /*Try to update Ad in its main table*/
   $query  = $db->prepare('UPDATE ads SET '.implode(', ', $set_clauses).' WHERE id='.$ad['id']);
   $result = $query->execute( $properties );
 
@@ -620,7 +623,7 @@ function deleteAd($ad_id) {
 
   /*Be sure we have already existing record*/
   $ad = getAdByID( $ad_id );
-  if (!$ad) {
+  if (gettype($ad) !== 'array') {
     return 'Unable to find Ad with ID: '.$ad_id;
   }
 
@@ -648,7 +651,7 @@ function deleteAd($ad_id) {
   }
 
 
-  /*Be sure no one can get the information again*/
+  /*Be sure no one can get the deleted information*/
   $deleted_ad = getAdByID( $ad['id'] );
   if (gettype($deleted_ad) === 'array') {
     return 'Unable to delete Ad';
