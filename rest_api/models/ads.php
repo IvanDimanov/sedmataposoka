@@ -391,18 +391,6 @@ function validateAdProperties(&$properties, $mandatory_validation = true) {
 
 
   if ($mandatory_validation ||
-      isset($properties['imagePath'])
-  ) {
-    if (!isset( $properties['imagePath'])              ||
-        gettype($properties['imagePath']) !== 'string' ||
-        !sizeof($properties['imagePath'])
-    ) {
-      return 'Invalid "imagePath" property';
-    }
-  }
-
-
-  if ($mandatory_validation ||
       isset($properties['link'])
   ) {
     if (!isset($properties['link']) ||
@@ -451,7 +439,7 @@ function validateAdProperties(&$properties, $mandatory_validation = true) {
 
 
   /*Be sure to return a list containing only valid properties as keys*/
-  $valid_property_keys = array('type', 'title', 'link', 'imagePath', 'startDate', 'endDate');
+  $valid_property_keys = array('type', 'title', 'link', 'startDate', 'endDate');
   foreach ($properties as $key => $value) {
     if (!in_array($key, $valid_property_keys)) {
       unset( $properties[ $key ] );
@@ -517,8 +505,8 @@ function createAd($properties) {
   $properties['titleId'] = $db->lastInsertId();
 
   /*Try to create Ad in its main table*/
-  $query  = $db->prepare('INSERT INTO ads ( imagePath,  link,  titleId,  type,  startDate,  endDate) VALUES
-                                          (:imagePath, :link, :titleId, :type, :startDate, :endDate)');
+  $query  = $db->prepare('INSERT INTO ads ( link,  titleId,  type,  startDate,  endDate) VALUES
+                                          (:link, :titleId, :type, :startDate, :endDate)');
   $result = $query->execute( $properties );
 
   if (!$result) {
@@ -606,6 +594,76 @@ function updateAd($ad_id, $properties) {
   /*Prevent further update if current query fail*/
   if (!$result) {
     return 'Unable to update Ad';
+  }
+
+
+  /*Return the updated record so callee can verify the process too*/
+  return getAdByID( $ad['id'] );
+}
+
+
+
+/*
+  Try to update the Ad image file
+  by saving valid file from '$_FILE' and
+  updating its new path in the DB.
+*/
+function updateAdImage($ad_id) {
+
+  /*Be sure we have already existing record*/
+  $ad = getAdByID( $ad_id );
+  if (!$ad) {
+    return 'Unable to find Ad with ID: '.$ad_id;
+  }
+
+
+  // Undefined | Multiple Files | $_FILES Corruption Attack
+  // If this request falls under any of them, treat it invalid.
+  if (!isset(  $_FILES['file']['error']) ||
+      is_array($_FILES['file']['error'])
+  ) {
+    die('Invalid parameters');
+  }
+
+  // Check $_FILES['file']['error'] value.
+  switch ($_FILES['file']['error']) {
+    case UPLOAD_ERR_OK       : break;
+    case UPLOAD_ERR_NO_FILE  : die('No file sent');
+    case UPLOAD_ERR_INI_SIZE :
+    case UPLOAD_ERR_FORM_SIZE: die('Exceeded file size limit');
+    default                  : die('Error during upload');
+  }
+
+  // You should also check filesize here.
+  if ($_FILES['file']['size'] > 1000000) {
+    die('Exceeded files ize limit');
+  }
+
+  $uploaded_file_path = './uploads/test.file';
+
+  // You should name it uniquely.
+  // DO NOT USE $_FILES['file']['name'] WITHOUT ANY VALIDATION !!
+  // On this example, obtain safe unique name from its binary data.
+  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $uploaded_file_path )) {
+    die('Failed to move uploaded file');
+  }
+
+  echo 'File is uploaded successfully as "'.$uploaded_file_path.'"';
+
+
+  $imagePath = '';
+
+
+  /*Try to update Ad in its main table*/
+  $query  = $db->prepare('UPDATE ads SET imagePath=:imagePath WHERE id=:id');
+  $result = $query->execute(array(
+    'id'        => $ad['id'],
+    'imagePath' => $imagePath
+  ));
+
+  /*Prevent further update if current query fail*/
+  if (!$result) {
+    return 'Unable to update Ad Image path in the DB';
   }
 
 

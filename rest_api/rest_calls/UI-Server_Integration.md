@@ -99,7 +99,6 @@ Request data: {
   },
 
   "type"     : 1
-  "imagePath": "ads/test_add.jpg",
   "link"     : "http://test_add_link.com",
 
   "startDate": "2013-11-16 00:00:00",
@@ -114,7 +113,7 @@ Response data: {
   },
 
   "type"     : 1
-  "imagePath": "ads/test_add.jpg",
+  "imagePath": "",
   "link"     : "http://test_add_link.com",
 
   "startDate": "2013-11-16 00:00:00",
@@ -198,14 +197,40 @@ Name        : Update specific Ad
 Route       : /ads/:ad_id
 Request type: PUT
 Request data: {
-  "imagePath": "ads/new_path.jpg",
-  "endDate"  : "2015-11-16 00:00:00"
+  "endDate": "2015-11-16 00:00:00"
 }
 
 Response type: 200
 Response data: {"id":1,"imagePath":"ads/add_1.jpg", ...}
 
 Response type: 400
+Response data: '{error:"Invalid 'fromDate' property"}'
+
+Response type: 401
+Response data: ''
+
+Response type: 404
+Response data: '{error:"Unknown Ad ID"}'
+
+
+-----------------------------------------------------------------------
+
+
+Name        : Update Ad Image
+Route       : /ads/:ad_id/image
+Request type: POST
+Request data: Image data
+
+Response type: 200
+Response data: {"id":1,"type":2,"imagePath":"ads/add_1.jpg", ...}
+
+Response type: 400
+Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'fromDate' property"}'
 Response data: '{error:"Invalid 'fromDate' property"}'
 
 Response type: 401

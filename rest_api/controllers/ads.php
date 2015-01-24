@@ -181,6 +181,49 @@ function updateAdController() {
 
 
 /*
+
+
+
+*/
+function updateAdImageController() {
+  global $user, $request;
+
+  /*Secure only logged "super admin" to have access to this function*/
+  if (!isset($user['type']) ||
+      $user['type'] !== 'super_admin'
+  ) {
+    header('HTTP/1.1 401 Unauthorized');
+    die();
+  }
+
+
+  require_once('./models/ads.php');
+
+
+  /*Be sure we try to update an existing Ad*/
+  $ad_id = $request['url_conponents'][1];
+  $ad    = getAdByID( $ad_id );
+  if (gettype($ad) !== 'array') {
+    header('HTTP/1.1 404 Not Found');
+    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+  }
+
+  /*Let the model manage file save and file name DB records*/
+  $updated_ad = updateAdImage( $ad_id );
+  if (gettype($updated_ad) !== 'array') {
+    header('HTTP/1.1 400 Bad Request');
+    die('{"error":"'.str_replace('"', '\"', $updated_ad).'"}');
+  }
+
+
+  /*Return the successfully updated Ad*/
+  header('HTTP/1.1 200 OK');
+  die(json_unicode_encode( $updated_ad ));
+}
+
+
+
+/*
   Asks the DB model to remove all records for the Ad
   referenced with its ID as 1st and only URL parameter
 */
@@ -279,6 +322,22 @@ if (sizeof( $request['url_conponents'] ) === 2     &&
     sizeof( $request['data'] )
 ) {
   updateAdController();
+  return;
+}
+
+
+/*Validates rooting:
+  /ads/:ad_id/image
+in methods:
+  POST
+*/
+if (sizeof( $request['url_conponents'] ) === 3       &&
+    $request['url_conponents'][0]        === 'ads'   &&
+    $request['url_conponents'][2]        === 'image' &&
+    $request['method']                   === 'POST'  &&
+    sizeof( $request['data'] )
+) {
+  updateAdImageController();
   return;
 }
 
