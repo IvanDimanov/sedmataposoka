@@ -13,6 +13,10 @@
     },
     "create_user": {
       "access_token_expiration_time": 86400
+    },
+    "upload": {
+      "destination_folder_path": "./uploads",
+      "file_max_size_limit"    : 31457280
     }
   },
   "recaptcha": {

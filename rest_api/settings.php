@@ -21,7 +21,7 @@ if (!$settings) {
 /*Secure all '$settings' properties*/
 
 if (!isset( $settings['domain']) ||
-    gettype($settings['domain']) != 'string' ||
+    gettype($settings['domain']) !== 'string' ||
     strlen( $settings['domain']) < 3
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -30,7 +30,7 @@ if (!isset( $settings['domain']) ||
 
 
 if (!isset( $settings['database']) ||
-    gettype($settings['database']) != 'array'
+    gettype($settings['database']) !== 'array'
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'database\' property"}');
@@ -38,7 +38,7 @@ if (!isset( $settings['database']) ||
 
 
 if (!isset( $settings['database']['host']) ||
-    gettype($settings['database']['host']) != 'string' ||
+    gettype($settings['database']['host']) !== 'string' ||
     strlen( $settings['database']['host']) < 3
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -47,7 +47,7 @@ if (!isset( $settings['database']['host']) ||
 
 
 if (!isset( $settings['database']['name']) ||
-    gettype($settings['database']['name']) != 'string' ||
+    gettype($settings['database']['name']) !== 'string' ||
     strlen( $settings['database']['name']) < 3
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -56,7 +56,7 @@ if (!isset( $settings['database']['name']) ||
 
 
 if (!isset( $settings['database']['user_name']) ||
-    gettype($settings['database']['user_name']) != 'string' ||
+    gettype($settings['database']['user_name']) !== 'string' ||
     strlen( $settings['database']['user_name']) < 3
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -65,7 +65,7 @@ if (!isset( $settings['database']['user_name']) ||
 
 
 if (!isset( $settings['database']['password']) ||
-    gettype($settings['database']['password']) != 'string' ||
+    gettype($settings['database']['password']) !== 'string' ||
     strlen( $settings['database']['password']) < 3
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -74,7 +74,7 @@ if (!isset( $settings['database']['password']) ||
 
 
 if (!isset( $settings['controllers']) ||
-    gettype($settings['controllers']) != 'array'
+    gettype($settings['controllers']) !== 'array'
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'controllers\' property"}');
@@ -82,7 +82,7 @@ if (!isset( $settings['controllers']) ||
 
 
 if (!isset( $settings['controllers']['login']) ||
-    gettype($settings['controllers']['login']) != 'array'
+    gettype($settings['controllers']['login']) !== 'array'
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'controllers.login\' property"}');
@@ -90,7 +90,7 @@ if (!isset( $settings['controllers']['login']) ||
 
 
 if (!isset( $settings['controllers']['login']['max_error_attempts']) ||
-    gettype($settings['controllers']['login']['max_error_attempts']) != 'integer' ||
+    gettype($settings['controllers']['login']['max_error_attempts']) !== 'integer' ||
             $settings['controllers']['login']['max_error_attempts'] < 2
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -99,7 +99,7 @@ if (!isset( $settings['controllers']['login']['max_error_attempts']) ||
 
 
 if (!isset( $settings['controllers']['login']['time_after_captcha_is_required']) ||
-    gettype($settings['controllers']['login']['time_after_captcha_is_required']) != 'integer' ||
+    gettype($settings['controllers']['login']['time_after_captcha_is_required']) !== 'integer' ||
             $settings['controllers']['login']['time_after_captcha_is_required'] < 2
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -108,7 +108,7 @@ if (!isset( $settings['controllers']['login']['time_after_captcha_is_required'])
 
 
 if (!isset( $settings['controllers']['create_user']) ||
-    gettype($settings['controllers']['create_user']) != 'array'
+    gettype($settings['controllers']['create_user']) !== 'array'
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'controllers.create_user\' property"}');
@@ -116,7 +116,7 @@ if (!isset( $settings['controllers']['create_user']) ||
 
 
 if (!isset( $settings['controllers']['create_user']['access_token_expiration_time']) ||
-    gettype($settings['controllers']['create_user']['access_token_expiration_time']) != 'integer' ||
+    gettype($settings['controllers']['create_user']['access_token_expiration_time']) !== 'integer' ||
             $settings['controllers']['create_user']['access_token_expiration_time'] < 2
 ) {
   header('HTTP/1.1 500 Internal Server Error');
@@ -124,8 +124,34 @@ if (!isset( $settings['controllers']['create_user']['access_token_expiration_tim
 }
 
 
+if (!isset( $settings['controllers']['upload']) ||
+    gettype($settings['controllers']['upload']) !== 'array'
+) {
+  header('HTTP/1.1 500 Internal Server Error');
+  die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'controllers.upload\' property"}');
+}
+
+
+if (!isset( $settings['controllers']['upload']['destination_folder_path']) ||
+    gettype($settings['controllers']['upload']['destination_folder_path']) !== 'string' ||
+    strlen( $settings['controllers']['upload']['destination_folder_path']) < 2
+) {
+  header('HTTP/1.1 500 Internal Server Error');
+  die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'controllers.upload.destination_folder_path\' property"}');
+}
+
+
+if (!isset( $settings['controllers']['upload']['file_max_size_limit']) ||
+    gettype($settings['controllers']['upload']['file_max_size_limit']) !== 'integer' ||
+            $settings['controllers']['upload']['file_max_size_limit'] < 2
+) {
+  header('HTTP/1.1 500 Internal Server Error');
+  die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'controllers.upload.file_max_size_limit\' property"}');
+}
+
+
 if (!isset( $settings['recaptcha']) ||
-    gettype($settings['recaptcha']) != 'array'
+    gettype($settings['recaptcha']) !== 'array'
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'recaptcha\' property"}');
@@ -133,8 +159,8 @@ if (!isset( $settings['recaptcha']) ||
 
 
 if (!isset( $settings['recaptcha']['public_key']) ||
-    gettype($settings['recaptcha']['public_key']) != 'string' ||
-    strlen( $settings['recaptcha']['public_key']) != 40
+    gettype($settings['recaptcha']['public_key']) !== 'string' ||
+    strlen( $settings['recaptcha']['public_key']) !== 40
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'recaptcha.public_key\' property"}');
@@ -142,8 +168,8 @@ if (!isset( $settings['recaptcha']['public_key']) ||
 
 
 if (!isset( $settings['recaptcha']['private_key']) ||
-    gettype($settings['recaptcha']['private_key']) != 'string' ||
-    strlen( $settings['recaptcha']['private_key']) != 40
+    gettype($settings['recaptcha']['private_key']) !== 'string' ||
+    strlen( $settings['recaptcha']['private_key']) !== 40
 ) {
   header('HTTP/1.1 500 Internal Server Error');
   die('{"error":"Settings file \''.$settings_file_path.'\' has an invalid \'recaptcha.private_key\' property"}');

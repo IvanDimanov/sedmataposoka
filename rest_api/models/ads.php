@@ -609,6 +609,7 @@ function updateAd($ad_id, $properties) {
   updating its new path in the DB.
 */
 function updateAdImage($ad_id) {
+  global $settings;
 
   /*Be sure we have already existing record*/
   $ad = getAdByID( $ad_id );
@@ -617,42 +618,58 @@ function updateAdImage($ad_id) {
   }
 
 
-  // Undefined | Multiple Files | $_FILES Corruption Attack
-  // If this request falls under any of them, treat it invalid.
-  if (!isset(  $_FILES['file']['error']) ||
+  /*Undefined | Multiple Files | $_FILES Corruption Attack*/
+  if (!isset(  $_FILES['file']         ) ||
+      !isset(  $_FILES['file']['error']) ||
       is_array($_FILES['file']['error'])
   ) {
-    die('Invalid parameters');
+    return 'Invalid "file" properties';
   }
 
-  // Check $_FILES['file']['error'] value.
+
+  /*Check if upload fail in a common crash*/
   switch ($_FILES['file']['error']) {
-    case UPLOAD_ERR_OK       : break;
-    case UPLOAD_ERR_NO_FILE  : die('No file sent');
+    case UPLOAD_ERR_OK       : break;  /*No issues, no need to stop the process*/
+    case UPLOAD_ERR_NO_FILE  : return 'No file to upload was sent';
     case UPLOAD_ERR_INI_SIZE :
-    case UPLOAD_ERR_FORM_SIZE: die('Exceeded file size limit');
-    default                  : die('Error during upload');
+    case UPLOAD_ERR_FORM_SIZE: return 'Uploaded file exceeded file size limit';
+    default                  : return 'Error during upload';
   }
 
-  // You should also check filesize here.
-  if ($_FILES['file']['size'] > 1000000) {
-    die('Exceeded files ize limit');
+
+  /*Manually secure the file limit since UI form validation rules can be altered*/
+  if ($_FILES['file']['size'] > $settings['controllers']['upload']['file_max_size_limit']) {
+    return 'Uploaded file exceeded file size limit of '.$settings['controllers']['upload']['file_max_size_limit'].' bytes';
   }
 
-  $uploaded_file_path = './uploads/test.file';
 
-  // You should name it uniquely.
-  // DO NOT USE $_FILES['file']['name'] WITHOUT ANY VALIDATION !!
-  // On this example, obtain safe unique name from its binary data.
-  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $uploaded_file_path )) {
-    die('Failed to move uploaded file');
+  /*Set at least some basic name validation before save it in the server*/
+  $file_name = $_FILES['file']['name'];
+  if (!preg_match('/^[A-Za-z0-9-_\.]+\.[A-Za-z0-9-_]{1,5}$/', $file_name)) {
+    return 'File name "'.$_FILES['file']['name'].'" is not a valid file name';
   }
 
-  echo 'File is uploaded successfully as "'.$uploaded_file_path.'"';
+
+  /*
+    Set some unique file name.
+    Example: "image_1.png" => "image_1_1422205667.png"
+  */
+  $file_name = split('\.', $file_name);
+  array_splice( $file_name, sizeof( $file_name )-1, 0, time());
+  $file_name = implode('.', $file_name);
+
+  /*Mark the exact location we want the incoming file to be saved*/
+  $imagePath = $settings['controllers']['upload']['destination_folder_path'].'/ads/'.$file_name;
+
+  /*Cut-paste the uploaded file from its temporary location*/
+  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $imagePath )) {
+    return 'Failed to move uploaded file into '.$imagePath;
+  }
 
 
-  $imagePath = '';
-
+  /*Access the common DB connection handler*/
+  require_once('./models/db_manager.php');
+  $db = getDBConnection();
 
   /*Try to update Ad in its main table*/
   $query  = $db->prepare('UPDATE ads SET imagePath=:imagePath WHERE id=:id');

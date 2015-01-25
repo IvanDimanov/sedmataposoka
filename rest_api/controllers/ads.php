@@ -181,9 +181,8 @@ function updateAdController() {
 
 
 /*
-
-
-
+  Will ask the model to save the incoming file from '$_FILE' into '/ads/' folder and
+  update the image path into the DB record.
 */
 function updateAdImageController() {
   global $user, $request;
@@ -334,8 +333,7 @@ in methods:
 if (sizeof( $request['url_conponents'] ) === 3       &&
     $request['url_conponents'][0]        === 'ads'   &&
     $request['url_conponents'][2]        === 'image' &&
-    $request['method']                   === 'POST'  &&
-    sizeof( $request['data'] )
+    $request['method']                   === 'POST'
 ) {
   updateAdImageController();
   return;

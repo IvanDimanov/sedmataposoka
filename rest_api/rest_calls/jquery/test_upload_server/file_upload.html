@@ -31,7 +31,7 @@ $(function () {
     var formData = new FormData($('form')[0]);
 
     $.ajax({
-        url : 'http://idimanov.com/sedmataposoka/rest_api/rest_calls/jquery/test_upload_server/file_upload.php',
+        url : 'http://idimanov.com/sedmataposoka/rest_api/ads/1/image',
         type: 'POST',
         data: formData,
 
@@ -41,12 +41,12 @@ $(function () {
         processData: false,
 
         xhr: function () {
-            var xhr = $.ajaxSettings.xhr();
-            if (xhr.upload) {
-                xhr.upload.addEventListener('progress', updateProcessBar, false);
-            }
+          var xhr = $.ajaxSettings.xhr();
+          if (xhr.upload) {
+            xhr.upload.addEventListener('progress', updateProcessBar, false);
+          }
 
-            return xhr;
+          return xhr;
         }
     })
     .always(function (param_1, status, param_2) {
@@ -85,8 +85,8 @@ $(function () {
 
 
 <form enctype="multipart/form-data">
-    <input name="file" type="file" />
-    <input type="button" value="Upload" />
+  <input name="file" type="file" />
+  <input type="button" value="Upload" />
 </form>
 
 <progress></progress>
