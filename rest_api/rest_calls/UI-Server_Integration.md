@@ -225,13 +225,8 @@ Response type: 200
 Response data: {"id":1,"type":2,"imagePath":"ads/add_1.jpg", ...}
 
 Response type: 400
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Uploaded file exceeded file size limit of 31457280 bytes"}'
+Response data: '{error:"File name \"my&&&&file\" is not a valid file name"}'
 
 Response type: 401
 Response data: ''
