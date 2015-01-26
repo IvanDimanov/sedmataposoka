@@ -22,7 +22,7 @@ function showAd() {
 
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
   header('HTTP/1.1 200 OK');
@@ -153,7 +153,7 @@ function updateAdController() {
   $ad    = getAdByID( $ad_id );
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
 
@@ -204,7 +204,7 @@ function updateAdImageController() {
   $ad    = getAdByID( $ad_id );
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
   /*Let the model manage file save and file name DB records*/
@@ -245,7 +245,7 @@ function deleteAdController() {
 
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
 

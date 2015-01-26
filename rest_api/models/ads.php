@@ -582,18 +582,23 @@ function updateAd($ad_id, $properties) {
   }
 
 
-  $set_clauses = array();
-  foreach ($properties as $key => $value) {
-    $set_clauses []= $key.'=:'.$key;
-  }
+  /*Check if there are properties to be updated in the main table*/
+  if (gettype($properties) === 'array' &&
+      sizeof( $properties)
+  ) {
+    $set_clauses = array();
+    foreach ($properties as $key => $value) {
+      $set_clauses []= $key.'=:'.$key;
+    }
 
-  /*Try to update Ad in its main table*/
-  $query  = $db->prepare('UPDATE ads SET '.implode(', ', $set_clauses).' WHERE id='.$ad['id']);
-  $result = $query->execute( $properties );
+    /*Try to update Ad in its main table*/
+    $query  = $db->prepare('UPDATE ads SET '.implode(', ', $set_clauses).' WHERE id='.$ad['id']);
+    $result = $query->execute( $properties );
 
-  /*Prevent further update if current query fail*/
-  if (!$result) {
-    return 'Unable to update Ad';
+    /*Prevent further update if current query fail*/
+    if (!$result) {
+      return 'Unable to update Ad';
+    }
   }
 
 

@@ -260,13 +260,13 @@ Name        : Create Thought
 Route       : /thoughts
 Request type: POST
 Request data: {
-  "text": {
-    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
-    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
-  },
   "author": {
     "bg": "Алберт Айнщаин",
     "en": "Albert Einstein"
+  },
+  "text": {
+    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
+    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
   },
   "startDate": "2013-11-16 00:00:00",
   "endDate"  : "2013-11-17 00:00:00"
@@ -274,13 +274,13 @@ Request data: {
 
 Response type: 201
 Response data: {
-  "text": {
-    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
-    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
-  },
   "author": {
     "bg": "Алберт Айнщаин",
     "en": "Albert Einstein"
+  },
+  "text": {
+    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
+    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
   },
   "startDate": "2013-11-16 00:00:00",
   "endDate"  : "2013-11-17 00:00:00"
@@ -336,9 +336,7 @@ Route       : /thoughts
 Request type: GET
 Request data: {
   "ids"     : [1, 2],
-  "text": {
-    "bg": "Неможем да разрешим",
-  },
+  "text"    : "Неможем да разрешим",
   "fromDate": "2000-11-16 00:00:00",
   "toDate"  : "2013-11-16 00:00:00"
 }
@@ -360,9 +358,7 @@ Name        : Update specific Thought
 Route       : /thoughts/:thought_id
 Request type: PUT
 Request data: {
-  "text": {
-    "bg": "Неможем да разрешим въобще",
-  },
+  "text"   : "Неможем да разрешим въобще",
   "endDate": "2015-11-16 00:00:00"
 }
 
