@@ -474,6 +474,19 @@ function validateThoughtProperties(&$properties, $mandatory_validation = true) {
   }
 
 
+  if (isset(   $properties['author'] ) &&
+      !sizeof( $properties['author'] )
+  ) {
+    unset( $properties['author'] );
+  }
+
+  if (isset(   $properties['text'] ) &&
+      !sizeof( $properties['text'] )
+  ) {
+    unset( $properties['text'] );
+  }
+
+
   return $properties;
 }
 

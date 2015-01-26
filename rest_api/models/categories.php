@@ -402,6 +402,19 @@ function validateCategoryProperties(&$properties, $mandatory_validation = true) 
   }
 
 
+  if (isset(   $properties['name'] ) &&
+      !sizeof( $properties['name'] )
+  ) {
+    unset( $properties['name'] );
+  }
+
+  if (isset(   $properties['description'] ) &&
+      !sizeof( $properties['description'] )
+  ) {
+    unset( $properties['description'] );
+  }
+
+
   return $properties;
 }
 
@@ -691,6 +704,18 @@ function deleteCategory($category_id) {
   $category = getCategoryByID( $category_id );
   if (gettype($category) !== 'array') {
     return 'Unable to find Category with ID: '.$category_id;
+  }
+
+
+  require_once('./models/subcategories.php');
+
+  /*Be sure no subcategories are bind to the one we want to delete*/
+  $subcategories = getSubcategoriesByCategoryID( $category['id'] );
+  if (sizeof( $subcategories )) {
+    $are_term           = sizeof( $subcategories ) === 1 ? 'is'          : 'are';
+    $subcategories_term = sizeof( $subcategories ) === 1 ? 'subcategory' : 'subcategories';
+
+    return 'Unable to delete Category since there '.$are_term.' '.sizeof( $subcategories ).' '.$subcategories_term.' connected to it';
   }
 
 

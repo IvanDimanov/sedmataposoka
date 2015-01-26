@@ -460,6 +460,13 @@ function validateAdProperties(&$properties, $mandatory_validation = true) {
   }
 
 
+  if (isset(   $properties['title'] ) &&
+      !sizeof( $properties['title'] )
+  ) {
+    unset( $properties['title'] );
+  }
+
+
   return $properties;
 }
 

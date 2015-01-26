@@ -256,7 +256,83 @@ $(function () {
 
 /*
     type: 'DELETE',
-    url : 'http://idimanov.com/sedmataposoka/rest_api/categories/4'
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories/1'
+/**/
+
+
+
+
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories/2'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories',
+    data: {
+      _ids        : [2, 5],
+      _categoryIds: [1, 2],
+      _name       : 'хатха',
+      _description: 'йога'
+    }
+/**/
+
+/*
+    type: 'POST',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories',
+    data: {
+      categoryId: 2,
+      name      : {
+        bg: 'Йога за наблюдение',
+        en: 'Observation Yoga'
+      },
+      description: {
+        bg: 'Описание на Йога за наблюдение',
+        en: 'Description of Observation Yoga'
+      }
+    }
+/**/
+
+/*
+    type: 'PUT',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories/10',
+    data: {
+      categoryId: 3
+    }
+/**/
+
+/*
+    type: 'DELETE',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories/10'
+/**/
+
+
+
+
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/events'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/events/5'
+/**/
+
+/**/
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/events',
+    data: {
+      ids: [3, 5]
+    }
 /**/
 
   })

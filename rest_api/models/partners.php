@@ -330,6 +330,13 @@ function validatePartnerProperties(&$properties, $mandatory_validation = true) {
   }
 
 
+  if (isset(   $properties['name'] ) &&
+      !sizeof( $properties['name'] )
+  ) {
+    unset( $properties['name'] );
+  }
+
+
   return $properties;
 }
 
