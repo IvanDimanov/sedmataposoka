@@ -210,10 +210,10 @@ create table partnername (
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 create table partner (
-  id      int not null auto_increment primary key,
-  logoSrc varchar(150) not null,
-  link    varchar(150),
-  nameId  int not null,
+  id        int not null auto_increment primary key,
+  imagePath varchar(150) not null,
+  link      varchar(150),
+  nameId    int not null,
 
   foreign key (nameId) 
     references partnername(id)

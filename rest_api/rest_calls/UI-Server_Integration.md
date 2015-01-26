@@ -404,8 +404,7 @@ Request data: {
     "bg": "Тестови партньор",
     "en": "Test Partner"
   },
-  "logoSrc": "partners/test_partner.png",
-  "link"   : "http://test_partner.com"
+  "link": "http://test_partner.com"
 }
 
 Response type: 201
@@ -414,8 +413,7 @@ Response data: {
     "bg": "Тестови партньор",
     "en": "Test Partner"
   },
-  "logoSrc": "partners/test_partner.png",
-  "link"   : "http://test_partner.com"
+  "link": "http://test_partner.com"
 }
 
 
@@ -436,7 +434,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: [{"id":1,"name":{"bg":"Тестови партньор 1"}, ...},{"id":2,"name":{"bg":"Тестови партньор 2"}, ...}, ...]
+Response data: [{"id":1,"name":{"bg":"Тестови партньор 1", ...}, ...},{"id":2,"name":{"bg":"Тестови партньор 2", ...}, ...}, ...]
 
 Response type: 401
 Response data: ''
@@ -451,7 +449,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: {"id":1,"name":{"bg":"Тестови партньор 1"}, ...}
+Response data: {"id":1,"name":{"bg":"Тестови партньор 1", ...}, ...}
 
 Response type: 401
 Response data: ''
@@ -467,17 +465,18 @@ Name        : Get specific Partners
 Route       : /partners
 Request type: GET
 Request data: {
-  "ids"     : [1, 2],
+  "ids" : [1, 2],
   "name": {
     "bg": "Тестови",
-  }
+  },
+  imagePath: 'partner_1.j'
 }
 
 Response type: 200
-Response data: [{"id":1,"name":{"bg":"Тестови партньор 1"}, ...},{"id":2,"name":{"bg":"Тестови партньор 2"}, ...}, ...]
+Response data: [{"id":1,"name":{"bg":"Тестови партньор 1", ...}, ...},{"id":2,"name":{"bg":"Тестови партньор 2", ...}, ...}, ...]
 
 Response type: 400
-Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'imagePath' property"}'
 
 Response type: 401
 Response data: ''
@@ -497,10 +496,32 @@ Request data: {
 }
 
 Response type: 200
-Response data: {"id":1,"name":{"bg":"Тестови"},"link":"http://test_partner_udpate.com", ...}
+Response data: {"id":1,"name":{"bg":"Тестови", ...},"link":"http://test_partner_udpate.com", ...}
 
 Response type: 400
 Response data: '{error:"Invalid 'link' property"}'
+
+Response type: 401
+Response data: ''
+
+Response type: 404
+Response data: '{error:"Unknown Partner ID"}'
+
+
+-----------------------------------------------------------------------
+
+
+Name        : Update Partner Image
+Route       : /partners/:partner_id/image
+Request type: POST
+Request data: Image data
+
+Response type: 200
+Response data: {"id":1,"name":{"bg":"Тестови", ...},"link":"http://test_partner_udpate.com","imagePath":"./partners/new_image.jpg"}
+
+Response type: 400
+Response data: '{error:"Uploaded file exceeded file size limit of 31457280 bytes"}'
+Response data: '{error:"File name \"my&&&&file\" is not a valid file name"}'
 
 Response type: 401
 Response data: ''
