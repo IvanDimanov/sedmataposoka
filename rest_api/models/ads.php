@@ -555,8 +555,9 @@ function updateAd($ad_id, $properties) {
 
 
   /*Check if we need to update Ad title since its not in Ad main table*/
-  if (isset(  $properties['title']) &&
-      gettype($properties['title']) === 'array'
+  if (isset(  $properties['title'])             &&
+      gettype($properties['title']) === 'array' &&
+      sizeof( $properties['title'])
   ) {
 
     $set_clauses = array();
@@ -728,6 +729,12 @@ function deleteAd($ad_id) {
 
   if (!$result) {
     return 'Unable to delete Ad from its main table';
+  }
+
+
+  /*Remove associated with the record image from the hosting folder*/
+  if (!unlink($ad['imagePath'])) {
+    return 'Unable to delete Ad image';
   }
 
 

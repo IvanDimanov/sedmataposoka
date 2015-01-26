@@ -3,7 +3,7 @@
 
 
 /*Used to convert raw DB result to expected JSON-like result*/
-function reorderADrecord(&$thought) {
+function reorderThoughtRecord(&$thought) {
   if (gettype($thought) !== 'array' ||
       !sizeof($thought)
   ) {
@@ -77,7 +77,7 @@ function getThoughtByID($id) {
 
 
   /*Set DB values in ordered JSON-like list*/
-  return reorderADrecord( $query->fetch(PDO::FETCH_ASSOC) );
+  return reorderThoughtRecord( $query->fetch(PDO::FETCH_ASSOC) );
 }
 
 
@@ -124,7 +124,7 @@ function getAllThoughts() {
   if (gettype($thoughts) === 'array' &&
       sizeof( $thoughts)
   ) {
-    foreach ($thoughts as &$thought) reorderADrecord( $thought );
+    foreach ($thoughts as &$thought) reorderThoughtRecord( $thought );
   }
 
 
@@ -313,7 +313,7 @@ function getFilteredThoughts($filters) {
   if (gettype($thoughts) === 'array' &&
       sizeof( $thoughts)
   ) {
-    foreach ($thoughts as &$thought) reorderADrecord( $thought );
+    foreach ($thoughts as &$thought) reorderThoughtRecord( $thought );
   }
 
 
@@ -592,8 +592,9 @@ function updateThought($thought_id, $properties) {
 
 
   /*Check if we need to update Thought author since its not in Thought main table*/
-  if (isset(  $properties['author']) &&
-      gettype($properties['author']) === 'array'
+  if (isset(  $properties['author'])             &&
+      gettype($properties['author']) === 'array' &&
+      sizeof( $properties['author'])
   ) {
 
     $set_clauses = array();
@@ -620,8 +621,9 @@ function updateThought($thought_id, $properties) {
 
 
   /*Check if we need to update Thought text since its not in Thought main table*/
-  if (isset(  $properties['text']) &&
-      gettype($properties['text']) === 'array'
+  if (isset(  $properties['text'])             &&
+      gettype($properties['text']) === 'array' &&
+      sizeof( $properties['text'])
   ) {
 
     $set_clauses = array();

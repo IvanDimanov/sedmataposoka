@@ -87,6 +87,8 @@ $(function () {
 
 
 
+
+
 /*
     type: 'GET',
     url : 'http://idimanov.com/sedmataposoka/rest_api/thoughts'
@@ -144,6 +146,60 @@ $(function () {
     type: 'DELETE',
     url : 'http://idimanov.com/sedmataposoka/rest_api/thoughts/6'
 /**/
+
+
+
+
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/partners'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/partners/4'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/partners',
+    data: {
+      _ids : [2, 3],
+      _name: 'партньор 3',
+      link: '.com'
+    }
+/**/
+
+/*
+    type: 'POST',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/partners',
+    data: {
+      name: {
+        bg: 'Партньор $$$',
+        en: 'Partner $$$'
+      },
+      link: 'http://partner.js'
+    }
+/**/
+
+/*
+    type: 'PUT',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/partners/4',
+    data: {
+      name: {
+        bg: 'Партньор #',
+        en: 'Partner #'
+      },
+      link: 'http://partner.com'
+    }
+/**/
+
+/**/
+    type: 'DELETE',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/partners/1'
+/**/
+
   })
   .always(function (param_1, status, param_2) {
     var jqXHR;
