@@ -3,7 +3,7 @@
   in order to create the event model described in the 'readme.md'
 */
 
-insert into eventtitle
+insert into eventname
 (en, bg) values
 
 /*Books: Reading events name*/
@@ -43,7 +43,7 @@ insert into eventtitle
 ('Sofia Dance Week presentation', 'Sofia Dance Week представя');
 
 
-insert into eventdescr
+insert into eventdescription
 (en, bg) values
 
 /*Books: Reading events description*/
@@ -84,7 +84,7 @@ insert into eventdescr
 
 
 insert into event
-(titleId, descrId, subcatId, link, fee, startDate, endDate) values
+(nameId, descriptionId, subcategoryId, link, fee, startDate, endDate) values
 
 /*The below code will set events evenly in time by the interval from now to every 4 days*/
 

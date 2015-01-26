@@ -37,26 +37,26 @@ create table categoryname (
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-create table categorydescr (
+create table categorydescription (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 create table category (
-  id         int not null auto_increment primary key,
-  pictureSrc varchar(150) not null,
-  nameId     int not null,
-  descrId    int not null,
-  createdAt  timestamp default current_timestamp,
+  id            int not null auto_increment primary key,
+  imagePath     varchar(150) not null,
+  nameId        int not null,
+  descriptionId int not null,
+  createdAt     timestamp default current_timestamp,
 
   foreign key (nameId) 
     references categoryname(id)
     on delete cascade
     on update cascade,
 
-  foreign key (descrId) 
-    references categorydescr(id)
+  foreign key (descriptionId) 
+    references categorydescription(id)
     on delete cascade
     on update cascade
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
@@ -64,7 +64,7 @@ create table category (
 
 /*
   There could be times when basic categories fork into subcategories,
-  catID will present the relation between them.
+  categoryID will present the relation between them.
 */
 create table subcategoryname (
   id int not null auto_increment primary key,
@@ -72,21 +72,21 @@ create table subcategoryname (
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-create table subcategorydescr (
+create table subcategorydescription (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 create table subcategory (
-  id         int not null auto_increment primary key,
-  catId      int not null,
-  pictureSrc varchar(150),
-  nameId     int not null,
-  descrId    int not null,
-  createdAt  timestamp default current_timestamp,
+  id            int not null auto_increment primary key,
+  categoryId    int not null,
+  imagePath     varchar(150),
+  nameId        int not null,
+  descriptionId int not null,
+  createdAt     timestamp default current_timestamp,
 
-  foreign key (catId) 
+  foreign key (categoryId) 
     references category(id)
     on delete cascade
     on update cascade,
@@ -96,47 +96,47 @@ create table subcategory (
     on delete cascade
     on update cascade,
 
-  foreign key (descrId) 
-    references subcategorydescr(id)
+  foreign key (descriptionId) 
+    references subcategorydescription(id)
     on delete cascade
     on update cascade
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 
-/*All important event information with translatable title and description*/
-create table eventtitle (
+/*All important event information with translatable name and description*/
+create table eventname (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
-create table eventdescr (
+create table eventdescription (
   id int not null auto_increment primary key,
   bg text,
   en text
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 create table event (
-  id        int not null auto_increment primary key,
-  titleId   int not null,
-  descrId   int not null,
-  subcatId  int not null,
-  link      varchar(150),
-  fee       varchar(50), /*Not int in order to keep currency*/
-  startDate timestamp,
-  endDate   timestamp,
+  id            int not null auto_increment primary key,
+  nameId        int not null,
+  descriptionId int not null,
+  subcategoryId int not null,
+  link          varchar(150),
+  fee           varchar(50), /*Not int in order to keep currency*/
+  startDate     timestamp,
+  endDate       timestamp,
 
-  foreign key (titleId) 
-    references eventtitle(id)
+  foreign key (nameId) 
+    references eventname(id)
     on delete cascade
     on update cascade,
 
-  foreign key (titleId) 
-    references eventtitle(id)
+  foreign key (descriptionId) 
+    references eventdescription(id)
     on delete cascade
     on update cascade,
 
-  foreign key (subcatId) 
+  foreign key (subcategoryId) 
     references subcategory(id)
     on delete cascade
     on update cascade

@@ -18,13 +18,13 @@ drop table if exists thought_text;
 drop table if exists thought_author;
 
 drop table if exists event;
-drop table if exists eventtitle;
-drop table if exists eventdescr;
+drop table if exists eventname;
+drop table if exists eventdescription;
 
 drop table if exists subcategory;
 drop table if exists subcategoryname;
-drop table if exists subcategorydescr;
+drop table if exists subcategorydescription;
 
 drop table if exists category;
 drop table if exists categoryname;
-drop table if exists categorydescr;
+drop table if exists categorydescription;

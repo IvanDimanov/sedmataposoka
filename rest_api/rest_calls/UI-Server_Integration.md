@@ -559,7 +559,7 @@ Request data: {
     "bg": "Книги",
     "en": "Books"
   },
-  "descr": {
+  "description": {
     "bg": "Четенето на книги е великолепен начин за достъпване на дълбините на вашето въображение.",
     "en": "Reading books is a great way to step deep into new endeavors of you imagination."
   },
@@ -572,7 +572,7 @@ Response data: {
     "bg": "Книги",
     "en": "Books"
   },
-  "descr": {
+  "description": {
     "bg": "Четенето на книги е великолепен начин за достъпване на дълбините на вашето въображение.",
     "en": "Reading books is a great way to step deep into new endeavors of you imagination."
   },
@@ -704,7 +704,7 @@ Request data: {
     "bg": "Хатха",
     "en": "Hatha"
   },
-  "descr": {
+  "description": {
     "bg": "Хáтха йога или още на български често наричана Хáта йога е вид Йога, клон на Раджа йога, създадена през XV век от мъдрецът Йоги Сватмарама и описана от него в съчинението Хатха Йога Прадипика (прадипика означава буквално "това, което хвърля светлина.",
     "en": "Hatha yoga, also called hatha vidya, is a kind of yoga focusing on physical and mental strength building exercises and postures described primarily in three texts of Hinduism."
   },
@@ -719,7 +719,7 @@ Response data: {
     "bg": "Хатха",
     "en": "Hatha"
   },
-  "descr": {
+  "description": {
     "bg": "Хáтха йога или още на български често наричана Хáта йога е вид Йога, клон на Раджа йога, създадена през XV век от мъдрецът Йоги Сватмарама и описана от него в съчинението Хатха Йога Прадипика (прадипика означава буквално "това, което хвърля светлина.",
     "en": "Hatha yoga, also called hatha vidya, is a kind of yoga focusing on physical and mental strength building exercises and postures described primarily in three texts of Hinduism."
   },
@@ -855,7 +855,7 @@ Request data: {
     "bg": "В мир с учителя Гупта",
     "en": "In peace with master Gupta"
   },
-  "descr": {
+  "description": {
     "bg": "Тестово описание на събитието: В мир с учителя  ГуптаLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "en": "Test event description for event name: In peace with master Gupta. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
@@ -874,7 +874,7 @@ Response data: {
     "bg": "В мир с учителя Гупта",
     "en": "In peace with master Gupta"
   },
-  "descr": {
+  "description": {
     "bg": "Тестово описание на събитието: В мир с учителя  ГуптаLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "en": "Test event description for event name: In peace with master Gupta. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },

@@ -18,7 +18,7 @@ insert into subcategoryname
 ('Tango' , 'Танго'  );
 
 
-insert into subcategorydescr
+insert into subcategorydescription
 (en, bg) values
 
 /*Books subcategory descriptions*/
@@ -38,7 +38,7 @@ insert into subcategorydescr
 
 
 insert into subcategory
-(catId, pictureSrc, nameId, descrId) values
+(categoryId, imagePath, nameId, descriptionId) values
 
 /*Books subcategories*/
 (1, 'subcategory/books_reading.png'     , 1, 1),

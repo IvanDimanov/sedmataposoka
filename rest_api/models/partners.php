@@ -354,7 +354,7 @@ function createPartner($properties) {
 
 
   /*
-    Try to create Partner name first in order to use the Title ID later
+    Try to create Partner name first in order to use the Name ID later
     when we create the Partner in its main table
   */
   $query  = $db->prepare('INSERT INTO partnername ( en,  bg) VALUES

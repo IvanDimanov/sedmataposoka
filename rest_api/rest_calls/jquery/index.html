@@ -195,9 +195,68 @@ $(function () {
     }
 /**/
 
-/**/
+/*
     type: 'DELETE',
     url : 'http://idimanov.com/sedmataposoka/rest_api/partners/1'
+/**/
+
+
+
+
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories/1'
+/**/
+
+/*
+    type: 'GET',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories',
+    data: {
+      _ids        : [2, 1],
+      _name       : 'Dance',
+      _description: 'endeavors'
+    }
+/**/
+
+/*
+    type: 'POST',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories',
+    data: {
+      name: {
+        bg: 'Рисуване',
+        en: 'Painting'
+      },
+      description: {
+        bg: 'Създаване на изображения',
+        en: 'Image creation'
+      }
+    }
+/**/
+
+/*
+    type: 'PUT',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories/4',
+    data: {
+      name: {
+        bg: 'Рисуване',
+        en: 'Painting'
+      },
+      description: {
+        bg: 'Създаване на изображения',
+        en: 'Image creation'
+      }
+    }
+/**/
+
+/*
+    type: 'DELETE',
+    url : 'http://idimanov.com/sedmataposoka/rest_api/categories/4'
 /**/
 
   })
