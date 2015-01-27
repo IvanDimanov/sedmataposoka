@@ -73,7 +73,7 @@ $full_url = str_replace('/index.php', '', $full_url);
                                 $category['name'] . ' </a>';
                                 $menu_elements = '';
                                 for ($i = 0; $i < sizeof($subcategories); $i++) {
-                                    if ($subcategories[$i]['catId'] === $category['id']) {
+                                    if ($subcategories[$i]['categoryId'] === $category['id']) {
                                         $menu_elements .= '<li>' . '<a href="' . base_url().$language.'/' . 'subcategory/' . $subcategories[$i]['id'] . '" >'
                                                 . $subcategories[$i]['name'] . '</a>' . '</li>';
                                     }

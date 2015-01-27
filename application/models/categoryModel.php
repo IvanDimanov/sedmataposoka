@@ -22,14 +22,14 @@ class categoryModel extends CI_Model {
         return $query->result_array();
     }
     
-    function getCategoryInfo($catId,$language)
+    function getCategoryInfo($categoryId,$language)
     {
-        $this->db->select('category.id,category.pictureSrc, 
+        $this->db->select('category.id,category.imagePath, 
             categoryname.'.$language.' as name,
-            categorydescr.'.$language.' as descr');
+            categorydescription.'.$language.' as descr');
         $this->db->join('categoryname','categoryname.id = category.nameId');
-        $this->db->join('categorydescr','categorydescr.id = category.descrId');
-        $this->db->where('category.id', $catId);
+        $this->db->join('categorydescription','categorydescription.id = category.descriptionId');
+        $this->db->where('category.id', $categoryId);
         $query = $this->db->get('category');
 
         $result = $query->result_array();

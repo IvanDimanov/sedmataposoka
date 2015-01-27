@@ -563,7 +563,7 @@ Request data: {
     "bg": "Четенето на книги е великолепен начин за достъпване на дълбините на вашето въображение.",
     "en": "Reading books is a great way to step deep into new endeavors of you imagination."
   },
-  "pictureSrc": "category/books.png"
+  "imagePath": "category/books.png"
 }
 
 Response type: 201
@@ -576,13 +576,13 @@ Response data: {
     "bg": "Четенето на книги е великолепен начин за достъпване на дълбините на вашето въображение.",
     "en": "Reading books is a great way to step deep into new endeavors of you imagination."
   },
-  "pictureSrc": "category/books.png"
+  "imagePath": "category/books.png"
 }
 
 
 Response type: 400
 Response data: '{error:"Missing property 'name'->'en'"}'
-Response data: '{error:"Invalid 'pictureSrc' property"}'
+Response data: '{error:"Invalid 'imagePath' property"}'
 
 Response type: 401
 Response data: ''
@@ -657,14 +657,14 @@ Request data: {
   "name": {
     "bg": "Развлекателни книги",
   },
-  "pictureSrc": "category/advertising_books.png"
+  "imagePath": "category/advertising_books.png"
 }
 
 Response type: 200
-Response data: {"id":1,"name":{"bg":"Развлекателни книги","en":"..."},"pictureSrc":"category/advertising_books.png", ...}
+Response data: {"id":1,"name":{"bg":"Развлекателни книги","en":"..."},"imagePath":"category/advertising_books.png", ...}
 
 Response type: 400
-Response data: '{error:"Invalid 'pictureSrc' property"}'
+Response data: '{error:"Invalid 'imagePath' property"}'
 
 Response type: 401
 Response data: ''
@@ -698,7 +698,7 @@ Name        : Create Subcategory
 Route       : /subcategory
 Request type: POST
 Request data: {
-  "catId": 3,
+  "categoryId": 3,
 
   "name": {
     "bg": "Хатха",
@@ -708,12 +708,12 @@ Request data: {
     "bg": "Хáтха йога или още на български често наричана Хáта йога е вид Йога, клон на Раджа йога, създадена през XV век от мъдрецът Йоги Сватмарама и описана от него в съчинението Хатха Йога Прадипика (прадипика означава буквално "това, което хвърля светлина.",
     "en": "Hatha yoga, also called hatha vidya, is a kind of yoga focusing on physical and mental strength building exercises and postures described primarily in three texts of Hinduism."
   },
-  "pictureSrc": "subcategory/yoga_hatha.png"
+  "imagePath": "subcategory/yoga_hatha.png"
 }
 
 Response type: 201
 Response data: {
-  "catId": 3,
+  "categoryId": 3,
 
   "name": {
     "bg": "Хатха",
@@ -723,19 +723,19 @@ Response data: {
     "bg": "Хáтха йога или още на български често наричана Хáта йога е вид Йога, клон на Раджа йога, създадена през XV век от мъдрецът Йоги Сватмарама и описана от него в съчинението Хатха Йога Прадипика (прадипика означава буквално "това, което хвърля светлина.",
     "en": "Hatha yoga, also called hatha vidya, is a kind of yoga focusing on physical and mental strength building exercises and postures described primarily in three texts of Hinduism."
   },
-  "pictureSrc": "subcategory/yoga_hatha.png"
+  "imagePath": "subcategory/yoga_hatha.png"
 }
 
 
 Response type: 400
 Response data: '{error:"Missing property 'name'->'en'"}'
-Response data: '{error:"Invalid 'pictureSrc' property"}'
+Response data: '{error:"Invalid 'imagePath' property"}'
 
 Response type: 401
 Response data: ''
 
 Response type: 404
-Response data: '{error:"Category with ID 'catId' was not found"}'
+Response data: '{error:"Category with ID 'categoryId' was not found"}'
 
 Response type: 409
 Response data: ''
@@ -750,7 +750,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: [{"id":1,"catId":3,"name":{"bg":"Хатха"}, ...},{"id":2,"catId":3,"name":{"bg":"Виняса"}, ...}, ...]
+Response data: [{"id":1,"categoryId":3,"name":{"bg":"Хатха"}, ...},{"id":2,"categoryId":3,"name":{"bg":"Виняса"}, ...}, ...]
 
 Response type: 401
 Response data: ''
@@ -782,14 +782,14 @@ Route       : /subcategory
 Request type: GET
 Request data: {
   "ids"     : [1, 2],
-  "catIds"  : [3, 4]
+  "categoryIds"  : [3, 4]
   "name": {
     "bg": "Книги",
   }
 }
 
 Response type: 200
-Response data: [{"id":1,"catId":3,"name":{"bg":"Хатха"}, ...},{"id":2,"catId":3,"name":{"bg":"Виняса"}, ...}, ...]
+Response data: [{"id":1,"categoryId":3,"name":{"bg":"Хатха"}, ...},{"id":2,"categoryId":3,"name":{"bg":"Виняса"}, ...}, ...]
 
 Response type: 400
 Response data: '{error:"Invalid 'name' property"}'
@@ -808,14 +808,14 @@ Request data: {
   "name": {
     "bg": "Хатха - 2",
   },
-  "pictureSrc": "subcategory/yoga_hatha_2.png"
+  "imagePath": "subcategory/yoga_hatha_2.png"
 }
 
 Response type: 200
-Response data: {"id":1,"catId":3,"name":{"bg":"Хатха - 2","en":"..."},"pictureSrc":"subcategory/yoga_hatha_2.png", ...}
+Response data: {"id":1,"categoryId":3,"name":{"bg":"Хатха - 2","en":"..."},"imagePath":"subcategory/yoga_hatha_2.png", ...}
 
 Response type: 400
-Response data: '{error:"Invalid 'pictureSrc' property"}'
+Response data: '{error:"Invalid 'imagePath' property"}'
 
 Response type: 401
 Response data: ''
@@ -849,7 +849,7 @@ Name        : Create Event
 Route       : /events
 Request type: POST
 Request data: {
-  "subcatId": 3,
+  "subcategoryId": 3,
 
   "title": {
     "bg": "В мир с учителя Гупта",
@@ -868,7 +868,7 @@ Request data: {
 
 Response type: 201
 Response data: {
-  "subcatId": 3,
+  "subcategoryId": 3,
 
   "title": {
     "bg": "В мир с учителя Гупта",
@@ -894,7 +894,7 @@ Response type: 401
 Response data: ''
 
 Response type: 404
-Response data: '{error:"Subategory with ID 'subcatId' was not found"}'
+Response data: '{error:"Subategory with ID 'subcategoryId' was not found"}'
 
 Response type: 409
 Response data: ''
@@ -909,7 +909,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: [{"id":1,"subcatId":3,"title":{"bg":"В мир с учителя Гупта"}, ...},{"id":2,"subcatId":3,"title":{"bg":"Основен клас"}, ...}, ...]
+Response data: [{"id":1,"subcategoryId":3,"title":{"bg":"В мир с учителя Гупта"}, ...},{"id":2,"subcategoryId":3,"title":{"bg":"Основен клас"}, ...}, ...]
 
 Response type: 401
 Response data: ''
@@ -924,7 +924,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: {"id":1,"subcatId":3,"title":{"bg":"В мир с учителя Гупта"}, ...}
+Response data: {"id":1,"subcategoryId":3,"title":{"bg":"В мир с учителя Гупта"}, ...}
 
 Response type: 401
 Response data: ''
@@ -941,14 +941,14 @@ Route       : /events
 Request type: GET
 Request data: {
   "ids"      : [1, 2],
-  "subcatIds": [3, 4]
+  "subcategoryIds": [3, 4]
   "title"    : {
     "bg": "Гупта",
   }
 }
 
 Response type: 200
-Response data: [{"id":1,"subcatId":3,"title":{"bg":"В мир с учителя Гупта"}, ...},{"id":2,"subcatId":3,"title":{"bg":"Основен Гупта клас"}, ...}, ...]
+Response data: [{"id":1,"subcategoryId":3,"title":{"bg":"В мир с учителя Гупта"}, ...},{"id":2,"subcategoryId":3,"title":{"bg":"Основен Гупта клас"}, ...}, ...]
 
 Response type: 400
 Response data: '{error:"Invalid 'title' property"}'
@@ -971,7 +971,7 @@ Request data: {
 }
 
 Response type: 200
-Response data: {"id":1,"subcatId":3,"title":{"bg":"В мир с учителя Комар"},"fee":"25 BGN/лв.", ...}
+Response data: {"id":1,"subcategoryId":3,"title":{"bg":"В мир с учителя Комар"},"fee":"25 BGN/лв.", ...}
 
 Response type: 400
 Response data: '{error:"Invalid 'fee' property"}'

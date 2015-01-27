@@ -15,7 +15,7 @@ insert into thought_text
 ('Success is going from failure to failure without losing enthusiasm.', 'Успех е да минаваш от провал към провал без да губиш ентусиазъм.'),
 ('Success in life could be defined as the continued expansion of happiness and the progressive realization of worthy goals.', 'Успехът в живота може да се определи с постоянното увеличаване на щастието и постигането на заслужаващи си цели.'),
 ('Success means having the courage, the determination, and the will to become the person you believe you were meant to be.', 'Успехът означава да имаш коражът, устремеността и желанието да станех човека, който мислиш, че трябва да бъдеш.'),
-('Ако казваш истинате, не ти трябва да помниш нищо', "If you tell the truth, you don't have to remember anything.");
+("If you tell the truth, you don't have to remember anything.", 'Ако казваш истинате, не ти трябва да помниш нищо');
 
 
 insert into thought

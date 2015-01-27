@@ -44,7 +44,7 @@ class Load_Data extends CI_Controller {
         $data['categories'] = $CI->categoryModel->
                 getAllCategoriesName($language);
         $data['subcategories'] = $CI->subcategoryModel->
-                getSubcategoriesForCategory($catId = null, $language);
+                getSubcategoriesForCategory($categoryId = null, $language);
         $data['thought'] = $CI->thoughtModel->getThought(null, 1, $language);
 
         return $data;

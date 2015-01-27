@@ -32,7 +32,7 @@ class TestDB extends CI_Controller{
         $data['banner'] = $this->adsModel->getAds( null,1, 1);
         $data['categories'] = $this->categoryModel->getAllCategoriesName();
         //$data['subcategories'] = $this->subcategoryModel->getSubcategoriesForCategory(1);
-        $data['subcategories'] = $this->subcategoryModel->getSubcategoriesForCategory($catId = null);
+        $data['subcategories'] = $this->subcategoryModel->getSubcategoriesForCategory($categoryId = null);
         //$data['events'] = $this->eventModel->getAllEventsForSubcategory(null,2);
         $data['events'] = $this->eventModel->getAllEvents(0);
         var_dump($data);

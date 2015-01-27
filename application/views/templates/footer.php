@@ -23,7 +23,7 @@ $this->load->helper('url');
         <?php
         foreach ($partners as $partner) {
             echo '<h4>' . $partner['name'] . '</h4>';
-            //echo '<img src="' . $partner['logoSrc'] . '" alt="logoImg" height="42" width="42">';
+            //echo '<img src="' . $partner['imagePath'] . '" alt="logoImg" height="42" width="42">';
             //TODO redirection to partner link
            // echo '<a href="' . $partner['link'] . '">View our partner</a>';
         }

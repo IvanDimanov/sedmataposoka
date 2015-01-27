@@ -15,7 +15,7 @@ class partnerModel extends CI_Model {
     
     function getPartners($language)
     {
-        $this->db->select(' partner.link, partner.logoSrc, partnername.'.$language.' as name');
+        $this->db->select(' partner.link, partner.imagePath, partnername.'.$language.' as name');
         $this->db->join('partnername','partnername.id = partner.nameId');
         $query = $this->db->get('partner');
        

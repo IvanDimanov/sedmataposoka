@@ -37,13 +37,13 @@ echo '"' . $thought[0]['text'] . '" ' . $thought[0]['author'];
 
 foreach ($partners as $partner) {
     echo '<h1>' . $partner['name'] . '</h1>';
-    echo '<img src="' . $partner['logoSrc'] . '" alt="logoImg" height="42" width="42">';
+    echo '<img src="' . $partner['imagePath'] . '" alt="logoImg" height="42" width="42">';
     //TODO redirection to partner link
     echo '<a href="' . $partner['link'] . '">View our partner</a>';
 }
 $this->load->helper('html');
 $image_properties = array(
-    'src' => 'img/' . $partner['logoSrc'] . '',
+    'src' => 'img/' . $partner['imagePath'] . '',
     'alt' => 'logo',
     'class' => 'post_images',
     'width' => '200',
@@ -61,7 +61,7 @@ $i = 0;
 foreach ($categories as $category) {
     echo '<h1>' . $category['name'] . '</h1>';
     for ($i = 0; $i < sizeof($subcategories); $i++) {
-        if ($subcategories[$i]['catId'] === $category['id']) {
+        if ($subcategories[$i]['categoryId'] === $category['id']) {
             echo '<h2>' . $subcategories[$i]['name'] . '</h2>';
         }
     }

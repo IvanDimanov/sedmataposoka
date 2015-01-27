@@ -13,31 +13,31 @@
 class subcategoryModel extends CI_Model {
 
     //put your code here
-    //return all subcat if catId is not set
-    function getSubcategoriesForCategory($catId = null,$language) {
-        $this->db->select(' subcategory.id,subcategory.catId, 
+    //return all subcat if categoryId is not set
+    function getSubcategoriesForCategory($categoryId = null,$language) {
+        $this->db->select(' subcategory.id,subcategory.categoryId, 
             subcategoryname.'.$language.' as name, 
-            subcategorydescr.'.$language.' as descr');
+            subcategorydescription.'.$language.' as descr');
         $this->db->from('subcategory');
         $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
-        $this->db->join('subcategorydescr', 'subcategorydescr.id = subcategory.descrId');
-        if (isset($catId)) {
-            $this->db->where('subcategory.catId = "' . $catId . ' "');
+        $this->db->join('subcategorydescription', 'subcategorydescription.id = subcategory.descriptionId');
+        if (isset($categoryId)) {
+            $this->db->where('subcategory.categoryId = "' . $categoryId . ' "');
         }
         $this->db->order_by('name', 'asc');
         $query = $this->db->get();
         return $query->result_array();
     }
     
-    function getSubcategriesInfo($subcatId, $language)
+    function getSubcategriesInfo($subcategoryId, $language)
     {
-        $this->db->select(' subcategory.id,subcategory.catId, 
+        $this->db->select(' subcategory.id,subcategory.categoryId, 
             subcategoryname.'.$language.' as name, 
-            subcategorydescr.'.$language.' as descr');
+            subcategorydescription.'.$language.' as descr');
         $this->db->from('subcategory');
         $this->db->join('subcategoryname', 'subcategoryname.id = subcategory.nameId');
-        $this->db->join('subcategorydescr', 'subcategorydescr.id = subcategory.descrId');
-        $this->db->where('subcategory.id = "' . $subcatId . ' "');
+        $this->db->join('subcategorydescription', 'subcategorydescription.id = subcategory.descriptionId');
+        $this->db->where('subcategory.id = "' . $subcategoryId . ' "');
                 $this->db->order_by('name', 'asc');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -47,7 +47,7 @@ class subcategoryModel extends CI_Model {
 
     /*   function getAllSubcategories()
       {
-      $this->db->select(' subcategory.id,subcategory.catId, subcategory.name, subcategory.descr');
+      $this->db->select(' subcategory.id,subcategory.categoryId, subcategory.name, subcategory.descr');
       $this->db->from('subcategory,category');
 
       $query = $this->db->get();
@@ -58,7 +58,7 @@ class subcategoryModel extends CI_Model {
     function insertSubcategory() {
         
         $data = array(
-            'catId' => $this->input->post('categoryId'),
+            'categoryId' => $this->input->post('categoryId'),
             'name' => $this->input->post('name'),
             'descr' => $this->input->post('descr')
         );

@@ -19,7 +19,7 @@ class category extends CI_Controller {
                 $this->load->model('categoryModel');
 	}
         
-    function index($language,$catId )
+    function index($language,$categoryId )
     {
         //todo set language
         $language = strtolower($language);
@@ -27,7 +27,7 @@ class category extends CI_Controller {
         //load library to get data neded for header
         $this->load->library('load_data');
         $data = $this->load_data->populateHeaderData($language);
-        $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($catId, $language);   
+        $data['categoryInfo'] = $this->categoryModel->getCategoryInfo($categoryId, $language);   
         $data['language']=$language;
              
        

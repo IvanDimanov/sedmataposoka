@@ -24,7 +24,7 @@ class event extends CI_Controller{
 
     //put your code here
     //TODO if no cat id display events for all subcats ????? Limit to 10 
-    /*function search($catId,$subcatId, $date,$language)
+    /*function search($categoryId,$subcategoryId, $date,$language)
     {
         //TODO set language
         $language = 'en';
@@ -46,7 +46,7 @@ class event extends CI_Controller{
                 $date = null;
                 break;
         }
-        $data['events'] = $this->eventModel->getAllEvents($date, $catId,$language);
+        $data['events'] = $this->eventModel->getAllEvents($date, $categoryId,$language);
         
         $this->load->view('eventView',$data);
     }
@@ -68,7 +68,7 @@ class event extends CI_Controller{
         $data['categories'] = $this->categoryModel->
                 getAllCategoriesName($language);
         $data['subcategories'] = $this->subcategoryModel->
-                getSubcategoriesForCategory($catId = null,$language);
+                getSubcategoriesForCategory($categoryId = null,$language);
         $data['events']= $this->eventModel->getEvent($eventId,$language);
         $data['event'] = $data['events'][0];
         $data['language']=$language;
