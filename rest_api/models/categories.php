@@ -190,7 +190,7 @@ function validateCategoriesFilters(&$filters) {
   /*Be sure to return a list containing only valid filters as keys*/
   $valid_filtering_keys = array('ids', 'name', 'description', 'imagePath');
   foreach ($filters as $key => $value) {
-    if (!in_array($key, $valid_filtering_keys)) {
+    if (!in_array($key, $valid_filtering_keys, true)) {
       unset( $filters[ $key ] );
     }
   }
@@ -369,7 +369,7 @@ function validateCategoryProperties(&$properties, $mandatory_validation = true) 
   /*Be sure to return a list containing only valid properties as keys*/
   $valid_property_keys = array('name', 'description');
   foreach ($properties as $key => $value) {
-    if (!in_array($key, $valid_property_keys)) {
+    if (!in_array($key, $valid_property_keys, true)) {
       unset( $properties[ $key ] );
     }
 
@@ -380,7 +380,7 @@ function validateCategoryProperties(&$properties, $mandatory_validation = true) 
       $valid_name_keys = array('bg', 'en');
 
       foreach ($properties['name'] as $name_key => $name_value) {
-        if (!in_array($name_key, $valid_name_keys)) {
+        if (!in_array($name_key, $valid_name_keys, true)) {
           unset( $properties['name'][ $name_key ] );
         }
       }
@@ -394,7 +394,7 @@ function validateCategoryProperties(&$properties, $mandatory_validation = true) 
       $valid_description_keys = array('bg', 'en');
 
       foreach ($properties['description'] as $description_key => $description_value) {
-        if (!in_array($description_key, $valid_description_keys)) {
+        if (!in_array($description_key, $valid_description_keys, true)) {
           unset( $properties['description'][ $description_key ] );
         }
       }
@@ -755,8 +755,11 @@ function deleteCategory($category_id) {
 
 
   /*Remove associated with the record image from the hosting folder*/
-  if (!unlink($settings['controllers']['upload']['destination_folder_path'].'/'.$category['imagePath'])) {
-    return 'Unable to delete Category image';
+  $file_loacation = $settings['controllers']['upload']['destination_folder_path'].'/'.$category['imagePath'];
+  if (is_file( $file_loacation )) {
+    if (!unlink( $file_loacation )) {
+      return 'Unable to delete Category image';
+    }
   }
 
 

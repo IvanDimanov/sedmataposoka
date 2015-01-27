@@ -216,7 +216,7 @@ function validateAdsFilters(&$filters) {
   /*Be sure to return a list containing only valid filters as keys*/
   $valid_filtering_keys = array('ids', 'types', 'title', 'link', 'imagePath', 'fromDate', 'toDate');
   foreach ($filters as $key => $value) {
-    if (!in_array($key, $valid_filtering_keys)) {
+    if (!in_array($key, $valid_filtering_keys, true)) {
       unset( $filters[ $key ] );
     }
   }
@@ -441,7 +441,7 @@ function validateAdProperties(&$properties, $mandatory_validation = true) {
   /*Be sure to return a list containing only valid properties as keys*/
   $valid_property_keys = array('type', 'title', 'link', 'startDate', 'endDate');
   foreach ($properties as $key => $value) {
-    if (!in_array($key, $valid_property_keys)) {
+    if (!in_array($key, $valid_property_keys, true)) {
       unset( $properties[ $key ] );
     }
 
@@ -452,7 +452,7 @@ function validateAdProperties(&$properties, $mandatory_validation = true) {
       $valid_title_keys = array('bg', 'en');
 
       foreach ($properties['title'] as $title_key => $title_value) {
-        if (!in_array($title_key, $valid_title_keys)) {
+        if (!in_array($title_key, $valid_title_keys, true)) {
           unset( $properties['title'][ $title_key ] );
         }
       }
@@ -742,8 +742,11 @@ function deleteAd($ad_id) {
 
 
   /*Remove associated with the record image from the hosting folder*/
-  if (!unlink($settings['controllers']['upload']['destination_folder_path'].'/'.$ad['imagePath'])) {
-    return 'Unable to delete Ad image';
+  $file_loacation = $settings['controllers']['upload']['destination_folder_path'].'/'.$ad['imagePath'];
+  if (is_file( $file_loacation )) {
+    if (!unlink( $file_loacation )) {
+      return 'Unable to delete Ad image';
+    }
   }
 
 

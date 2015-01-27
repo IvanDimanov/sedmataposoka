@@ -13,6 +13,6 @@ insert into categorydescription
 
 insert into category
 (imagePath            , nameId, descriptionId) values
-('category/books.png' , 1     , 1            ),
-('category/yoga.png'  , 2     , 2            ),
-('category/dances.png', 3     , 3            );
+('categories/books.png' , 1     , 1            ),
+('categories/yoga.png'  , 2     , 2            ),
+('categories/dances.png', 3     , 3            );

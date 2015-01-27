@@ -31,7 +31,7 @@ $(function () {
     var formData = new FormData($('form')[0]);
 
     $.ajax({
-        url : 'http://idimanov.com/sedmataposoka/rest_api/ads/5/image',
+        url : 'http://idimanov.com/sedmataposoka/rest_api/subcategories/11/image',
         type: 'POST',
         data: formData,
 
@@ -62,8 +62,14 @@ $(function () {
           return;
       }
 
+
+      var
+      response = utils.JSON_parse( jqXHR.responseText );
+      response = utils.JSON_stringify( response, undefined, 2);
+      response = response || jqXHR.responseText;
+
       documentLog( jqXHR.status +' - '+ jqXHR.statusText );
-      documentLog( jqXHR.responseText );
+      documentLog( response );
     })
   });
 

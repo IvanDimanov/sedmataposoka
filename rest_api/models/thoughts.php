@@ -215,7 +215,7 @@ function validateThoughtsFilters(&$filters) {
   /*Be sure to return a list containing only valid filters as keys*/
   $valid_filtering_keys = array('ids', 'author', 'text', 'fromDate', 'toDate');
   foreach ($filters as $key => $value) {
-    if (!in_array($key, $valid_filtering_keys)) {
+    if (!in_array($key, $valid_filtering_keys, true)) {
       unset( $filters[ $key ] );
     }
   }
@@ -441,7 +441,7 @@ function validateThoughtProperties(&$properties, $mandatory_validation = true) {
   /*Be sure to return a list containing only valid properties as keys*/
   $valid_property_keys = array('author', 'text', 'startDate', 'endDate');
   foreach ($properties as $key => $value) {
-    if (!in_array($key, $valid_property_keys)) {
+    if (!in_array($key, $valid_property_keys, true)) {
       unset( $properties[ $key ] );
     }
 
@@ -452,7 +452,7 @@ function validateThoughtProperties(&$properties, $mandatory_validation = true) {
       $valid_author_keys = array('bg', 'en');
 
       foreach ($properties['author'] as $author_key => $author_value) {
-        if (!in_array($author_key, $valid_author_keys)) {
+        if (!in_array($author_key, $valid_author_keys, true)) {
           unset( $properties['author'][ $author_key ] );
         }
       }
@@ -466,7 +466,7 @@ function validateThoughtProperties(&$properties, $mandatory_validation = true) {
       $valid_text_keys = array('bg', 'en');
 
       foreach ($properties['text'] as $text_key => $text_value) {
-        if (!in_array($text_key, $valid_text_keys)) {
+        if (!in_array($text_key, $valid_text_keys, true)) {
           unset( $properties['text'][ $text_key ] );
         }
       }

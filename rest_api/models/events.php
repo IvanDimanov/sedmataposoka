@@ -312,7 +312,7 @@ function validateEventsFilters(&$filters) {
   /*Be sure to return a list containing only valid filters as keys*/
   $valid_filtering_keys = array('ids', 'subcategoryIds', 'name', 'description', 'link', 'fee', 'fromDate', 'toDate');
   foreach ($filters as $key => $value) {
-    if (!in_array($key, $valid_filtering_keys)) {
+    if (!in_array($key, $valid_filtering_keys, true)) {
       unset( $filters[ $key ] );
     }
   }
@@ -365,10 +365,12 @@ function getFilteredEvents($filters) {
   }
 
   if (isset($filters['link'])) {
+    $where_clauses []= 'event.link LIKE :link';
     $filters['link'] = '%'.$filters['link'].'%';
   }
 
   if (isset($filters['fee'])) {
+    $where_clauses []= 'event.fee LIKE :fee';
     $filters['fee'] = '%'.$filters['fee'].'%';
   }
 
@@ -596,7 +598,7 @@ function validateEventProperties(&$properties, $mandatory_validation = true) {
   /*Be sure to return a list containing only valid properties as keys*/
   $valid_property_keys = array('subcategoryId', 'name', 'description', 'link', 'fee', 'startDate', 'endDate');
   foreach ($properties as $key => $value) {
-    if (!in_array($key, $valid_property_keys)) {
+    if (!in_array($key, $valid_property_keys, true)) {
       unset( $properties[ $key ] );
     }
 
@@ -607,7 +609,7 @@ function validateEventProperties(&$properties, $mandatory_validation = true) {
       $valid_name_keys = array('bg', 'en');
 
       foreach ($properties['name'] as $name_key => $name_value) {
-        if (!in_array($name_key, $valid_name_keys)) {
+        if (!in_array($name_key, $valid_name_keys, true)) {
           unset( $properties['name'][ $name_key ] );
         }
       }
@@ -621,7 +623,7 @@ function validateEventProperties(&$properties, $mandatory_validation = true) {
       $valid_description_keys = array('bg', 'en');
 
       foreach ($properties['description'] as $description_key => $description_value) {
-        if (!in_array($description_key, $valid_description_keys)) {
+        if (!in_array($description_key, $valid_description_keys, true)) {
           unset( $properties['description'][ $description_key ] );
         }
       }
