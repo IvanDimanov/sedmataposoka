@@ -662,12 +662,13 @@ function updateCategoryImage($category_id) {
   array_splice( $file_name, sizeof( $file_name )-1, 0, time());
   $file_name = implode('.', $file_name);
 
-  /*Mark the exact location we want the incoming file to be saved*/
-  $imagePath = $settings['controllers']['upload']['destination_folder_path'].'/categories/'.$file_name;
+  /*Mark the exact location we want the incoming file to be saved as a file and as a DB value*/
+  $imagePath      = 'categories/'.$file_name;
+  $file_loacation = $settings['controllers']['upload']['destination_folder_path'].'/'.$imagePath;
 
   /*Cut-paste the uploaded file from its temporary location*/
-  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $imagePath )) {
-    return 'Failed to move uploaded file into '.$imagePath;
+  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $file_loacation )) {
+    return 'Failed to move uploaded file into '.$file_loacation;
   }
 
 
@@ -699,6 +700,7 @@ function updateCategoryImage($category_id) {
   Returns an error {string} or {boolean} 'false'.
 */
 function deleteCategory($category_id) {
+  global $settings;
 
   /*Be sure we have already existing record*/
   $category = getCategoryByID( $category_id );
@@ -753,7 +755,7 @@ function deleteCategory($category_id) {
 
 
   /*Remove associated with the record image from the hosting folder*/
-  if (!unlink($category['imagePath'])) {
+  if (!unlink($settings['controllers']['upload']['destination_folder_path'].'/'.$category['imagePath'])) {
     return 'Unable to delete Category image';
   }
 

@@ -532,12 +532,13 @@ function updatePartnerImage($partner_id) {
   array_splice( $file_name, sizeof( $file_name )-1, 0, time());
   $file_name = implode('.', $file_name);
 
-  /*Mark the exact location we want the incoming file to be saved*/
-  $imagePath = $settings['controllers']['upload']['destination_folder_path'].'/partners/'.$file_name;
+  /*Mark the exact location we want the incoming file to be saved as a file and as a DB value*/
+  $imagePath      = 'partners/'.$file_name;
+  $file_loacation = $settings['controllers']['upload']['destination_folder_path'].'/'.$imagePath;
 
   /*Cut-paste the uploaded file from its temporary location*/
-  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $imagePath )) {
-    return 'Failed to move uploaded file into '.$imagePath;
+  if (!move_uploaded_file( $_FILES['file']['tmp_name'], $file_loacation )) {
+    return 'Failed to move uploaded file into '.$file_loacation;
   }
 
 
@@ -569,6 +570,7 @@ function updatePartnerImage($partner_id) {
   Returns an error {string} or {boolean} 'false'.
 */
 function deletePartner($partner_id) {
+  global $settings;
 
   /*Be sure we have already existing record*/
   $partner = getPartnerByID( $partner_id );
@@ -601,7 +603,7 @@ function deletePartner($partner_id) {
 
 
   /*Remove associated with the record image from the hosting folder*/
-  if (!unlink($partner['imagePath'])) {
+  if (!unlink($settings['controllers']['upload']['destination_folder_path'].'/'.$partner['imagePath'])) {
     return 'Unable to delete Partner image';
   }
 
