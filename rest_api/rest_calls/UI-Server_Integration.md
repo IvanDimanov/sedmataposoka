@@ -225,13 +225,8 @@ Response type: 200
 Response data: {"id":1,"type":2,"imagePath":"ads/add_1.jpg", ...}
 
 Response type: 400
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
-Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Uploaded file exceeded file size limit of 31457280 bytes"}'
+Response data: '{error:"File name \"my&&&&file\" is not a valid file name"}'
 
 Response type: 401
 Response data: ''
@@ -265,13 +260,13 @@ Name        : Create Thought
 Route       : /thoughts
 Request type: POST
 Request data: {
-  "text": {
-    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
-    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
-  },
   "author": {
     "bg": "Алберт Айнщаин",
     "en": "Albert Einstein"
+  },
+  "text": {
+    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
+    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
   },
   "startDate": "2013-11-16 00:00:00",
   "endDate"  : "2013-11-17 00:00:00"
@@ -279,13 +274,13 @@ Request data: {
 
 Response type: 201
 Response data: {
-  "text": {
-    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
-    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
-  },
   "author": {
     "bg": "Алберт Айнщаин",
     "en": "Albert Einstein"
+  },
+  "text": {
+    "bg": "Неможем да разрешим проблемите използвайки същото мислене, когато сме ги създали.",
+    "en": "We can't solve problems by using the same kind of thinking we used when we created them."
   },
   "startDate": "2013-11-16 00:00:00",
   "endDate"  : "2013-11-17 00:00:00"
@@ -341,9 +336,7 @@ Route       : /thoughts
 Request type: GET
 Request data: {
   "ids"     : [1, 2],
-  "text": {
-    "bg": "Неможем да разрешим",
-  },
+  "text"    : "Неможем да разрешим",
   "fromDate": "2000-11-16 00:00:00",
   "toDate"  : "2013-11-16 00:00:00"
 }
@@ -365,9 +358,7 @@ Name        : Update specific Thought
 Route       : /thoughts/:thought_id
 Request type: PUT
 Request data: {
-  "text": {
-    "bg": "Неможем да разрешим въобще",
-  },
+  "text"   : "Неможем да разрешим въобще",
   "endDate": "2015-11-16 00:00:00"
 }
 
@@ -413,8 +404,7 @@ Request data: {
     "bg": "Тестови партньор",
     "en": "Test Partner"
   },
-  "logoSrc": "partners/test_partner.png",
-  "link"   : "http://test_partner.com"
+  "link": "http://test_partner.com"
 }
 
 Response type: 201
@@ -423,8 +413,7 @@ Response data: {
     "bg": "Тестови партньор",
     "en": "Test Partner"
   },
-  "logoSrc": "partners/test_partner.png",
-  "link"   : "http://test_partner.com"
+  "link": "http://test_partner.com"
 }
 
 
@@ -445,7 +434,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: [{"id":1,"name":{"bg":"Тестови партньор 1"}, ...},{"id":2,"name":{"bg":"Тестови партньор 2"}, ...}, ...]
+Response data: [{"id":1,"name":{"bg":"Тестови партньор 1", ...}, ...},{"id":2,"name":{"bg":"Тестови партньор 2", ...}, ...}, ...]
 
 Response type: 401
 Response data: ''
@@ -460,7 +449,7 @@ Request type: GET
 Request data: ''
 
 Response type: 200
-Response data: {"id":1,"name":{"bg":"Тестови партньор 1"}, ...}
+Response data: {"id":1,"name":{"bg":"Тестови партньор 1", ...}, ...}
 
 Response type: 401
 Response data: ''
@@ -476,17 +465,18 @@ Name        : Get specific Partners
 Route       : /partners
 Request type: GET
 Request data: {
-  "ids"     : [1, 2],
+  "ids" : [1, 2],
   "name": {
     "bg": "Тестови",
-  }
+  },
+  imagePath: 'partner_1.j'
 }
 
 Response type: 200
-Response data: [{"id":1,"name":{"bg":"Тестови партньор 1"}, ...},{"id":2,"name":{"bg":"Тестови партньор 2"}, ...}, ...]
+Response data: [{"id":1,"name":{"bg":"Тестови партньор 1", ...}, ...},{"id":2,"name":{"bg":"Тестови партньор 2", ...}, ...}, ...]
 
 Response type: 400
-Response data: '{error:"Invalid 'fromDate' property"}'
+Response data: '{error:"Invalid 'imagePath' property"}'
 
 Response type: 401
 Response data: ''
@@ -506,10 +496,32 @@ Request data: {
 }
 
 Response type: 200
-Response data: {"id":1,"name":{"bg":"Тестови"},"link":"http://test_partner_udpate.com", ...}
+Response data: {"id":1,"name":{"bg":"Тестови", ...},"link":"http://test_partner_udpate.com", ...}
 
 Response type: 400
 Response data: '{error:"Invalid 'link' property"}'
+
+Response type: 401
+Response data: ''
+
+Response type: 404
+Response data: '{error:"Unknown Partner ID"}'
+
+
+-----------------------------------------------------------------------
+
+
+Name        : Update Partner Image
+Route       : /partners/:partner_id/image
+Request type: POST
+Request data: Image data
+
+Response type: 200
+Response data: {"id":1,"name":{"bg":"Тестови", ...},"link":"http://test_partner_udpate.com","imagePath":"./partners/new_image.jpg"}
+
+Response type: 400
+Response data: '{error:"Uploaded file exceeded file size limit of 31457280 bytes"}'
+Response data: '{error:"File name \"my&&&&file\" is not a valid file name"}'
 
 Response type: 401
 Response data: ''
@@ -547,7 +559,7 @@ Request data: {
     "bg": "Книги",
     "en": "Books"
   },
-  "descr": {
+  "description": {
     "bg": "Четенето на книги е великолепен начин за достъпване на дълбините на вашето въображение.",
     "en": "Reading books is a great way to step deep into new endeavors of you imagination."
   },
@@ -560,7 +572,7 @@ Response data: {
     "bg": "Книги",
     "en": "Books"
   },
-  "descr": {
+  "description": {
     "bg": "Четенето на книги е великолепен начин за достъпване на дълбините на вашето въображение.",
     "en": "Reading books is a great way to step deep into new endeavors of you imagination."
   },
@@ -692,7 +704,7 @@ Request data: {
     "bg": "Хатха",
     "en": "Hatha"
   },
-  "descr": {
+  "description": {
     "bg": "Хáтха йога или още на български често наричана Хáта йога е вид Йога, клон на Раджа йога, създадена през XV век от мъдрецът Йоги Сватмарама и описана от него в съчинението Хатха Йога Прадипика (прадипика означава буквално "това, което хвърля светлина.",
     "en": "Hatha yoga, also called hatha vidya, is a kind of yoga focusing on physical and mental strength building exercises and postures described primarily in three texts of Hinduism."
   },
@@ -707,7 +719,7 @@ Response data: {
     "bg": "Хатха",
     "en": "Hatha"
   },
-  "descr": {
+  "description": {
     "bg": "Хáтха йога или още на български често наричана Хáта йога е вид Йога, клон на Раджа йога, създадена през XV век от мъдрецът Йоги Сватмарама и описана от него в съчинението Хатха Йога Прадипика (прадипика означава буквално "това, което хвърля светлина.",
     "en": "Hatha yoga, also called hatha vidya, is a kind of yoga focusing on physical and mental strength building exercises and postures described primarily in three texts of Hinduism."
   },
@@ -843,7 +855,7 @@ Request data: {
     "bg": "В мир с учителя Гупта",
     "en": "In peace with master Gupta"
   },
-  "descr": {
+  "description": {
     "bg": "Тестово описание на събитието: В мир с учителя  ГуптаLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "en": "Test event description for event name: In peace with master Gupta. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
@@ -862,7 +874,7 @@ Response data: {
     "bg": "В мир с учителя Гупта",
     "en": "In peace with master Gupta"
   },
-  "descr": {
+  "description": {
     "bg": "Тестово описание на събитието: В мир с учителя  ГуптаLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "en": "Test event description for event name: In peace with master Gupta. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },

@@ -7,7 +7,7 @@ insert into partnername
 ('Test Partner 3', 'Тестови партньор 3');
 
 insert into partner
-(logoSrc                 , link               , nameId) values
+(imagePath               , link               , nameId) values
 ('partners/partner_1.png', 'http://google.com', 1),
 ('partners/partner_2.png', 'http://google.com', 2),
 ('partners/partner_3.png', 'http://google.com', 3);

@@ -18,7 +18,7 @@ insert into subcategoryname
 ('Tango' , 'Танго'  );
 
 
-insert into subcategorydescr
+insert into subcategorydescription
 (en, bg) values
 
 /*Books subcategory descriptions*/
@@ -38,19 +38,19 @@ insert into subcategorydescr
 
 
 insert into subcategory
-(catId, pictureSrc, nameId, descrId) values
+(categoryId, imagePath, nameId, descriptionId) values
 
 /*Books subcategories*/
-(1, 'subcategory/books_reading.png'     , 1, 1),
-(1, 'subcategory/books_presentation.png', 2, 2),
+(1, 'subcategories/books_reading.png'     , 1, 1),
+(1, 'subcategories/books_presentation.png', 2, 2),
 
 /*Yoga subcategories*/
-(2, 'subcategory/yoga_ashtanga.png', 3, 3),
-(2, 'subcategory/yoga_hatha.png'   , 4, 4),
-(2, 'subcategory/yoga_vinyasa.png' , 5, 5),
+(2, 'subcategories/yoga_ashtanga.png', 3, 3),
+(2, 'subcategories/yoga_hatha.png'   , 4, 4),
+(2, 'subcategories/yoga_vinyasa.png' , 5, 5),
 
 /*Dances subcategories*/
-(3, 'subcategory/dances_hiphop.png', 6, 6),
-(3, 'subcategory/dances_break.png' , 7, 7),
-(3, 'subcategory/dances_salsa.png' , 8, 8),
-(3, 'subcategory/dances_tango.png' , 9, 9);
+(3, 'subcategories/dances_hiphop.png', 6, 6),
+(3, 'subcategories/dances_break.png' , 7, 7),
+(3, 'subcategories/dances_salsa.png' , 8, 8),
+(3, 'subcategories/dances_tango.png' , 9, 9);

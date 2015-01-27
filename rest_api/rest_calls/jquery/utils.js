@@ -9,7 +9,7 @@
 
     /*Short-hand debug function*/
     function log() {
-        console.log.apply( console, arguments );
+        return console.log.apply( console, arguments );
     }
 
 
@@ -514,9 +514,9 @@
         Instead of throwing an error for every invalid JSON string
         this function will safely return a JSON object, or 'undefined'
     */
-    function JSON_parse(json_string) {
+    function JSON_parse() {
         try {
-            return JSON.parse( json_string );
+            return JSON.parse.apply(JSON, arguments);
         } catch(error) {
             return undefined;
         }
@@ -527,9 +527,9 @@
         Instead of throwing an error for every invalid JSON object
         this function will safely return a JSON string, or 'undefined'
     */
-    function JSON_stringify(obj) {
+    function JSON_stringify() {
         try {
-            return JSON.stringify( obj );
+            return JSON.stringify.apply(JSON, arguments);
         } catch (error) {
             return undefined;
         }

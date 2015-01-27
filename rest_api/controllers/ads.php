@@ -22,7 +22,7 @@ function showAd() {
 
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
   header('HTTP/1.1 200 OK');
@@ -153,7 +153,7 @@ function updateAdController() {
   $ad    = getAdByID( $ad_id );
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
 
@@ -181,9 +181,8 @@ function updateAdController() {
 
 
 /*
-
-
-
+  Will ask the model to save the incoming file from '$_FILE' into '/ads/' folder and
+  update the image path into the DB record.
 */
 function updateAdImageController() {
   global $user, $request;
@@ -205,7 +204,7 @@ function updateAdImageController() {
   $ad    = getAdByID( $ad_id );
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
   /*Let the model manage file save and file name DB records*/
@@ -246,7 +245,7 @@ function deleteAdController() {
 
   if (gettype($ad) !== 'array') {
     header('HTTP/1.1 404 Not Found');
-    die('{"error":"Unable to find ad with ID: '.$ad_id.'"}');
+    die('{"error":"Unable to find Ad with ID: '.$ad_id.'"}');
   }
 
 
@@ -334,8 +333,7 @@ in methods:
 if (sizeof( $request['url_conponents'] ) === 3       &&
     $request['url_conponents'][0]        === 'ads'   &&
     $request['url_conponents'][2]        === 'image' &&
-    $request['method']                   === 'POST'  &&
-    sizeof( $request['data'] )
+    $request['method']                   === 'POST'
 ) {
   updateAdImageController();
   return;
