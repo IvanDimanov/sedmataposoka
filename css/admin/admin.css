@@ -23,4 +23,28 @@
 	margin: 0 auto;
 }
 
+.captcha {
+	display: none;
+}
 
+/*Header*/
+.logo {
+	margin: 5px 15px 0 0;
+	height : 65px;
+	width  : 84px;
+	display: inline-block;
+}
+	.logo img {
+		height: 100%;
+		width : 100%;
+	}
+
+.log_out {
+	float: right;
+	margin: 20px 0 0;
+}	
+
+/*Container*/
+.container_custom {
+	padding: 100px 0 0;
+}
