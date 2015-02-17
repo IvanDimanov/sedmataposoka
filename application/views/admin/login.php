@@ -9,11 +9,6 @@
     <input type="text" id="inputName" class="form-control" placeholder="Name" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
     <div class="captcha">
       Captcha
     </div>
