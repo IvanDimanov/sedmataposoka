@@ -53,11 +53,14 @@ function clearLogin() {
 
 
     $recaptcha_is_valid = false;
-    if (isset($user_request['captchaResponse' ]) &&
-        isset($user_request['captchaChallenge'])
+    if (isset($user_request['captchaResponse' ])
     ) {
-      $recaptcha          = recaptcha_check_answer( $settings['recaptcha']['private_key'], $_SERVER['REMOTE_ADDR'], $user_request['captchaChallenge'], $user_request['captchaResponse']);
-      $recaptcha_is_valid = $recaptcha->is_valid;
+      $reCaptcha = new ReCaptcha( $settings['recaptcha']['private_key']);
+      $resp = $reCaptcha->verifyResponse(
+          $_SERVER["REMOTE_ADDR"],
+          $user_request['captchaResponse']
+      );
+      $recaptcha_is_valid = $resp->success;
     }
 
 

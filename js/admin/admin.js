@@ -6,29 +6,36 @@ $( document ).ready(function() {
 
 		event.preventDefault();
 
-		var $login_form  = $('#form-admin-login'),
-			name         = $login_form.find('#inputName').val(),
-			pass         = $login_form.find('#inputPassword').val(),
+		var $login_form      = $('#form-admin-login'),
+			name             = $login_form.find('#inputName').val(),
+			pass             = $login_form.find('#inputPassword').val(),
 			/* crypted pass */
-			pass_cripted = CryptoJS.SHA3(pass, { outputLength: 256 }).toString(),
-			url			 = window.location.origin + '/sedmataposoka/rest_api/login';
+			pass_cripted     = CryptoJS.SHA3(pass, { outputLength: 256 }).toString(),
+			url			     = window.location.origin + '/sedmataposoka/rest_api/login',
+			captcha_response = $('#g-recaptcha-response').val();
 
 		  $.ajax({
 			type: 'POST',
 			url : url,
 			data: {
-			  "name"    : name,
-			  "password": pass_cripted
+			  "name"           : name,
+			  "password"       : pass_cripted,
+			  "captchaResponse": captcha_response
 			}
 		  })
 		  .done(function (statusText, status, jqXHR) {
-			window.location.reload();
+		  	/*Load admin home page*/
+		  	window.location.reload();
+
 		  })
 		  .fail(function (jqXHR, status, statusText) {
+
 			response_data = JSON.parse(jqXHR.responseText);
+
 			if (response_data.captcha_required) {
 				$('.captcha').show();
 			}
+
 		  });
 
 	  });
