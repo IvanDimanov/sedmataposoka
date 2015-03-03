@@ -60,5 +60,34 @@ $( document ).ready(function() {
 			// TODO: notify user for a problem
 		});
 		  
-	  });	  
+	  });
+
+	/* Load thoughts data */
+	$.ajax({
+		type: 'GET',
+		url : url_origin + '/' + path_array[1] + '/rest_api/thoughts',
+		data: {}
+	})
+	.done(function (statusText, status, jqXHR) {
+
+	 	var thoughts_object = JSON.parse(jqXHR.responseText);
+	 	for(var property in thoughts_object) {		 		
+		 	$('#thoughts_data').find('tbody').append('<tr>'
+        			+'<td>' + thoughts_object[property].author_id + '</td>'	        			
+        			+'<td>' + thoughts_object[property].author.bg + '</td>'
+        			+'<td>' + thoughts_object[property].text.bg + '</td>'
+        			+'<td>' + thoughts_object[property].startDate + ' Date</td>'
+        			+'<td>' + thoughts_object[property].endDate + '</td>'
+			        +'<td>'
+			            +'<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">Edit</button>'
+			            +'<button type="button" class="btn btn-default btn-xs">Delete</button>'
+			        +'</td>'
+      			+'</tr>');
+	 	}
+
+	})
+	.fail(function (jqXHR, status, statusText) {
+		$('#thoughts_data').find('tbody').append('<tr><td>There are no available thoughts</td></tr>');
+	});
+
 });

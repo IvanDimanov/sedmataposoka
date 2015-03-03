@@ -6,43 +6,36 @@
   <div class="page-header">
     <h1>Thoughts</h1>
     <p>Here you can add/delete/modify thoughts.</p>
-    <table class="table table-striped">
-      <tr>
-        <th>Id</th>
-        <th>Author</th>
-        <th>Text</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Actions</th>
-      </tr>
-      <tr>
-        <td>Id</td>
-        <td>Author</td>
-        <td>Text</td>
-        <td>Start Date</td>
-        <td>
-          End Date
-        <td>
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
-            Edit
-          </button>
-          <button type="button" class="btn btn-default btn-xs">Delete</button>               
-        </td>
-      </tr>
-      <tr>
-        <td colspan="6">
-          <nav>
-            <ul class="pagination pagination-sm pull-right">
-              <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-              <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-            </ul>
-          </nav>              
-        </td>
-      </tr>          
+    
+    <table id="thoughts_data" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Author</th>
+          <th>Text</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6">
+            <nav>
+              <ul class="pagination pagination-sm pull-right">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+              </ul>
+            </nav>              
+          </td>
+        </tr>  
+      </tfoot>
     </table>        
   </div>
 </div>
