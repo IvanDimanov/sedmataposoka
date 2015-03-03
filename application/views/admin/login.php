@@ -13,7 +13,7 @@
     <div class="captcha">
       <div class="g-recaptcha" data-sitekey="6LcJSPoSAAAAABGa0Gf1of7UdLLs2PawIy5YXFPa"></div>
       <script type="text/javascript"
-          src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang;?>">
+          src="https://www.google.com/recaptcha/api.js">
       </script>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" id="admin_log_in">Sign in</button>

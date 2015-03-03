@@ -1,6 +1,11 @@
 /* Main calls to the server */
 $( document ).ready(function() {
 
+	/*Separated url between log in and log out*/
+	var url_origin = window.location.origin,
+		path_array = (window.location.pathname).split('/'),
+		url_login  = url_origin + '/' + path_array[1] + '/rest_api/login';
+		
 	/* Log in user */
 	$('#form-admin-login').on('submit', function(event){
 
@@ -11,12 +16,11 @@ $( document ).ready(function() {
 			pass             = $login_form.find('#inputPassword').val(),
 			/* crypted pass */
 			pass_cripted     = CryptoJS.SHA3(pass, { outputLength: 256 }).toString(),
-			url			     = window.location.origin + '/sedmataposoka/rest_api/login',
 			captcha_response = $('#g-recaptcha-response').val();
 
 		  $.ajax({
 			type: 'POST',
-			url : url,
+			url : url_login,
 			data: {
 			  "name"           : name,
 			  "password"       : pass_cripted,
@@ -44,11 +48,9 @@ $( document ).ready(function() {
 	/* Log in user */
 	$('#log_out').on('click', function(event){
 
-		var url = window.location.origin + '/sedmataposoka/rest_api/login';
-
 		$.ajax({
 			type: 'DELETE',
-			url : url,
+			url : url_login,
 			data: {}
 		})
 		.done(function (statusText, status, jqXHR) {
